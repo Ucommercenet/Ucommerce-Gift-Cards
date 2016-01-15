@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE1A22E3-21A3-4653-A9D8-7DF019D01433}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SampleApp.Extensions</RootNamespace>
+    <AssemblyName>SampleApp.Extensions</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UCommerce">
+      <HintPath>..\..\lib\uCommerce\UCommerce.dll</HintPath>
+    </Reference>
+    <Reference Include="UCommerce.Infrastructure">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="UCommerce.Pipelines">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="UCommerce.Presentation">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\SampleApi.cs" />
+    <Compile Include="Globalization\SampleApp.da.Designer.cs" />
+    <Compile Include="Globalization\SampleApp.de.Designer.cs" />
+    <Compile Include="Globalization\SampleApp.Designer.cs" />
+    <Compile Include="Globalization\SampleApp.sv.Designer.cs" />
+    <Compile Include="Globalization\SampleAppResourceManager.cs" />
+    <Compile Include="Pipelines\Initialize\ExecuteAddShoeDefinitionPipelineTask.cs" />
+    <Compile Include="Pipelines\ProductDefinition\MergeShoeDefinitionTask.cs" />
+    <Compile Include="Pipelines\ProductDefinition\ModifyShoeDefinitionTask.cs" />
+    <Compile Include="Pipelines\ProductDefinition\SaveShoeDefinitionTask.cs" />
+    <Compile Include="Configuration\TabConfiguration.cs" />
+    <Compile Include="Pipelines\ProductDefinition\AddShoeDefinitionPipeline.cs" />
+    <Compile Include="Queries\SchemaVersionQuery.cs" />
+    <Compile Include="UI\Button\AddClientSideButtonToSettingsSearchTask.cs" />
+    <Compile Include="UI\Button\AddServerSideButtonToSettingsSearchTask.cs" />
+    <Compile Include="UI\Tab\AboutTabInSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Tree\AboutNodeProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Globalization\SampleApp.da.resx" />
+    <EmbeddedResource Include="Globalization\SampleApp.de.resx" />
+    <EmbeddedResource Include="Globalization\SampleApp.resx" />
+    <EmbeddedResource Include="Globalization\SampleApp.sv.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
