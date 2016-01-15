@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
-using System.Text;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Configuration;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Infrastructure.Logging;
+using UCommerce.Pipelines;
 using UCommerce.Pipelines.Common;
-using UCommerce.Transactions;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
 
-namespace UCommerce.Pipelines.Checkout
+namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
 	public class SendGiftCardEmailTask : IPipelineTask<PurchaseOrder>
 	{
