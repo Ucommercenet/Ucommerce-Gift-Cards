@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines.Checkout;
+using UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines;
 
 namespace UCommerce.Pipelines.Test.GiftCards
 {

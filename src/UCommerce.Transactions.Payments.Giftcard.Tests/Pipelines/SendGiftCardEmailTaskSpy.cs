@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Configuration;
-using System.Text;
-using UCommerce.EntitiesV2;
+﻿using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Configuration;
 using UCommerce.Infrastructure.Logging;
 using UCommerce.Pipelines.Checkout;
-using UCommerce.Transactions;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
 
-namespace UCommerce.Pipelines.Test.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
 	class SendGiftCardEmailTaskSpy : SendGiftCardEmailTask
 	{
