@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditGiftCardPrices.ascx.cs" Inherits="UCommerce.Transactions.Payments.Giftcard.UI.EditGiftCardPrices" %>
 <%@ Import Namespace="UCommerce.EntitiesV2" %>
-<%@ Register tagPrefix="commerce" tagName="ValidationSummary" src="../Controls/ValidationSummaryDisplay.ascx" %>
+<%@ Register tagPrefix="commerce" tagName="ValidationSummary" src="ValidationSummaryDisplay.ascx" %>
 <%@ Register TagPrefix="commerce" Namespace="UCommerce.Presentation.Web.Controls" Assembly="UCommerce.Presentation" %>
 <commerce:ValidationSummary ID="ValidationSummary1" runat="server" />
 
@@ -54,11 +54,11 @@
                     <Columns>
                         <asp:TemplateField meta:resourceKey="CommandHeader" HeaderText="">
                             <EditItemTemplate>
-                                <asp:HiddenField runat="server" ID="ProductIdHiddenVariantField" Value="<%# ((Product)Container.DataItem).ProductId %>" />
+                                <asp:HiddenField runat="server" ID="ProductIdHiddenVariantField" Value='<%# ((Product)Container.DataItem).ProductId %>' />
                                 <div class="hiddenContainer">
 									<asp:HiddenField runat="server" ID="AddVariantHiddenField" Value="false"/>									
 								</div>
-								<asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="../images/ui/cross.png" Width="16px" Height="16px" CommandArgument="<%# ((Product)Container.DataItem).ProductId %>" CommandName="Delete" AlternateText="Delete" OnClientClick="return confirm_delete_variant();" />
+								<asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="Media/delete.png" Width="16px" Height="16px" CommandArgument='<%# ((Product)Container.DataItem).ProductId %>' CommandName="Delete" AlternateText="Delete" OnClientClick="return confirm_delete_variant();" />
                             </EditItemTemplate>
                         </asp:TemplateField>
                     </Columns>

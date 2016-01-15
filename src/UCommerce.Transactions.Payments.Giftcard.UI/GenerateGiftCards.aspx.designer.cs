@@ -19,7 +19,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl ValidationSummary1;
+        protected global::UCommerce.Transactions.Payments.Giftcard.UI.ValidationSummaryDisplay ValidationSummary1;
         
         /// <summary>
         /// Localize2 control.
