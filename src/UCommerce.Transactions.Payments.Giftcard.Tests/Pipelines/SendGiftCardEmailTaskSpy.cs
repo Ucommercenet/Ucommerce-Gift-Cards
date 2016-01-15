@@ -14,9 +14,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             IEmailService emailService, 
             CommerceConfigurationProvider commerceConfigurationProvider, 
             IRepository<GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
-		{
-
-		}
+		{}
 
 		public string GetSenderEmail(PurchaseOrder order)
 		{
