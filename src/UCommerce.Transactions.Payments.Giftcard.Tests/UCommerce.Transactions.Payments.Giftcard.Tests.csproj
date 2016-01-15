@@ -47,10 +47,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UCommerce">
-      <HintPath>..\..\..\..\uConnector\lib\uCommerce\UCommerce.dll</HintPath>
+      <HintPath>..\..\lib\uCommerce\UCommerce.dll</HintPath>
     </Reference>
     <Reference Include="UCommerce.Infrastructure">
-      <HintPath>..\..\..\..\uConnector\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
+      <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
