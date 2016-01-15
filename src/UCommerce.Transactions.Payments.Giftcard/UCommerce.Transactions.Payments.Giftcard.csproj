@@ -67,6 +67,7 @@
     <Compile Include="Pipelines\IssueGiftCardTask.cs" />
     <Compile Include="Pipelines\RecalculateGiftCardPaymentsAmountTask.cs" />
     <Compile Include="Pipelines\RedeemGiftCardsTask.cs" />
+    <Compile Include="Pipelines\Checkout\SendGiftCardEmailTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GiftCardCodeGenerator.cs" />
     <Compile Include="Services\GiftCardService.cs" />

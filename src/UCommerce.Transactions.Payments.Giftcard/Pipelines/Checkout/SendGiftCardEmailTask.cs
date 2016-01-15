@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure.Configuration;
+using UCommerce.Infrastructure.Globalization;
+using UCommerce.Infrastructure.Logging;
+using UCommerce.Pipelines.Common;
+using UCommerce.Transactions;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
+
+namespace UCommerce.Pipelines.Checkout
+{
+	public class SendGiftCardEmailTask : IPipelineTask<PurchaseOrder>
+	{
+		private readonly string _emailTypeName;
+		private readonly ILoggingService _loggingService;
+		private readonly IEmailService _emailService;
+		private readonly CommerceConfigurationProvider _commerceConfigurationProvider;
+		private readonly IRepository<GiftCard> _giftCardRepository;
+
+		public SendGiftCardEmailTask(string emailTypeName, 
+			ILoggingService loggingService, 
+			IEmailService emailService,
+			CommerceConfigurationProvider commerceConfigurationProvider,
+			IRepository<GiftCard> giftCardRepository )
+		{
+			_emailTypeName = emailTypeName;
+			_loggingService = loggingService;
+			_emailService = emailService;
+			_commerceConfigurationProvider = commerceConfigurationProvider;
+			_giftCardRepository = giftCardRepository;
+		}
+
+		/// <summary>
+		/// Sends email of type GiftCard if order is subject for sending a gift card.
+		/// </summary>
+		/// <param name="subject"></param>
+		/// <returns></returns>
+		public PipelineExecutionResult Execute(PurchaseOrder subject)
+		{
+			var giftCards = _giftCardRepository.Select(x => x.OrderNumber == subject.OrderNumber);
+			if (!giftCards.Any()) //Order not associated with a Gift Card.
+				return PipelineExecutionResult.Success;
+
+			var recieverEmail = GetRecieverEmail(subject);
+
+			if (string.IsNullOrWhiteSpace(recieverEmail)) //no email recipient was found.
+				return PipelineExecutionResult.Warning;
+
+			// Override default culture with the one found on order to support different UI culture from order culture.
+			var customCulture = new CustomGlobalization(_commerceConfigurationProvider);
+			customCulture.SetCulture(new CultureInfo(subject.CultureCode ?? customCulture.DefaultCulture.ToString()));
+
+			var stringOfGiftCardCodes = string.Join(",", giftCards.Select(x => x.Code));
+			
+			var dictionary = new Dictionary<string, string>
+					{
+						{"orderNumber", subject.OrderNumber},
+						{"orderGuid", subject.OrderGuid.ToString()},
+						{"giftCardCodes", stringOfGiftCardCodes}
+					};
+			
+			try
+			{
+				_emailService.Send(customCulture, subject.ProductCatalogGroup.EmailProfile, _emailTypeName,
+								  new MailAddress(recieverEmail),
+								  dictionary);
+			}
+			catch (SmtpException smtpException)
+			{
+				_loggingService.Log<SendEmailTask>(smtpException);
+			}
+
+			return PipelineExecutionResult.Success;
+
+		}
+
+		/// <summary>
+		/// Finds a receiver address based on deliveryaddresses on an order.
+		/// </summary>
+		/// <param name="subject"></param>
+		/// <returns></returns>
+		protected virtual string GetRecieverEmail(PurchaseOrder subject)
+		{
+			string email = "";
+			OrderAddress address = null;
+
+			//We only want to send to delivery address if there's exactly one shipmentaddress
+			//as number of codes and number of deliveryaddress might not match. Hence we cannot 
+			//determine which recepient gets which giftcard. Also every deliveryaddress would get every code as configured in the task.
+			if (subject.Shipments.Count == 1) 
+				address = subject.Shipments.First().ShipmentAddress;
+
+			if (address != null && !string.IsNullOrWhiteSpace(address.EmailAddress))
+				email = address.EmailAddress;
+				
+			if (string.IsNullOrWhiteSpace(email))
+			{
+				address = subject.GetBillingAddress();
+				if (address != null)
+					email = address.EmailAddress;
+			}
+
+			return email;
+
+		}
+	}
+}

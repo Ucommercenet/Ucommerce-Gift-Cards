@@ -4,8 +4,12 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
+using UCommerce.Pipelines.Test.GiftCards;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines.Checkout;
+using UCommerce.Transactions.Payments.Giftcard.Services;
 
-namespace UCommerce.Pipelines.Test.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
 	[TestFixture]
 	public class CreateGiftCardTaskTest
