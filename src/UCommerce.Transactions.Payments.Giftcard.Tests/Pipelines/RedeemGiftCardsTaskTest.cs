@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines.Checkout;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {

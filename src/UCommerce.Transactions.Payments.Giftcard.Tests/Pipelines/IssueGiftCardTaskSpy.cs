@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines.Checkout;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Services;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines

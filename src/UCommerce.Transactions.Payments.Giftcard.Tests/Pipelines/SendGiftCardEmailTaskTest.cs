@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UCommerce.EntitiesV2;
-using UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines;
 
-namespace UCommerce.Pipelines.Test.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
 	[TestFixture]
 	public class SendGiftCardEmailTaskTest

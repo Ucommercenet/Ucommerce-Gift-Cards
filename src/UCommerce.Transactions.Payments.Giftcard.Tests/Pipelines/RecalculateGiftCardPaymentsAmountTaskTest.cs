@@ -5,7 +5,7 @@ using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines.Test.GiftCards;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines.Basket;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
