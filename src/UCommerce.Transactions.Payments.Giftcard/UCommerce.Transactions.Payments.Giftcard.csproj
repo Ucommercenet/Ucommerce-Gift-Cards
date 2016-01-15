@@ -64,10 +64,10 @@
     <Compile Include="Entities\Maps\MapAssemblyTag.cs" />
     <Compile Include="GiftCardPaymentMethodService.cs" />
     <Compile Include="Globalization\ResourceManager.cs" />
-    <Compile Include="Pipelines\Checkout\IssueGiftCardTask.cs" />
-    <Compile Include="Pipelines\Basket\RecalculateGiftCardPaymentsAmountTask.cs" />
-    <Compile Include="Pipelines\Checkout\RedeemGiftCardsTask.cs" />
-    <Compile Include="Pipelines\Checkout\SendGiftCardEmailTask.cs" />
+    <Compile Include="Pipelines\IssueGiftCardTask.cs" />
+    <Compile Include="Pipelines\RecalculateGiftCardPaymentsAmountTask.cs" />
+    <Compile Include="Pipelines\RedeemGiftCardsTask.cs" />
+    <Compile Include="Pipelines\SendGiftCardEmailTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GiftCardCodeGenerator.cs" />
     <Compile Include="Services\GiftCardService.cs" />

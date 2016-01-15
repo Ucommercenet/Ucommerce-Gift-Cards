@@ -7,7 +7,7 @@ using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
 using UCommerce.Transactions.Payments.Giftcard.Services;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Checkout
+namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
     /// <summary>
     /// Issues a <see cref="GiftCard"/> 
