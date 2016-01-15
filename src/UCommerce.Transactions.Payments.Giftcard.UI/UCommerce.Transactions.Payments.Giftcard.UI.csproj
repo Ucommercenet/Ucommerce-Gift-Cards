@@ -65,33 +65,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.ascx" />
-    <Content Include="Media\uCommerce-logo-symbol-small.png" />
-    <Content Include="SampleApp.config">
+    <Content Include="UCommerce.Transactions.Payments.Giftcard.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Css\About.css" />
-    <Content Include="Media\about.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="About.ascx.cs">
-      <DependentUpon>About.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.ascx.designer.cs">
-      <DependentUpon>About.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.Giftcard.csproj">
@@ -100,22 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\TreeNode.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\ShoeDefinitionPipeline.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\Configuration.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\Tabs.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\Initialize.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\TabButtons.config" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Css\" />
+    <Folder Include="Media\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
