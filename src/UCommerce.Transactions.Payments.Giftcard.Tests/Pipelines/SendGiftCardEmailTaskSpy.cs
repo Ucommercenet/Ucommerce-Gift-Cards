@@ -8,11 +8,15 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
 	class SendGiftCardEmailTaskSpy : SendGiftCardEmailTask
 	{
-		public SendGiftCardEmailTaskSpy(string emailTypeName, ILoggingService loggingService, IEmailService emailService, CommerceConfigurationProvider commerceConfigurationProvider, IRepository<GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
+		public SendGiftCardEmailTaskSpy(
+            string emailTypeName, 
+            ILoggingService loggingService, 
+            IEmailService emailService, 
+            CommerceConfigurationProvider commerceConfigurationProvider, 
+            IRepository<GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
 		{
 
 		}
-
 
 		public string GetSenderEmail(PurchaseOrder order)
 		{
