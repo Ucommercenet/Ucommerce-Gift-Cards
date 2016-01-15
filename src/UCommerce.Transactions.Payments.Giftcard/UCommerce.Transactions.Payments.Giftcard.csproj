@@ -60,6 +60,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\GiftCard.cs" />
     <Compile Include="Entities\IssueGiftCardRequest.cs" />
+    <Compile Include="Entities\Maps\CreateGiftCardRoleMap.cs" />
     <Compile Include="Entities\Maps\GiftCardMap.cs" />
     <Compile Include="Entities\Maps\MapAssemblyTag.cs" />
     <Compile Include="Entities\Security\CreateGiftCardRole.cs" />
