@@ -95,7 +95,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
 
 			payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Acquired);
 
-            status = status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
+            status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
             return true;
         }
 
