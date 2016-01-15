@@ -79,9 +79,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Css\" />
     <Folder Include="Media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\ToCompletedPipeline.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Checkout.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
