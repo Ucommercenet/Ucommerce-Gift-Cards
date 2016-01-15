@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
-using UCommerce.Pipelines.Checkout;
-using UCommerce.Transactions;
-using UCommerce.Transactions.Payments;
-using UCommerce.Transactions.Payments.GiftCards;
+using UCommerce.Infrastructure.Globalization;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines;
 
-namespace UCommerce.Pipelines.Test.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
     [TestFixture]
     public class RedeemGiftCardsTaskTest
@@ -126,8 +123,9 @@ namespace UCommerce.Pipelines.Test.GiftCards
         private IPaymentMethodService GetPaymentMethodService(IRepository<GiftCard> giftCardRepo, IRepository<PaymentStatus> paymentStatusRepo)
         {
             var paymentRepository = MockRepository.GenerateMock<IRepository<Payment>>();
+            var resourceManager = MockRepository.GenerateMock<IResourceManager>();
 
-            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, new OrderService(),paymentRepository);
+            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, resourceManager, new OrderService(),paymentRepository);
 
             return service;
         }
@@ -149,7 +147,7 @@ namespace UCommerce.Pipelines.Test.GiftCards
 
         private static IRepository<GiftCard> GetGiftCardRepositoryStub(IList<GiftCard> giftCardsToReturn)
         {
-            var dummyGiftCardRepository = MockRepository.GenerateStub<IRepository<EntitiesV2.GiftCard>>();
+            var dummyGiftCardRepository = MockRepository.GenerateStub<IRepository<GiftCard>>();
             dummyGiftCardRepository.Stub(x => x.Select()).Return(giftCardsToReturn.AsQueryable());
 
             return dummyGiftCardRepository;
