@@ -63,13 +63,45 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="UCommerce.Presentation, Version=6.9.0.15313, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\uCommerce\UCommerce.Presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EditGiftCardPrices.ascx" />
+    <Content Include="EditPaymentMethodGiftCards.ascx" />
+    <Content Include="GenerateGiftCards.aspx" />
+    <Content Include="Media\table_save.png" />
     <Content Include="UCommerce.Transactions.Payments.Giftcard.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownloadGiftCardCodes.ashx.cs">
+      <DependentUpon>DownloadGiftCardCodes.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EditGiftCardPrices.ascx.cs">
+      <DependentUpon>EditGiftCardPrices.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditGiftCardPrices.ascx.designer.cs">
+      <DependentUpon>EditGiftCardPrices.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPaymentMethodGiftCards.ascx.cs">
+      <DependentUpon>EditPaymentMethodGiftCards.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditPaymentMethodGiftCards.ascx.designer.cs">
+      <DependentUpon>EditPaymentMethodGiftCards.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateGiftCards.aspx.cs">
+      <DependentUpon>GenerateGiftCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateGiftCards.aspx.designer.cs">
+      <DependentUpon>GenerateGiftCards.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\" />
-    <Folder Include="Media\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\ToCompletedPipeline.config" />
@@ -91,9 +122,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Initialize.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.da-DK.resx" />
+    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.de-DE.resx" />
+    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.nl-NL.resx" />
+    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.resx" />
+    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.sv-SE.resx" />
+    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.da-DK.resx" />
+    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.de-DE.resx" />
+    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.nl-NL.resx" />
+    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.resx" />
+    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.sv-SE.resx" />
+    <Content Include="App_LocalResources\GenerateGiftCards.aspx.da-DK.resx" />
+    <Content Include="App_LocalResources\GenerateGiftCards.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\GenerateGiftCards.aspx.nl-NL.resx" />
+    <Content Include="App_LocalResources\GenerateGiftCards.aspx.resx" />
+    <Content Include="App_LocalResources\GenerateGiftCards.aspx.sv-SE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DownloadGiftCardCodes.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -106,7 +152,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>16828</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -121,8 +167,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Deploy.To.uCommerce.ps1" -SourceDirectory "$(ProjectDir)
+Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Generate.App.Package.ps1" -TargetDirectory "$(ProjectDir)..\..\package" -SourceDirectory "$(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

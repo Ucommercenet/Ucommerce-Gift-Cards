@@ -126,4 +126,7 @@
   <data name="requiredFieldValidator" xml:space="preserve">
     <value>are required to have a value.</value>
   </data>
+  <data name="CommandHeader.Text" xml:space="preserve">
+    <value>MISSING HEADER TEXT</value>
+  </data>
 </root>

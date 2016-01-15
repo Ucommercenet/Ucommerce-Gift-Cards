@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UCommerce.Web.UI.UCommerce.Settings.Orders {
+namespace UCommerce.Transactions.Payments.Giftcard.UI {
     
     
     public partial class EditPaymentMethodGiftCards {
@@ -19,7 +19,7 @@ namespace UCommerce.Web.UI.UCommerce.Settings.Orders {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::UCommerce.Web.UI.Controls.ValidationSummaryDisplay ValidationSummary;
+        protected global::System.Web.UI.UserControl ValidationSummary;
         
         /// <summary>
         /// GiftCardValidator control.

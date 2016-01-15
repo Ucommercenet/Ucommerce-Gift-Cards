@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UCommerce.EntitiesV2;
@@ -14,6 +12,13 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 {
 	public partial class EditGiftCardPrices : ViewEnabledControl<IEditProductView>, ISection
 	{
+		private readonly IRepository<PriceGroup> _priceGroupRepository;
+
+		public EditGiftCardPrices(IRepository<PriceGroup> priceGroupRepository)
+		{
+			_priceGroupRepository = priceGroupRepository;
+		}
+
 		private IList<Product> _variants;
 		protected IList<Product> Variants
 		{
@@ -36,7 +41,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 
 		private void InitializeGridView()
 		{
-			foreach (var priceGroup in View.PriceGroups)
+			var pricegroups = _priceGroupRepository.Select().ToList();
+
+			foreach (var priceGroup in pricegroups)
 			{
 				var field = new TemplateField
 				{
@@ -181,7 +188,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 			else
 				currentProductVariant = View.Product.Variants.SingleOrDefault(x => x.ProductId == productVariantId);
 
-			foreach (var priceGroup in View.PriceGroups)
+			var pricegroups = _priceGroupRepository.Select().ToList();
+
+			foreach (var priceGroup in pricegroups)
 			{
 				var field = row.FindControl("NewPrice_" + priceGroup.Id) as TextBox;
 				var price = Convert.ToDecimal(field.Text);
@@ -249,7 +258,10 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 			int cellIndex = 1;
 			Product currentVariant = Variants.FirstOrDefault(x => x.ProductId == productId);
 
-			foreach (var priceGroup in View.PriceGroups)
+
+			var pricegroups = _priceGroupRepository.Select().ToList();
+
+			foreach (var priceGroup in pricegroups)
 			{
 				Control control = GetInitializedControlForPriceGroupPrice(currentVariant, priceGroup, newVariant);
 				e.Row.Cells[cellIndex].Controls.Add(control);
