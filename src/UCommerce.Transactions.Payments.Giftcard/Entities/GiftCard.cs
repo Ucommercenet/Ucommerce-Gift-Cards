@@ -7,8 +7,8 @@ namespace UCommerce.Transactions.Payments.Giftcard.Entities
 	/// The GiftCard class is the basic foundation of uCommerce Gift Cards. You can 
 	/// buy a gift card with some amount an later use this as a valid payment.
 	/// </summary>
-    public partial class GiftCard 
-    {
+    public partial class GiftCard : IEntity
+	{
         ///<summary>
         /// Returns the id.
         ///</summary>
