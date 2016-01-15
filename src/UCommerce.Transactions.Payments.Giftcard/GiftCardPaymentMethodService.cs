@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure.Globalization;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
 
 namespace UCommerce.Transactions.Payments.Giftcard
@@ -15,13 +16,19 @@ namespace UCommerce.Transactions.Payments.Giftcard
     {
         private readonly IRepository<GiftCard> _giftCardRepsitory;
         private readonly IRepository<PaymentStatus> _paymentStatusRepository;
+        private readonly IResourceManager _resourceManager;
         private List<GiftCard> _giftCards;
 
-        public GiftCardPaymentMethodService(IRepository<GiftCard> giftCardRepsitory, IRepository<PaymentStatus> paymentStatusRepository, IOrderService orderService, IRepository<Payment> paymentRepository)
-            : base(orderService, paymentStatusRepository, paymentRepository)
+        public GiftCardPaymentMethodService(
+            IRepository<GiftCard> giftCardRepsitory, 
+            IRepository<PaymentStatus> paymentStatusRepository, 
+            IResourceManager resourceManager,
+            IOrderService orderService, 
+            IRepository<Payment> paymentRepository)
         {
             _giftCardRepsitory = giftCardRepsitory;
             _paymentStatusRepository = paymentStatusRepository;
+            _resourceManager = resourceManager;
             _giftCards = _giftCardRepsitory.Select().ToList();
         }
 
@@ -57,9 +64,9 @@ namespace UCommerce.Transactions.Payments.Giftcard
                 throw new InvalidOperationException("Use RefundPayment on payment with status Acquried.");
 
             payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Cancelled);
-            payment.Save(); 
+            payment.Save();
 
-            status = PaymentMessages.CancelSuccess;
+            status = _resourceManager.GetLocalizedText("PaymentMessages", "CancelSuccess");
             return true;
         }
 
@@ -73,7 +80,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
         {
             if (payment.PaymentStatus != null && payment.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Acquired)
             {
-                status = PaymentMessages.AcquireSuccess;
+                status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
                 return true;                
             }
 
@@ -84,11 +91,11 @@ namespace UCommerce.Transactions.Payments.Giftcard
                 throw new InvalidOperationException(giftCardStatus);
 
             giftCard.AmountUsed += payment.Amount;
-            giftCard.Save();
+            _giftCardRepsitory.Save(giftCard);
 
 			payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Acquired);
 
-            status = PaymentMessages.AcquireSuccess;
+            status = status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
             return true;
         }
 
@@ -106,12 +113,13 @@ namespace UCommerce.Transactions.Payments.Giftcard
 
 			var giftCard = _giftCardRepsitory.SingleOrDefault(x => x.Code == payment["GiftCardCode"]);
             giftCard.AmountUsed -= payment.Amount;
-            giftCard.Save();
+            _giftCardRepsitory.Save(giftCard);
 			
 			payment.PaymentStatus = _paymentStatusRepository.Get((int) PaymentStatusCode.Refunded);
             payment.Save();
 
-            status = PaymentMessages.RefundSuccess;
+            status = _resourceManager.GetLocalizedText("PaymentMessages", "RefundSuccess");
+
             return true;
         }
 

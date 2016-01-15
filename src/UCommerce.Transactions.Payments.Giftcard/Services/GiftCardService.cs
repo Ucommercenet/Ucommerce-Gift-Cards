@@ -5,6 +5,7 @@ using System.Text;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCards
 {

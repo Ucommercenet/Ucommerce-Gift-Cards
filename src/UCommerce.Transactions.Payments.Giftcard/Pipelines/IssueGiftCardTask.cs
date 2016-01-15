@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Services;
 using UCommerce.Transactions.Payments.GiftCards;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
-	/// <summary>
-	/// Issues a <see cref="GiftCard"/> 
-	/// in case an orderLine contains a product of definition: GiftCard.  
-	/// </summary>
-	public class IssueGiftCardTask : IPipelineTask<PurchaseOrder>
+    /// <summary>
+    /// Issues a <see cref="GiftCard"/> 
+    /// in case an orderLine contains a product of definition: GiftCard.  
+    /// </summary>
+    public class IssueGiftCardTask : IPipelineTask<PurchaseOrder>
 	{
 		protected readonly int _daysGiftIsAvailableAfterPurchase;
 		protected readonly IRepository<Product> _productRepository;

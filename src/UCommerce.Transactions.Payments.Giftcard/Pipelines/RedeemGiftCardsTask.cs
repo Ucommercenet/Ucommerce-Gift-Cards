@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
