@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines;
-using UCommerce.Transactions.Payments.Giftcard.Services;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Pipelines;
+using UCommerce.Transactions.Payments.GiftCard.Services;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
     public class IssueGiftCardTaskSpy : IssueGiftCardTask
     {

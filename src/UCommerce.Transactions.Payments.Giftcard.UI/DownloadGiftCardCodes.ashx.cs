@@ -6,18 +6,18 @@ using System.Web;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.UI
+namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	/// <summary>
 	/// Summary description for DownloadGiftCardCodes
 	/// </summary>
 	public class DownloadGiftCardCodes : IHttpHandler
 	{
-		private readonly IRepository<GiftCard> _giftCardRepository;
+		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public DownloadGiftCardCodes(IRepository<GiftCard> giftCardRepository)
+		public DownloadGiftCardCodes(IRepository<Entities.GiftCard> giftCardRepository)
 		{
 			_giftCardRepository = giftCardRepository;
 		}

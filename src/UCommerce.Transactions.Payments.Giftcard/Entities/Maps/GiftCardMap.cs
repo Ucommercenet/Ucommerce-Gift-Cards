@@ -1,6 +1,6 @@
 ﻿using UCommerce.EntitiesV2.Maps;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Entities.Maps
+namespace UCommerce.Transactions.Payments.GiftCard.Entities.Maps
 {
     public class GiftCardMap : BaseClassMap<GiftCard>
     {

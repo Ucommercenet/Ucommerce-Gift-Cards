@@ -1,7 +1,7 @@
 ﻿using System;
 using UCommerce.EntitiesV2;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Entities
+namespace UCommerce.Transactions.Payments.GiftCard.Entities
 {
 	/// <summary>
 	/// The GiftCard class is the basic foundation of uCommerce Gift Cards. You can 

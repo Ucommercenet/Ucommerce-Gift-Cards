@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
     /// <summary>
-    /// Redeems every <see cref="GiftCard"/> associated with a purchaseOrder. 
+    /// Redeems every <see cref="Entities.GiftCard"/> associated with a purchaseOrder. 
     /// </summary>
     public class RedeemGiftCardsTask : IPipelineTask<PurchaseOrder>
     {
     	/// <summary>
-        /// Redeems every <see cref="GiftCard"/> associated with a <see cref="PurchaseOrder"/>.
+        /// Redeems every <see cref="Entities.GiftCard"/> associated with a <see cref="PurchaseOrder"/>.
         /// </summary>
         /// <param name="subject">a specific payment which is beeing checked out and should have it's <see cref="GiftCard"/> redeemed..</param>
         /// <returns>success.</returns>

@@ -7,8 +7,8 @@
     <ProjectGuid>{FE1A22E3-21A3-4653-A9D8-7DF019D01433}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UCommerce.Transactions.Payments.Giftcard</RootNamespace>
-    <AssemblyName>UCommerce.Transactions.Payments.Giftcard</AssemblyName>
+    <RootNamespace>UCommerce.Transactions.Payments.GiftCard</RootNamespace>
+    <AssemblyName>UCommerce.Transactions.Payments.GiftCard</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,6 +52,9 @@
     <Reference Include="UCommerce.Infrastructure">
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="UCommerce.Installer">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Installer.dll</HintPath>
+    </Reference>
     <Reference Include="UCommerce.Pipelines">
       <HintPath>..\..\lib\uCommerce\UCommerce.Pipelines.dll</HintPath>
     </Reference>
@@ -69,10 +72,14 @@
     <Compile Include="Entities\Security\CreateGiftCardRole.cs" />
     <Compile Include="GiftCardPaymentMethodService.cs" />
     <Compile Include="Globalization\ResourceManager.cs" />
+    <Compile Include="Pipelines\Installation\SetupGiftCardEmailTypeTask.cs" />
+    <Compile Include="Pipelines\Installation\SetupGiftCardPaymentMethod.cs" />
     <Compile Include="Pipelines\IssueGiftCardTask.cs" />
+    <Compile Include="Pipelines\Installation\MigrateAppDatabase.cs" />
     <Compile Include="Pipelines\RecalculateGiftCardPaymentsAmountTask.cs" />
     <Compile Include="Pipelines\RedeemGiftCardsTask.cs" />
     <Compile Include="Pipelines\SendGiftCardEmailTask.cs" />
+    <Compile Include="Pipelines\Installation\SetupGiftCardDefinitionTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GiftCardCodeGenerator.cs" />
     <Compile Include="Services\GiftCardService.cs" />

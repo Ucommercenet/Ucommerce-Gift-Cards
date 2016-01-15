@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UCommerce.Transactions.Payments.Giftcard.UI</RootNamespace>
-    <AssemblyName>UCommerce.Transactions.Payments.Giftcard.UI</AssemblyName>
+    <RootNamespace>UCommerce.Transactions.Payments.GiftCard.UI</RootNamespace>
+    <AssemblyName>UCommerce.Transactions.Payments.GiftCard.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -105,9 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.Giftcard.csproj">
+    <ProjectReference Include="..\UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.GiftCard.csproj">
       <Project>{fe1a22e3-21a3-4653-a9d8-7df019d01433}</Project>
-      <Name>SampleApp.Extensions</Name>
+      <Name>UCommerce.Transactions.Payments.GiftCard</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DownloadGiftCardCodes.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Initialize.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

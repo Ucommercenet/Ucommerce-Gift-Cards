@@ -1,8 +1,8 @@
-﻿using UCommerce.Transactions.Payments.Giftcard.Entities;
+﻿using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
-    public class GiftCardSpy : GiftCard
+    public class GiftCardSpy : Entities.GiftCard
     {
     }
 }

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using UCommerce.EntitiesV2;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
 	[TestFixture]
 	public class SendGiftCardEmailTaskTest

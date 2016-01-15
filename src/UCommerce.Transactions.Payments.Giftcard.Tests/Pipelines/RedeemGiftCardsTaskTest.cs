@@ -5,10 +5,10 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Pipelines;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
     [TestFixture]
     public class RedeemGiftCardsTaskTest
@@ -18,7 +18,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
         {
 			var currency = new Currency();
 
-            var giftCards = new List<GiftCard>();
+            var giftCards = new List<Entities.GiftCard>();
             var giftcard1 = CreateGiftCard(400, 300, "12345", DateTime.Now, DateTime.Now.AddDays(40), true, currency);
             var giftcard2 = CreateGiftCard(500, 300, "123456", DateTime.Now, DateTime.Now.AddDays(40), true, currency);
             var giftcard3 = CreateGiftCard(600, 300, "1234586", DateTime.Now, DateTime.Now.AddDays(40), true, currency);
@@ -79,7 +79,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
         {
             var currency = new Currency();
             
-			var giftCards = new List<GiftCard>();
+			var giftCards = new List<Entities.GiftCard>();
             giftCards.Add(CreateGiftCard(400, 400, "12345", DateTime.Now, DateTime.Now.AddDays(40), true, currency));
 
 			var paymentPropertyRepositoryStub = GetPaymentPropertyRepositoryStub();			
@@ -102,7 +102,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 							.EqualTo("There's no available funds on the giftCard with code: 12345."), () => task.Execute(purchaseOrder));
         }
 
-        private Payment CreateTestPayment(decimal amount, IList<PaymentProperty> properties, IRepository<GiftCard> giftCardRepo, IRepository<PaymentStatus> paymentStatusRepo)
+        private Payment CreateTestPayment(decimal amount, IList<PaymentProperty> properties, IRepository<Entities.GiftCard> giftCardRepo, IRepository<PaymentStatus> paymentStatusRepo)
         {
             
             var paymentMethod = MockRepository.GenerateStub<PaymentMethod>();
@@ -120,7 +120,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 			return payment;
         }
 
-        private IPaymentMethodService GetPaymentMethodService(IRepository<GiftCard> giftCardRepo, IRepository<PaymentStatus> paymentStatusRepo)
+        private IPaymentMethodService GetPaymentMethodService(IRepository<Entities.GiftCard> giftCardRepo, IRepository<PaymentStatus> paymentStatusRepo)
         {
             var paymentRepository = MockRepository.GenerateMock<IRepository<Payment>>();
             var resourceManager = MockRepository.GenerateMock<IResourceManager>();
@@ -130,7 +130,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             return service;
         }
 
-        private GiftCard CreateGiftCard(decimal amount, decimal amountUsed, string code, DateTime createdOn, DateTime expiresOn, bool enabled, Currency currency)
+        private Entities.GiftCard CreateGiftCard(decimal amount, decimal amountUsed, string code, DateTime createdOn, DateTime expiresOn, bool enabled, Currency currency)
         {
             var giftCard = new GiftCardSpy();
 
@@ -145,9 +145,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             return giftCard;
         }
 
-        private static IRepository<GiftCard> GetGiftCardRepositoryStub(IList<GiftCard> giftCardsToReturn)
+        private static IRepository<Entities.GiftCard> GetGiftCardRepositoryStub(IList<Entities.GiftCard> giftCardsToReturn)
         {
-            var dummyGiftCardRepository = MockRepository.GenerateStub<IRepository<GiftCard>>();
+            var dummyGiftCardRepository = MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
             dummyGiftCardRepository.Stub(x => x.Select()).Return(giftCardsToReturn.AsQueryable());
 
             return dummyGiftCardRepository;
