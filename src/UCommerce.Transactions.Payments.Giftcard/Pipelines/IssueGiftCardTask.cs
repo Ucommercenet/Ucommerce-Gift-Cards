@@ -11,7 +11,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
     /// <summary>
     /// Issues a <see cref="GiftCard"/> 
-    /// in case an orderLine contains a product of definition: GiftCard.  
+    /// in case an orderLine contains a product of definition: GiftCard.
     /// </summary>
     public class IssueGiftCardTask : IPipelineTask<PurchaseOrder>
 	{
