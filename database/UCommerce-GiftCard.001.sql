@@ -16,5 +16,3 @@ CREATE TABLE uCommerce_GiftCard
 	OrderNumber nvarchar(50) null,
 	Note nvarchar(max) not null
 )
--- Enable save button on Edit Shipping tab.
-UPDATE uCommerce_adminTab SET HasSaveButton = 1 WHERE VirtualPath = 'EditOrderShipments.ascx'

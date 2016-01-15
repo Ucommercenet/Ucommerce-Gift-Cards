@@ -9,7 +9,7 @@ using UCommerce.Infrastructure;
 using UCommerce.Presentation.Views.Catalog;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Pages;
-namespace UCommerce.Transactions.Payments.Giftcard.UI
+namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class EditGiftCardPrices : ViewEnabledControl<IEditProductView>, ISection
 	{

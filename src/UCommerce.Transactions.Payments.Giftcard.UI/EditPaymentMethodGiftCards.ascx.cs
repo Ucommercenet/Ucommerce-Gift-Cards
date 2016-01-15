@@ -10,17 +10,17 @@ using UCommerce.Presentation.Web;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Pages;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
-namespace UCommerce.Transactions.Payments.Giftcard.UI
+namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class EditPaymentMethodGiftCards : ViewEnabledControl<IEditPaymentMethodView>, ISection
 	{
-		private readonly IRepository<GiftCard> _giftCardRepository;
+		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 		private readonly ISecurityService _securityService;
-		private List<GiftCard> _giftCards;
-		private List<GiftCard> GiftCards { 
+		private List<Entities.GiftCard> _giftCards;
+		private List<Entities.GiftCard> GiftCards { 
 			get
 			{
 				if (_giftCards == null)
@@ -35,7 +35,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 
 		public EditPaymentMethodGiftCards()
 		{
-			_giftCardRepository = ObjectFactory.Instance.Resolve<IRepository<GiftCard>>();
+			_giftCardRepository = ObjectFactory.Instance.Resolve<IRepository<Entities.GiftCard>>();
 			_securityService = ObjectFactory.Instance.Resolve<ISecurityService>();
 		}
 
@@ -85,7 +85,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 
 		public void UpdateGiftCards()
 		{
-			var giftCards = new List<GiftCard>();
+			var giftCards = new List<Entities.GiftCard>();
 			foreach (ListViewDataItem repeaterItem in GiftCardListView.Items)
 			{
 				var checkBox = (CheckBox)repeaterItem.FindControl("GiftCardEnabledCheckBox"); 
@@ -177,7 +177,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 			{
 				var checkBox = (CheckBox)repeaterItem.FindControl("GiftCardEnabledCheckBox");
 				
-				if (checkBox.Checked && !LicenseRestrictions.AllowCreate(typeof (GiftCard)))
+				if (checkBox.Checked && !LicenseRestrictions.AllowCreate(typeof (Entities.GiftCard)))
 				{
 					args.IsValid = false;
 					break;

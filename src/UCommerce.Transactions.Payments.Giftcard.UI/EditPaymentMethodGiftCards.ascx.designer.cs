@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UCommerce.Transactions.Payments.Giftcard.UI {
+namespace UCommerce.Transactions.Payments.GiftCard.UI {
     
     
     public partial class EditPaymentMethodGiftCards {

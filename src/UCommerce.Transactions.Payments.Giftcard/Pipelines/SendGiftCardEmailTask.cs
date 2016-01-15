@@ -8,9 +8,9 @@ using UCommerce.Infrastructure.Globalization;
 using UCommerce.Infrastructure.Logging;
 using UCommerce.Pipelines;
 using UCommerce.Pipelines.Common;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
 	public class SendGiftCardEmailTask : IPipelineTask<PurchaseOrder>
 	{
@@ -18,13 +18,13 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 		private readonly ILoggingService _loggingService;
 		private readonly IEmailService _emailService;
 		private readonly CommerceConfigurationProvider _commerceConfigurationProvider;
-		private readonly IRepository<GiftCard> _giftCardRepository;
+		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
 		public SendGiftCardEmailTask(string emailTypeName, 
 			ILoggingService loggingService, 
 			IEmailService emailService,
 			CommerceConfigurationProvider commerceConfigurationProvider,
-			IRepository<GiftCard> giftCardRepository )
+			IRepository<Entities.GiftCard> giftCardRepository )
 		{
 			_emailTypeName = emailTypeName;
 			_loggingService = loggingService;

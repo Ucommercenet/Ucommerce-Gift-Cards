@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using UCommerce.Transactions.Payments.Giftcard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Entities.Maps
+namespace UCommerce.Transactions.Payments.GiftCard.Entities.Maps
 {
     class CreateGiftCardRoleMap : SubclassMap<CreateGiftCardRole>
     {

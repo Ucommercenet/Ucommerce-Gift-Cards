@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Services
+namespace UCommerce.Transactions.Payments.GiftCard.Services
 {
 	/// <summary>
 	/// Class for handeling Gift Card related issues.
@@ -13,9 +13,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.Services
 	public class GiftCardService : IGiftCardService
 	{
 		private IVoucherCodeGenerator _voucherCodeGenerator;
-		private IRepository<GiftCard> _giftCardRepository;
+		private IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<GiftCard> giftCardRepository)
+		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<Entities.GiftCard> giftCardRepository)
 		{
 			_voucherCodeGenerator = voucherCodeGenerator;
 			_giftCardRepository = giftCardRepository;
@@ -26,12 +26,12 @@ namespace UCommerce.Transactions.Payments.Giftcard.Services
 		/// </summary>
 		/// <param name="issueGiftCardRequestRequest"></param>
 		/// <returns>List of issued giftcards.</returns>
-		public virtual IList<GiftCard> IssueGiftCards(IList<IssueGiftCardRequest> issueGiftCardRequests)
+		public virtual IList<Entities.GiftCard> IssueGiftCards(IList<IssueGiftCardRequest> issueGiftCardRequests)
 		{
-			var giftCards = new List<GiftCard>();
+			var giftCards = new List<Entities.GiftCard>();
 			foreach (var issueGiftCardRequest in issueGiftCardRequests)
 			{
-				GiftCard giftCard = new GiftCard();
+				Entities.GiftCard giftCard = new Entities.GiftCard();
 				if (issueGiftCardRequest.Reference != null)
 					giftCard.OrderNumber = issueGiftCardRequest.Reference;
 
@@ -58,7 +58,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Services
 		/// <summary>
 		/// Method 
 		/// </summary>
-		private void AssignUniqueCodes(IEnumerable<GiftCard> giftCards, int runCount)
+		private void AssignUniqueCodes(IEnumerable<Entities.GiftCard> giftCards, int runCount)
 		{
 			if (!giftCards.Any()) return;
 

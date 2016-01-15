@@ -1,10 +1,10 @@
 ﻿using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Configuration;
 using UCommerce.Infrastructure.Logging;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Pipelines;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
 	class SendGiftCardEmailTaskSpy : SendGiftCardEmailTask
 	{
@@ -13,7 +13,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             ILoggingService loggingService, 
             IEmailService emailService, 
             CommerceConfigurationProvider commerceConfigurationProvider, 
-            IRepository<GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
+            IRepository<Entities.GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
 		{}
 
 		public string GetSenderEmail(PurchaseOrder order)

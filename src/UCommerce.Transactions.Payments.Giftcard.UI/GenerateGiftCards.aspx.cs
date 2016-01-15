@@ -12,11 +12,11 @@ using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Controls.Extensions;
 using UCommerce.Presentation.Web.Pages;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Entities.Security;
-using UCommerce.Transactions.Payments.Giftcard.Services;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Services;
 
-namespace UCommerce.Transactions.Payments.Giftcard.UI
+namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class GenerateGiftCards : ProtectedPage
 	{
@@ -48,7 +48,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.UI
 		{
 			var giftCardService = ObjectFactory.Instance.Resolve<IGiftCardService>();
 
-			bool enabled = LicenseRestrictions.AllowCreate(typeof(GiftCard));
+			bool enabled = LicenseRestrictions.AllowCreate(typeof(Entities.GiftCard));
 
 			var amount = Convert.ToDecimal(tbAmount.Text);
 			var numbersToGenerate = Convert.ToInt32(tbNumberOfGiftCards.Text);

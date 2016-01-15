@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
 	/// <summary>
 	/// Task for recalculating gift card payments on a purchaseorder.
 	/// </summary>
     public class RecalculateGiftCardPaymentsAmountTask : IPipelineTask<PurchaseOrder>
     {
-        private readonly IRepository<GiftCard> _giftCardRepository;
+        private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-        public RecalculateGiftCardPaymentsAmountTask(IRepository<GiftCard> giftCardRepository)
+        public RecalculateGiftCardPaymentsAmountTask(IRepository<Entities.GiftCard> giftCardRepository)
         {
             _giftCardRepository = giftCardRepository;
         }
@@ -43,7 +43,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 			IList<string> giftCardCodes = giftCardPayments.Select(x => x["GiftCardCode"]).ToList();
 
 			//select all giftcards from the repository that matches any codes in giftCardCodes list.
-	        IList<GiftCard> giftCardsUsedOnOrder = _giftCardRepository.Select().Where(x => giftCardCodes.Contains(x.Code)).ToList();
+	        IList<Entities.GiftCard> giftCardsUsedOnOrder = _giftCardRepository.Select().Where(x => giftCardCodes.Contains(x.Code)).ToList();
 
 			//order payments by least available amount on giftcard
 			foreach (Payment giftCardPayment in PaymentsOrderedByAvailableAmountOnGiftCard(giftCardsUsedOnOrder,giftCardPayments))
@@ -76,7 +76,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
             return PipelineExecutionResult.Success;
         }
 
-		private IEnumerable PaymentsOrderedByAvailableAmountOnGiftCard(IList<GiftCard> giftCardsUsedOnOrder, IList<Payment> giftCardPayments)
+		private IEnumerable PaymentsOrderedByAvailableAmountOnGiftCard(IList<Entities.GiftCard> giftCardsUsedOnOrder, IList<Payment> giftCardPayments)
 		{
 			return giftCardPayments.OrderBy(x => giftCardsUsedOnOrder.Single(y => y.Code == x["GiftCardCode"]).AvailableBalance());
 		}

@@ -3,7 +3,7 @@ using System.Resources;
 using System.Threading;
 using UCommerce.Infrastructure.Globalization;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Globalization
+namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 {
 	/// <summary>
 	/// Responsible for finding the right translation of a text based on a giving key, resource file and culture. 

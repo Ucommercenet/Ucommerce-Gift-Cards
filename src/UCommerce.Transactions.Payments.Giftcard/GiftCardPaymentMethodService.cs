@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard
+namespace UCommerce.Transactions.Payments.GiftCard
 {
     /// <summary>
     /// Default implementation of a PaymentMethodService for gift cards.
     /// This implementation provides out of the box functionallity to handle creation and payments 
-    /// with <see cref="GiftCard">Giftcards</see>. 
+    /// with <see cref="Entities.GiftCard">Giftcards</see>. 
     /// </summary>
     public class GiftCardPaymentMethodService : ExternalPaymentMethodService
     {
-        private readonly IRepository<GiftCard> _giftCardRepsitory;
+        private readonly IRepository<Entities.GiftCard> _giftCardRepsitory;
         private readonly IRepository<PaymentStatus> _paymentStatusRepository;
         private readonly IResourceManager _resourceManager;
-        private List<GiftCard> _giftCards;
+        private List<Entities.GiftCard> _giftCards;
 
         public GiftCardPaymentMethodService(
-            IRepository<GiftCard> giftCardRepsitory, 
+            IRepository<Entities.GiftCard> giftCardRepsitory, 
             IRepository<PaymentStatus> paymentStatusRepository, 
             IResourceManager resourceManager,
             IOrderService orderService, 
@@ -33,7 +33,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Ass this is an internal handeler for <see cref="GiftCard">Giftcards</see> no communication with external services are required.
+        /// Ass this is an internal handeler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services are required.
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Ass this is an internal handeler for <see cref="GiftCard">Giftcards</see> no communication with external services are required.
+        /// Ass this is an internal handeler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services are required.
         /// </summary>
         /// <param name="payment"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Removes the amount of the payment from total used on the <see cref="GiftCard"/>.
+        /// Removes the amount of the payment from total used on the <see cref="Entities.GiftCard"/>.
         /// </summary>
         /// <param name="payment">Payment associated with a giftCard.</param>
         /// <param name="status">Status that tells weatather the Refund went well or not.</param>
@@ -124,7 +124,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Creates a payment if a correspondig <see cref="GiftCard"/> is valid.
+        /// Creates a payment if a correspondig <see cref="Entities.GiftCard"/> is valid.
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <returns></returns>
@@ -135,21 +135,21 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Finds and returns a <see cref="GiftCard"/> from a <see cref="Payment"/>.
+        /// Finds and returns a <see cref="Entities.GiftCard"/> from a <see cref="Payment"/>.
         /// </summary>
         /// <param name="giftCardCode">The identifier of a giftcard.</param>
-        /// <returns>A <see cref="GiftCard"/>.</returns>
-        private GiftCard GetGiftCard(string giftCardCode)
+        /// <returns>A <see cref="Entities.GiftCard"/>.</returns>
+        private Entities.GiftCard GetGiftCard(string giftCardCode)
         {
             return _giftCards.SingleOrDefault(x => x.Code == giftCardCode);
         }
 
         /// <summary>
-        /// Finds and returns a <see cref="GiftCard"/> from a <see cref="PaymentRequest"/>.
+        /// Finds and returns a <see cref="Entities.GiftCard"/> from a <see cref="PaymentRequest"/>.
         /// </summary>
         /// <param name="paymentRequest">The <see cref="PaymentRequest"/>.</param>
-        /// <returns>A <see cref="GiftCard"/>.</returns>
-        private GiftCard GetGiftCard(PaymentRequest paymentRequest)
+        /// <returns>A <see cref="Entities.GiftCard"/>.</returns>
+        private Entities.GiftCard GetGiftCard(PaymentRequest paymentRequest)
         {
             string giftCardCode;
             paymentRequest.AdditionalProperties.TryGetValue("giftCardCode", out giftCardCode);
@@ -162,12 +162,12 @@ namespace UCommerce.Transactions.Payments.Giftcard
         }
 
         /// <summary>
-        /// Checks weather a <see cref="GiftCard"/> is valid as a Paymentmethod for a <see cref="PaymentRequest"/>
+        /// Checks weather a <see cref="Entities.GiftCard"/> is valid as a Paymentmethod for a <see cref="PaymentRequest"/>
         /// </summary>
-        /// <param name="giftCard">The <see cref="GiftCard"/>.</param>
+        /// <param name="giftCard">The <see cref="Entities.GiftCard"/>.</param>
         /// <param name="status">Status message for operation.</param>
         /// <returns>True if a <see cref="GiftCard"/> is valid.</returns>
-        private bool GiftCardIsValid(GiftCard giftCard, out string status)
+        private bool GiftCardIsValid(Entities.GiftCard giftCard, out string status)
         {
 			status = "OK";
             
@@ -209,7 +209,7 @@ namespace UCommerce.Transactions.Payments.Giftcard
             if (paymentWithSameCode != null)
                 return null;
 
-            GiftCard giftCard = GetGiftCard(request);
+            Entities.GiftCard giftCard = GetGiftCard(request);
            
             if (giftCard == null)
                 return null;
