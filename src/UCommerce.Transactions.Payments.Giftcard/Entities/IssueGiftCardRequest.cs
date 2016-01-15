@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UCommerce.EntitiesV2;
 
-namespace UCommerce.Transactions.Payments.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Entities
 {
 	/// <summary>
 	/// Request to issue a gift card.

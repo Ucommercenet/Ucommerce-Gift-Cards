@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Services;
 
-namespace UCommerce.Transactions.Payments.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Services
 {
 	/// <summary>
 	/// Class for handeling Gift Card related issues.

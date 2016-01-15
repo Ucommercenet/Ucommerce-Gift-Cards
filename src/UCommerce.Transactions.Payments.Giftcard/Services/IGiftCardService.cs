@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.GiftCards;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Services
 {

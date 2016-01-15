@@ -3,7 +3,7 @@ using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Checkout
 {
     /// <summary>
     /// Redeems every <see cref="GiftCard"/> associated with a purchaseOrder. 
