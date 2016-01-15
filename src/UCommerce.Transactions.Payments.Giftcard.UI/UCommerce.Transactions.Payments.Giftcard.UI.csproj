@@ -167,8 +167,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Deploy.To.uCommerce.ps1" -SourceDirectory "$(ProjectDir)
+Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Generate.App.Package.ps1" -TargetDirectory "$(ProjectDir)..\..\package" -SourceDirectory "$(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
