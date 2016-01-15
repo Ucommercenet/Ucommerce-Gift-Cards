@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UCommerce.Web.UI.UCommerce.Settings.Orders.Dialogs {
+namespace UCommerce.Transactions.Payments.Giftcard.UI {
     
     
     public partial class GenerateGiftCards {

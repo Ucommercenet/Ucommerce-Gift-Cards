@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -7,14 +6,22 @@ using System.Web;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure;
 using UCommerce.Security;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
 
-namespace UCommerce.Web.UI.UCommerce.Settings.Orders
+namespace UCommerce.Transactions.Payments.Giftcard.UI
 {
 	/// <summary>
 	/// Summary description for DownloadGiftCardCodes
 	/// </summary>
 	public class DownloadGiftCardCodes : IHttpHandler
 	{
+		private readonly IRepository<GiftCard> _giftCardRepository;
+
+		public DownloadGiftCardCodes(IRepository<GiftCard> giftCardRepository)
+		{
+			_giftCardRepository = giftCardRepository;
+		}
+
 		public void ProcessRequest(HttpContext context)
 		{
 			var authenticationService = ObjectFactory.Instance.Resolve<IAuthenticationService>();
@@ -22,7 +29,7 @@ namespace UCommerce.Web.UI.UCommerce.Settings.Orders
 
 			int paymentMethodId = Int32.Parse(context.Request.QueryString["Id"]);
 
-			var giftCards = GiftCard.Find(x => x.PaymentMethod.PaymentMethodId == paymentMethodId);
+			var giftCards = _giftCardRepository.Select(x => x.PaymentMethod.PaymentMethodId == paymentMethodId);
 			
 			string fileName = string.Format("GiftCards-for-{0}",paymentMethodId);
 
@@ -32,7 +39,7 @@ namespace UCommerce.Web.UI.UCommerce.Settings.Orders
 			var amountUsed = openGiftCards.Sum(x => x.AmountUsed);
 			var amountUnUsed = openGiftCards.Sum(x => x.Amount);
 
-			var totalGiftCards = string.Format("Total number of gift cards: {0}\r\n",giftCards.Count.ToString());
+			var totalGiftCards = string.Format("Total number of gift cards: {0}\r\n",giftCards.Count().ToString());
 			var totalAmount = string.Format("Total amount of gift cards: {0}\r\n", giftCards.Sum(x => x.Amount).ToString());
 			var giftcardsInUse = string.Format("Gift cards in use: {0}\r\n", giftCards.Where(x => x.AmountUsed > 0 && x.AmountUsed < x.Amount && x.Enabled).Count().ToString());
 			var expiredGiftCards = string.Format("Gift cards expired: {0}\r\n", giftCards.Where(x => x.ExpiresOn < DateTime.Now && x.AmountUsed < x.Amount).Count().ToString());

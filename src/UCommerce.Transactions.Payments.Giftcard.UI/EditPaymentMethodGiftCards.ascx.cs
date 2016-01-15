@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure;
 using UCommerce.Licensing;
 using UCommerce.Presentation.Views.Settings.Orders;
+using UCommerce.Presentation.Web;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Pages;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCards;
-using UCommerce.Presentation.Web;
-using UCommerce.Infrastructure;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Entities.Security;
 
-namespace UCommerce.Web.UI.UCommerce.Settings.Orders
+namespace UCommerce.Transactions.Payments.Giftcard.UI
 {
 	public partial class EditPaymentMethodGiftCards : ViewEnabledControl<IEditPaymentMethodView>, ISection
 	{
@@ -132,7 +131,7 @@ namespace UCommerce.Web.UI.UCommerce.Settings.Orders
 
 			var exportButton = new ImageCommand(x => DownloadGiftCards())
 				{
-					Icon = Presentation.Resources.Images.Menu.Export,
+					Icon = "media/table_save.png",
 					Text = GetLocalResourceObject("Export").ToString()
 				};
 
