@@ -53,15 +53,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Entities\GiftCard.cs" />
+    <Compile Include="Entities\IssueGiftCardRequest.cs" />
+    <Compile Include="GiftCardPaymentMethodService.cs" />
+    <Compile Include="Pipelines\IssueGiftCardTask.cs" />
+    <Compile Include="Pipelines\RedeemGiftCardsTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GiftCardService.cs" />
+    <Compile Include="Services\IGiftCardService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
-    <Folder Include="Configuration\" />
-    <Folder Include="Globalization\" />
-    <Folder Include="Pipelines\" />
-    <Folder Include="Queries\" />
-    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
