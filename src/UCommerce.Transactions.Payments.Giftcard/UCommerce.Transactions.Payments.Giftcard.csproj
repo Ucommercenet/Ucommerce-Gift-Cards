@@ -7,8 +7,8 @@
     <ProjectGuid>{FE1A22E3-21A3-4653-A9D8-7DF019D01433}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleApp.Extensions</RootNamespace>
-    <AssemblyName>SampleApp.Extensions</AssemblyName>
+    <RootNamespace>UCommerce.Transactions.Payments.Giftcard</RootNamespace>
+    <AssemblyName>UCommerce.Transactions.Payments.Giftcard</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
