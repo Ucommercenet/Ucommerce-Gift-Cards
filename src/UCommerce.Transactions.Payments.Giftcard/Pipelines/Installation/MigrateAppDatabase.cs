@@ -1,7 +1,7 @@
 ﻿using UCommerce.Pipelines;
 using UCommerce.Pipelines.Initialization;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Installation
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 {
 	/// <summary>
 	/// Migrates the app database according to the deployed migrations

@@ -3,7 +3,7 @@ using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Pipelines.Initialization;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Installation
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 {
     /// <summary>
     /// Set up <see cref="EmailType"/> to use to notify the customer

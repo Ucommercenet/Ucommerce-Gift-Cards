@@ -3,10 +3,10 @@ using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Pipelines.Initialization;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Installation
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 {
     /// <summary>
-    /// Set up <see cref="UCommerce.Transactions.Payments.Giftcard"/> definition for products />
+    /// Set up <see cref="UCommerce.Transactions.Payments.GiftCard"/> definition for products />
     /// </summary>
     public class SetupGiftCardDefinitionTask : IPipelineTask<InitializeArgs>
     {

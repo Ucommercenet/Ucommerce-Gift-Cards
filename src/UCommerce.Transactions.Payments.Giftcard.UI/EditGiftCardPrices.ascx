@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditGiftCardPrices.ascx.cs" Inherits="UCommerce.Transactions.Payments.Giftcard.UI.EditGiftCardPrices" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditGiftCardPrices.ascx.cs" Inherits="UCommerce.Transactions.Payments.GiftCard.UI.EditGiftCardPrices" %>
 <%@ Import Namespace="UCommerce.EntitiesV2" %>
 <%@ Register tagPrefix="commerce" tagName="ValidationSummary" src="../Controls/ValidationSummaryDisplay.ascx" %>
 <%@ Register TagPrefix="commerce" Namespace="UCommerce.Presentation.Web.Controls" Assembly="UCommerce.Presentation" %>

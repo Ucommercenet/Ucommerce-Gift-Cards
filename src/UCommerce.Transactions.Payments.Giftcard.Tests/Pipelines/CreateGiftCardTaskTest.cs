@@ -4,11 +4,11 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines;
-using UCommerce.Transactions.Payments.Giftcard.Services;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Pipelines;
+using UCommerce.Transactions.Payments.GiftCard.Services;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
 	[TestFixture]
 	public class CreateGiftCardTaskTest
@@ -149,9 +149,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             return MockRepository.GenerateStub<IRepository<Product>>();
         }
 
-        private IRepository<GiftCard> GetGiftCardRepositoryStub()
+        private IRepository<Entities.GiftCard> GetGiftCardRepositoryStub()
         {
-            return MockRepository.GenerateStub<IRepository<GiftCard>>();
+            return MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
         } 
 
 		private Product CreateTestProduct(string productDefinitionName, PriceGroup priceGroup, decimal price, Currency currency)

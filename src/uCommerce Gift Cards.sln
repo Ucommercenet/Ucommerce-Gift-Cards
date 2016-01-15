@@ -14,11 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4CF9F5BF
 		..\tools\Deploy\Generate.App.Package.ps1 = ..\tools\Deploy\Generate.App.Package.ps1
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.Giftcard", "UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.Giftcard.csproj", "{FE1A22E3-21A3-4653-A9D8-7DF019D01433}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard", "UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.GiftCard.csproj", "{FE1A22E3-21A3-4653-A9D8-7DF019D01433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.Giftcard.Tests", "UCommerce.Transactions.Payments.Giftcard.Tests\UCommerce.Transactions.Payments.Giftcard.Tests.csproj", "{AC6AB3DC-A623-4D58-93D8-A3F682D6DCA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard.Tests", "UCommerce.Transactions.Payments.Giftcard.Tests\UCommerce.Transactions.Payments.GiftCard.Tests.csproj", "{AC6AB3DC-A623-4D58-93D8-A3F682D6DCA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.Giftcard.UI", "UCommerce.Transactions.Payments.Giftcard.UI\UCommerce.Transactions.Payments.Giftcard.UI.csproj", "{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard.UI", "UCommerce.Transactions.Payments.Giftcard.UI\UCommerce.Transactions.Payments.GiftCard.UI.csproj", "{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

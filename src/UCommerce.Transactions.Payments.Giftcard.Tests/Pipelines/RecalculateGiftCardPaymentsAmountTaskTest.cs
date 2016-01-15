@@ -4,10 +4,10 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Pipelines.Test.GiftCards;
-using UCommerce.Transactions.Payments.Giftcard.Entities;
-using UCommerce.Transactions.Payments.Giftcard.Pipelines;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Pipelines;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {
     [TestFixture]
     public class RecalculateGiftCardPaymentsAmountTaskTest
@@ -45,9 +45,9 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             return order;
         }
 
-        private GiftCard CreateTestGiftCard(decimal amount, decimal amountUsed, string code)
+        private Entities.GiftCard CreateTestGiftCard(decimal amount, decimal amountUsed, string code)
         {
-            var giftCard = new GiftCard
+            var giftCard = new Entities.GiftCard
                 {
                     Amount = amount,
                     AmountUsed = amountUsed,
@@ -61,7 +61,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 		public void Task_Can_Recalculate_A_Single_Payment_On_Order()
 		{
 			//ARANGE 
-			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<GiftCard>>();
+			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
 			var paymentStatusRepositoryStub = MockRepository.GenerateStub<IRepository<PaymentStatus>>();
 
 			var acquiredStatus = new PaymentStatus();
@@ -70,7 +70,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 
 			var giftCard1 = CreateTestGiftCard(500, 000, "GC-1");
 
-			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<GiftCard> { giftCard1 }.AsQueryable());
+			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<Entities.GiftCard> { giftCard1 }.AsQueryable());
 
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Acquired)).Return(acquiredStatus);
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Authorized)).Return(authorizedStatus);
@@ -93,7 +93,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 		public void Task_Can_Recalculate_Multiple_Payments_On_Order()
 		{
 			//ARANGE 
-			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<GiftCard>>();
+			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
 			var paymentStatusRepositoryStub = MockRepository.GenerateStub<IRepository<PaymentStatus>>();
 
 			var acquiredStatus = new PaymentStatus();
@@ -103,7 +103,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 			var giftCard1 = CreateTestGiftCard(600, 000, "GC-1");
 			var giftCard2 = CreateTestGiftCard(500, 000, "GC-2");
 			
-			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<GiftCard> { giftCard1, giftCard2 }.AsQueryable());
+			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<Entities.GiftCard> { giftCard1, giftCard2 }.AsQueryable());
 
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Acquired)).Return(acquiredStatus);
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Authorized)).Return(authorizedStatus);
@@ -131,7 +131,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 		public void Task_Ignores_Non_Gift_Gift_Payments_On_Order_That_Are_Not_Auth_Or_Acquired()
 		{
 			//ARANGE 
-			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<GiftCard>>();
+			var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
 			var paymentStatusRepositoryStub = MockRepository.GenerateStub<IRepository<PaymentStatus>>();
 
 			var acquiredStatus = new PaymentStatusSpy((int)PaymentStatusCode.Acquired);
@@ -140,7 +140,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 
 			var giftCard1 = CreateTestGiftCard(1000, 100, "GC-1");
 
-			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<GiftCard> { giftCard1 }.AsQueryable());
+			giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<Entities.GiftCard> { giftCard1 }.AsQueryable());
 
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Acquired)).Return(acquiredStatus);
 			paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Authorized)).Return(authorizedStatus);
@@ -164,7 +164,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
         public void Task_Will_Set_Remaining_Payments_On_Order_To_Zero_If_Order_Total_Are_Covered()
         {
             //ARANGE 
-            var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<GiftCard>>();
+            var giftCardRepositoryStub = MockRepository.GenerateStub<IRepository<Entities.GiftCard>>();
             var paymentStatusRepositoryStub = MockRepository.GenerateStub<IRepository<PaymentStatus>>();
             
             var acquiredStatus = new PaymentStatus();
@@ -181,7 +181,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
             giftCardRepositoryStub.Save(giftCard3);
             giftCardRepositoryStub.Save(giftCard4);
 			
-            giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<GiftCard> { giftCard1, giftCard2, giftCard3, giftCard4 }.AsQueryable());
+            giftCardRepositoryStub.Stub(x => x.Select()).Return(new List<Entities.GiftCard> { giftCard1, giftCard2, giftCard3, giftCard4 }.AsQueryable());
 			
             paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Acquired)).Return(acquiredStatus);
             paymentStatusRepositoryStub.Stub(x => x.Get((int)PaymentStatusCode.Authorized)).Return(authorizedStatus);

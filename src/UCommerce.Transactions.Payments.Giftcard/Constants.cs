@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCommerce.Transactions.Payments.Giftcard
+namespace UCommerce.Transactions.Payments.GiftCard
 {
 	/// <summary>
 	/// String constants.
