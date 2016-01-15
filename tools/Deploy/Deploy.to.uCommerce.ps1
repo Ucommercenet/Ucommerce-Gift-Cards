@@ -62,7 +62,6 @@ function Run-It () {
            
         Invoke-PSake "$ScriptPath\Extract.Files.For.App.ps1" "Run-It" -parameters $properties
 		   
-        #Copy dlles to website\bin
         Copy-Item "$scriptPath\..\NuGet\App.Manifest.nuspec" $targetDir -Force	
       }	
     } catch {  
