@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
-using UCommerce.Pipelines.Basket;
-using UCommerce.Transactions.Payments;
+using UCommerce.Pipelines.Test.GiftCards;
+using UCommerce.Transactions.Payments.Giftcard.Entities;
+using UCommerce.Transactions.Payments.Giftcard.Pipelines;
 
-namespace UCommerce.Pipelines.Test.GiftCards
+namespace UCommerce.Transactions.Payments.Giftcard.Tests.Pipelines
 {
     [TestFixture]
     public class RecalculateGiftCardPaymentsAmountTaskTest

@@ -5,7 +5,7 @@ using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.Giftcard.Entities;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines.Basket
+namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 {
 	/// <summary>
 	/// Task for recalculating gift card payments on a purchaseorder.
