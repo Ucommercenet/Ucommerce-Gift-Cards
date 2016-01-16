@@ -1,7 +1,7 @@
 ﻿using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
 	public class EditProductGiftCardTabTask : IPipelineTask<SectionGroup>
 	{

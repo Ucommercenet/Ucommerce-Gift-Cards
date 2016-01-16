@@ -1,13 +1,13 @@
 ﻿using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 
-namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
+namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
 	public class EditPaymentMethodGiftCardsTabTask : IPipelineTask<SectionGroup>
 	{
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
 		{
-			if (sectionGroup.GetViewName() != Constants.UI.Pages.Settings.PaymentMethod) return PipelineExecutionResult.Success;
+			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod) return PipelineExecutionResult.Success;
 
 			var section = BuildSection(sectionGroup);
 			sectionGroup.AddSection(section);
