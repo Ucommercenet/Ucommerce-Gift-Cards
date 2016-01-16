@@ -1,4 +1,5 @@
 ﻿using System.Web.UI.WebControls;
+using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
@@ -10,11 +11,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 	{
 		private readonly ISecurityService _securityService;
 		private readonly IJavaScriptFactory _javaScriptFactory;
+		private readonly IPathService _pathService;
 
-		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory)
+		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory, IPathService pathService)
 		{
 			_securityService = securityService;
 			_javaScriptFactory = javaScriptFactory;
+			_pathService = pathService;
 		}
 
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
@@ -63,7 +66,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var exportButton = new ImageButton
 			{
-				ImageUrl = "/media/table_save.png",
+				ImageUrl = string.Format("{0}/Apps/Gift Cards/media/table_save.png", _pathService.GetPath()),
 				CausesValidation = false,
 			};
 
