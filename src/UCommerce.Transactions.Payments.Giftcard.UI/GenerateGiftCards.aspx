@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../MasterPages/Dialog.Master" AutoEventWireup="true" CodeBehind="GenerateGiftCards.aspx.cs" Inherits="UCommerce.Transactions.Payments.Giftcard.UI.GenerateGiftCards" %>
+﻿<%@ Page Language="C#" MasterPageFile="../../MasterPages/Dialog.Master" AutoEventWireup="true" CodeBehind="GenerateGiftCards.aspx.cs" Inherits="UCommerce.Transactions.Payments.GiftCard.UI.GenerateGiftCards" %>
 <%@ Register tagPrefix="commerce" tagName="ValidationSummary" src="ValidationSummaryDisplay.ascx" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentArea" runat="server">
