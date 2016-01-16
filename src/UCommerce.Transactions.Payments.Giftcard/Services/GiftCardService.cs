@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentNHibernate.Utils;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
+using UCommerce.Security;
 using UCommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Services
@@ -14,11 +16,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 	{
 		private IVoucherCodeGenerator _voucherCodeGenerator;
 		private IRepository<Entities.GiftCard> _giftCardRepository;
+		private readonly IUserService _userService;
 
-		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<Entities.GiftCard> giftCardRepository)
+		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<Entities.GiftCard> giftCardRepository, IUserService userService)
 		{
 			_voucherCodeGenerator = voucherCodeGenerator;
 			_giftCardRepository = giftCardRepository;
+			_userService = userService;
 		}
 
 		/// <summary>
@@ -39,6 +43,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 				giftCard.Enabled = issueGiftCardRequest.Enabled;
 				giftCard.AmountUsed = 0;
 				giftCard.Amount = issueGiftCardRequest.Amount.Value;
+				giftCard.CreatedOn = DateTime.UtcNow;
+				giftCard.ModifiedOn = DateTime.UtcNow;
+				giftCard.CreatedBy = _userService.GetCurrentUserName();
 				giftCard.ExpiresOn = issueGiftCardRequest.ExpiresOn;
 				giftCard.Currency = issueGiftCardRequest.Amount.Currency;
 				giftCard.Note = issueGiftCardRequest.Note;
@@ -60,6 +67,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 		/// </summary>
 		private void AssignUniqueCodes(IEnumerable<Entities.GiftCard> giftCards, int runCount)
 		{
+			var NonUniqueGiftCards = new List<Entities.GiftCard>();
+
 			if (!giftCards.Any()) return;
 
 			runCount++;
@@ -74,11 +83,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 			foreach (var giftCard in giftCards)
 			{
 				giftCard.Code = _voucherCodeGenerator.GenerateCodes(1, 13, "GC", "").Single();
+
+				if(_giftCardRepository.Select(x => x.Code == giftCard.Code).SingleOrDefault() != null)
+					NonUniqueGiftCards.Add(giftCard);
 			}
 
-			var nonUniqueGiftCards = giftCards.Where(x => _giftCardRepository.Select(y => y.Code == x.Code).Any()).ToList();
-
-			AssignUniqueCodes(nonUniqueGiftCards, runCount);
+			AssignUniqueCodes(NonUniqueGiftCards, runCount);
 		}
 
 		#endregion

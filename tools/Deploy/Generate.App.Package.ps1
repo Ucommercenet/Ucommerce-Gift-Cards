@@ -1,7 +1,7 @@
 [CmdletBinding()]
 Param(
     [Parameter(Mandatory=$False)]
-    [string]$TargetDirectory = "C:\tmp\SampleApp",
+    [string]$TargetDirectory = "C:\tmp\UCommerce.GiftCard",
     
     [Parameter(Mandatory=$False)]
     [string]$SourceDirectory
@@ -14,7 +14,7 @@ function GetScriptDirectory {
 function GetProjectFolder {
 	$scriptPath = GetScriptDirectory;
 	
-	return "$scriptPath\..\..\src\SampleApp.Web"
+	return "$scriptPath\..\..\src\UCommerce.Transactions.Payments.GiftCard.UI"
 }
 
 function MoveNuspecFile {
