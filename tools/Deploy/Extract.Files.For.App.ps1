@@ -65,7 +65,7 @@ function CopyFiles ($appDirectory) {
 	
 	foreach($fileToCopy in $filesToCopy)
 	{
-        $sourceFile = $WorkDictionary + "\" + $fileToCopy;
+    $sourceFile = $WorkDictionary + "\" + $fileToCopy;
 		$targetFile = $appDirectory + "\" + $fileToCopy;
 		
 		# Create the folder structure and empty destination file,
@@ -73,6 +73,17 @@ function CopyFiles ($appDirectory) {
 		Write-Host 'copying' $targetFile
 		Copy-Item $sourceFile $targetFile -Force
 	}
+}
+
+function CopyMigrations ($appDirectory) {
+	write-host 'copying migration files from: ' $WorkDictionary..\..\Database
+	write-host 'copying migration files to: ' $appDirectory\Database;
+    
+    # Create directory to avoid files being forced into a file
+    New-Item -ItemType Directory "$appDirectory\Database" -Force
+
+    # Copy migrations in place
+    Copy-Item "$WorkDictionary..\..\Database\*.???.sql" "$appDirectory\Database" -Force
 }
 
 
@@ -112,6 +123,8 @@ task Run-It {
     }	
 	
 	CopyFiles($deployment_directory);
+
+    CopyMigrations($deployment_directory)
 
 	CopyDllToBin($deployment_directory);
     
