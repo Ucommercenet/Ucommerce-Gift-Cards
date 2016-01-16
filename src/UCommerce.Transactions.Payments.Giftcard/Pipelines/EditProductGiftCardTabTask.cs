@@ -1,4 +1,5 @@
-﻿using UCommerce.Pipelines;
+﻿using System.Linq;
+using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
@@ -9,8 +10,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			if (sectionGroup.GetViewName() != "editproduct_aspx") return PipelineExecutionResult.Success;
 
-			var section = BuildSection(sectionGroup);
-			sectionGroup.AddSection(section);
+            var section = BuildSection(sectionGroup);
+           
+			sectionGroup.Sections.Insert(1, section);
+            sectionGroup.Controls.Add(section);
 
 			return PipelineExecutionResult.Success;
 		}
