@@ -1,6 +1,8 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.IO;
+using System.Web.UI.WebControls;
 using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
+using UCommerce.Pipelines.UploadApp;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
 using UCommerce.Security;
@@ -35,7 +37,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var section = new Section
 			{
-				Name = "Gift Card Payment Method",
+				Name = "Gift Cards",
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
@@ -57,7 +59,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 			{
 				ImageUrl = Presentation.Resources.Images.Menu.Create
 			};
-			generateGiftCardButton.Attributes.Add("onclick", _javaScriptFactory.OpenModalFunction(string.Format("/Apps/Gift Cards/GenerateGiftCards.aspx?Id={0}", QueryString.Common.Id), "Create Gift Card", 700, 700));
+			generateGiftCardButton.Attributes.Add("onclick", _javaScriptFactory.OpenModalFunction(string.Format("/Apps/UCommerce.GiftCards/GenerateGiftCards.aspx?Id={0}", QueryString.Common.Id), "Create Gift Card", 700, 700));
 
 			return generateGiftCardButton;
 		}
@@ -66,12 +68,16 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var exportButton = new ImageButton
 			{
-				ImageUrl = string.Format("{0}/Apps/Gift Cards/media/table_save.png", _pathService.GetPath()),
+				ImageUrl = string.Format("{0}/Apps/UCommerce.GiftCards/media/table_save.png", _pathService.GetPath()),
 				CausesValidation = false,
 			};
 
-			exportButton.Attributes.Add("onclick", "if (confirm('" + "WOOP" + "')) { window.location.replace(" + string.Format("/Apps/Gift Cards/DownloadGiftCardCodes.ashx?Id={0}", QueryString.Common.Id) + "); } return false;");
+			var pathString = string.Format("{0}/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={1}", _pathService.GetPath(),  QueryString.Common.Id);
+
+			pathString = pathString.Substring(1, pathString.Length-1);
 			
+			//exportButton.Attributes.Add("onclick", "if (confirm('" + "WOOP" + "')) { window.location.replace(" + string.Format("/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={0}", QueryString.Common.Id) + "); } return false;");
+			exportButton.Attributes.Add("onclick", "if (confirm('" + "woop" + "')) { window.location.replace('" + pathString + "'); } return false;");
 			return exportButton;
 		}
 	}

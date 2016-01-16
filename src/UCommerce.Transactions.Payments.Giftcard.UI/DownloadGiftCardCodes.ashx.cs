@@ -17,9 +17,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 	{
 		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public DownloadGiftCardCodes(IRepository<Entities.GiftCard> giftCardRepository)
+		public DownloadGiftCardCodes()
 		{
-			_giftCardRepository = giftCardRepository;
+			_giftCardRepository = ObjectFactory.Instance.Resolve<IRepository<Entities.GiftCard>>();
 		}
 
 		public void ProcessRequest(HttpContext context)
