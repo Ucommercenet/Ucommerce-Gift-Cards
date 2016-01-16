@@ -1,5 +1,4 @@
-﻿using System;
-using UCommerce.Pipelines;
+﻿using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 
 namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
@@ -8,7 +7,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 	{
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
 		{
-			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod) return PipelineExecutionResult.Success;
+			if (sectionGroup.GetViewName() != Constants.UI.Pages.Settings.PaymentMethod) return PipelineExecutionResult.Success;
 
 			var section = BuildSection(sectionGroup);
 			sectionGroup.AddSection(section);
@@ -24,7 +23,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
-			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.Transactions.Payments.Giftcard/EditPaymentMethodGiftCards.ascx");
+			var control = sectionGroup.View.LoadControl("/Apps/Gift cards/EditPaymentMethodGiftCards.ascx");
 
 			section.AddControl(control);
 			return section;

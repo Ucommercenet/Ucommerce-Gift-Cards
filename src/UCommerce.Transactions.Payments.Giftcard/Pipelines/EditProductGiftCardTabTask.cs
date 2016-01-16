@@ -23,7 +23,7 @@ namespace UCommerce.Transactions.Payments.Giftcard.Pipelines
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
-			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.Transactions.Payments.Giftcard/EditGiftCardPrices.ascx");
+			var control = sectionGroup.View.LoadControl("/Apps/Gift cards/EditGiftCardPrices.ascx");
 
 			section.AddControl(control);
 			return section;
