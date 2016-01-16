@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UCommerce.Pipelines;
+﻿using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
@@ -26,7 +25,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
-			var control = sectionGroup.View.LoadControl("/Apps/Gift cards/EditGiftCardPrices.ascx");
+			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.GiftCards/EditGiftCardPrices.ascx");
 
 			section.AddControl(control);
 			return section;

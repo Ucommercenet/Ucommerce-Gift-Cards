@@ -32,7 +32,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 			string webpathToUCommerceRoot = _pathService.GetPath();
 			string physicalPathToUCommerce = HostingEnvironment.MapPath(webpathToUCommerceRoot);
 
-			string pathToApp = Path.Combine(physicalPathToUCommerce, @"Apps\GiftCard\Database");
+			string pathToApp = Path.Combine(physicalPathToUCommerce, @"Apps\UCommerce.GiftCards\Database");
 
 			var migrations = new MigrationLoader().GetDatabaseMigrations(new DirectoryInfo(pathToApp));
 
