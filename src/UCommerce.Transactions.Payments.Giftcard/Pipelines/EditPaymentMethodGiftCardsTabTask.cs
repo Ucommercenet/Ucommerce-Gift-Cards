@@ -1,8 +1,7 @@
-﻿using System.IO;
-using System.Web.UI.WebControls;
+﻿using System.Web.UI.WebControls;
+using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
-using UCommerce.Pipelines.UploadApp;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
 using UCommerce.Security;
@@ -14,18 +13,27 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		private readonly ISecurityService _securityService;
 		private readonly IJavaScriptFactory _javaScriptFactory;
 		private readonly IPathService _pathService;
+		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
 
-		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory, IPathService pathService)
+		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory, IPathService pathService, IRepository<PaymentMethod> paymentMethodRepository)
 		{
 			_securityService = securityService;
 			_javaScriptFactory = javaScriptFactory;
 			_pathService = pathService;
+			_paymentMethodRepository = paymentMethodRepository;
 		}
 
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
 		{
 			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod)
-                return PipelineExecutionResult.Success;
+				return PipelineExecutionResult.Success;
+
+			var paymentMethod = _paymentMethodRepository.Get(QueryString.Common.Id);
+
+			if (paymentMethod.Definition == null || paymentMethod.Definition.Name != Constants.GiftCardPaymentMethodName)
+			{
+				 return PipelineExecutionResult.Success;
+			}
 
 			var section = BuildSection(sectionGroup);
 			sectionGroup.AddSection(section);
@@ -45,8 +53,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 			//if (_securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole)))
 			//{
-				section.Menu.AddMenuButton(CreateGenerateGiftCardImageButton());
-				section.Menu.AddMenuButton(CreateExportButton());
+			section.Menu.AddMenuButton(CreateGenerateGiftCardImageButton());
+			section.Menu.AddMenuButton(CreateExportButton());
 			//}
 
 			section.AddControl(control);
@@ -72,10 +80,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 				CausesValidation = false,
 			};
 
-			var pathString = string.Format("{0}/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={1}", _pathService.GetPath(),  QueryString.Common.Id);
+			var pathString = string.Format("{0}/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={1}", _pathService.GetPath(), QueryString.Common.Id);
 
-			pathString = pathString.Substring(1, pathString.Length-1);
-			
+			pathString = pathString.Substring(1, pathString.Length - 1);
+
 			//exportButton.Attributes.Add("onclick", "if (confirm('" + "WOOP" + "')) { window.location.replace(" + string.Format("/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={0}", QueryString.Common.Id) + "); } return false;");
 			exportButton.Attributes.Add("onclick", "if (confirm('" + "woop" + "')) { window.location.replace('" + pathString + "'); } return false;");
 			return exportButton;
