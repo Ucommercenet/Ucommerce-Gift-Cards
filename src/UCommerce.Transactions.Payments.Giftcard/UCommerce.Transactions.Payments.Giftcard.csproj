@@ -80,6 +80,7 @@
     <Compile Include="Pipelines\Installation\MigrateAppDatabase.cs" />
     <Compile Include="Pipelines\RecalculateGiftCardPaymentsAmountTask.cs" />
     <Compile Include="Pipelines\RedeemGiftCardsTask.cs" />
+    <Compile Include="Pipelines\RemovePriceAndVariantsTabsFromEditProductTask.cs" />
     <Compile Include="Pipelines\SendGiftCardEmailTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardDefinitionTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

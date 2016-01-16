@@ -9,8 +9,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			if (sectionGroup.GetViewName() != "editproduct_aspx") return PipelineExecutionResult.Success;
 
-			var section = BuildSection(sectionGroup);
-			sectionGroup.AddSection(section);
+            var section = BuildSection(sectionGroup);
+           
+			sectionGroup.Sections.Insert(1, section);
+            sectionGroup.Controls.Add(section);
 
 			return PipelineExecutionResult.Success;
 		}
@@ -23,7 +25,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
-			var control = sectionGroup.View.LoadControl("/Apps/Gift cards/EditGiftCardPrices.ascx");
+			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.GiftCards/EditGiftCardPrices.ascx");
 
 			section.AddControl(control);
 			return section;

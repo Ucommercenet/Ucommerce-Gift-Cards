@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using UCommerce.EntitiesV2;
+﻿using System.Web.UI.WebControls;
 using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
@@ -27,7 +22,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
 		{
-			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod) return PipelineExecutionResult.Success;
+			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod)
+                return PipelineExecutionResult.Success;
 
 			var section = BuildSection(sectionGroup);
 			sectionGroup.AddSection(section);
@@ -43,7 +39,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
-			var control = sectionGroup.View.LoadControl("/Apps/Gift cards/EditPaymentMethodGiftCards.ascx");
+			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.GiftCards/EditPaymentMethodGiftCards.ascx");
 
 			//if (_securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole)))
 			//{
