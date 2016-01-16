@@ -72,6 +72,8 @@
     <Compile Include="Entities\Security\CreateGiftCardRole.cs" />
     <Compile Include="GiftCardPaymentMethodService.cs" />
     <Compile Include="Globalization\ResourceManager.cs" />
+    <Compile Include="Pipelines\EditPaymentMethodGiftCardsTabTask.cs" />
+    <Compile Include="Pipelines\EditProductGiftCardTabTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardEmailTypeTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardPaymentMethod.cs" />
     <Compile Include="Pipelines\IssueGiftCardTask.cs" />

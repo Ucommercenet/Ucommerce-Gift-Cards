@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure;
 using UCommerce.Presentation.Views.Catalog;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Pages;
@@ -14,9 +15,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 	{
 		private readonly IRepository<PriceGroup> _priceGroupRepository;
 
-		public EditGiftCardPrices(IRepository<PriceGroup> priceGroupRepository)
+		public EditGiftCardPrices()
 		{
-			_priceGroupRepository = priceGroupRepository;
+			_priceGroupRepository = ObjectFactory.Instance.Resolve<IRepository<PriceGroup>>();
 		}
 
 		private IList<Product> _variants;

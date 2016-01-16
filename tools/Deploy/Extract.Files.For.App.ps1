@@ -44,7 +44,8 @@ function DllExtensionBlackList {
   "ServiceStack.Interfaces.dll",
   "ServiceStack.ServiceInterface.dll",
   "ServiceStack.Text.dll",
-  "Spatial4n.Core.NTS.dll";  
+  "Spatial4n.Core.NTS.dll",  
+  "FluentNHibernate.pdb";  
 }
 
 function GetFilesToCopy($path){
