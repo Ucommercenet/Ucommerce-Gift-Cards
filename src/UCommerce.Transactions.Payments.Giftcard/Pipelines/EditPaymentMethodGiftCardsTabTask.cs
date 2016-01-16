@@ -30,7 +30,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 			var paymentMethod = _paymentMethodRepository.Get(QueryString.Common.Id);
 
-			if (paymentMethod.Definition == null || paymentMethod.Definition.Name != Constants.GiftCardPaymentMethodName)
+			if (paymentMethod == null || paymentMethod.PaymentMethodServiceName != Constants.GiftCardPaymentMethodName)
 			{
 				 return PipelineExecutionResult.Success;
 			}
