@@ -27,13 +27,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			ControlFactory = ObjectFactory.Instance.Resolve<IPropertyControlFactory>();
 
 			var securityService = ObjectFactory.Instance.Resolve<ISecurityService>();
-			bool canCreateGiftCards = securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole));
-			if (!canCreateGiftCards)
-				throw new SecurityException("You are not allowed to create gift cards.");
+			//bool canCreateGiftCards = securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole));
+			//if (!canCreateGiftCards)
+			//	throw new SecurityException("You are not allowed to create gift cards.");
 
-
+			var datePicker = new DatePickerDataTypeDefinition {Name = "Date"};
 			date.Controls.Clear();
-			date.Controls.Add(ControlFactory.GetControl(new DateTimePickerDataTypeDefinition(), "DatePicker", ""));
+			date.Controls.Add(ControlFactory.GetControl(datePicker, "DatePicker", ""));
 			if (!IsPostBack)
 			{
 				(date.FindControl("DatePicker") as DatePicker).DateTime = DateTime.Now.AddDays(365);
