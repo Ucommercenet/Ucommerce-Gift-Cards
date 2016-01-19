@@ -18,7 +18,6 @@ namespace UCommerce.Transactions.Payments.GiftCard
         private readonly IRepository<PaymentStatus> _paymentStatusRepository;
         private readonly IResourceManager _resourceManager;
 	    private readonly IRepository<Payment> _paymentRepository;
-	    private List<Entities.GiftCard> _giftCards;
 
         public GiftCardPaymentMethodService(
             IRepository<Entities.GiftCard> giftCardRepsitory, 
@@ -30,7 +29,6 @@ namespace UCommerce.Transactions.Payments.GiftCard
             _paymentStatusRepository = paymentStatusRepository;
             _resourceManager = resourceManager;
 	        _paymentRepository = paymentRepository;
-	        _giftCards = _giftCardRepsitory.Select().ToList();
         }
 
         /// <summary>
@@ -143,7 +141,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         /// <returns>A <see cref="Entities.GiftCard"/>.</returns>
         private Entities.GiftCard GetGiftCard(string giftCardCode)
         {
-            return _giftCards.SingleOrDefault(x => x.Code == giftCardCode);
+            return _giftCardRepsitory.SingleOrDefault(x => x.Code == giftCardCode);
         }
 
         /// <summary>
@@ -159,7 +157,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
 			if (giftCardCode == null)
 				giftCardCode = paymentRequest.Payment["GiftCardCode"];
             
-            return _giftCards.SingleOrDefault(
+            return _giftCardRepsitory.SingleOrDefault(
                 x => x.Code == giftCardCode);   
         }
 
