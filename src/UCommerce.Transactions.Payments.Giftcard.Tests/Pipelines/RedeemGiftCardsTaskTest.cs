@@ -125,7 +125,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
             var paymentRepository = MockRepository.GenerateMock<IRepository<Payment>>();
             var resourceManager = MockRepository.GenerateMock<IResourceManager>();
 
-            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, resourceManager, new OrderService(),paymentRepository);
+            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, resourceManager, paymentRepository);
 
             return service;
         }
