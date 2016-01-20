@@ -1,0 +1,7 @@
+﻿.newVariantRow {
+	display: none;
+}
+
+.variantContainer input[type="image"] {
+	margin-top: 6px;
+}

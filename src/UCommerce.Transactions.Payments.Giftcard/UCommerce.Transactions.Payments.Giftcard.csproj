@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\lib\ClientDependency\ClientDependency.Core.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\lib\NHibernate\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -87,6 +90,7 @@
     <Compile Include="Services\GiftCardCodeGenerator.cs" />
     <Compile Include="Services\GiftCardService.cs" />
     <Compile Include="Services\IGiftCardService.cs" />
+    <Compile Include="UI\Resources\GiftCardResourcesIncludeList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />

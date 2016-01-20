@@ -33,15 +33,16 @@
 	
 	function addNewVariantClick() {
 
-		var row = $(".newVariantRow:hidden").first();
+		var row = $(".newVariantRow").first();
 
 		row.css('display', 'table-row');
 		row.find('.aspNetDisabled').removeAttr('disabled');
 		row.find('.aspNetDisabled').addClass('priceInput');
+		row.find('.aspNetDisabled').addClass('amountInput');
 		row.find(".hiddenContainer input").first().val('true');
 		row.find('.aspNetDisabled').removeClass('aspNetDisabled');
-
-		row.removeClass('hide');
+		
+		row.removeClass('newVariantRow');
 	}
 	
 </script>

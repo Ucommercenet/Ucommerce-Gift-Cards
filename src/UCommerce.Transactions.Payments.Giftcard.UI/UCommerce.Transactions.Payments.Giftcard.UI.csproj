@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\GiftCard.css" />
     <Content Include="EditGiftCardPrices.ascx" />
     <Content Include="EditPaymentMethodGiftCards.ascx" />
     <Content Include="GenerateGiftCards.aspx" />
@@ -120,7 +121,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Css\" />
+    <Content Include="Configuration\ResourceIncludeList.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\ToCompletedPipeline.config" />

@@ -272,8 +272,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 				cellIndex++;
 			}
 
-			if (newVariant)
+			if (newVariant) { 
 				e.Row.Attributes.Add("Class", "newVariantRow");
+			}
+
 		}
 
 		private Control GetRegularExpressionValidator(Control controlToValidateAgainst, PriceGroup priceGroup)
