@@ -1,32 +1,20 @@
 ﻿using System.Globalization;
-using System.Resources;
+using System.Reflection;
 using System.Threading;
 using UCommerce.Infrastructure.Globalization;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 {
-	/// <summary>
-	/// Responsible for finding the right translation of a text based on a giving key, resource file and culture. 
-	/// </summary>
-	public class MyResourceManager : IResourceManager
+	public class ResourceManager : IResourceManager
 	{
 		public string GetLocalizedText(string resource, string key)
 		{
 			return GetLocalizedText(Thread.CurrentThread.CurrentUICulture, resource, key);
 		}
 
-		/// <summary>
-		/// Uses ResourceManager to return a translated string.
-		/// Based on the created resource files. 
-		/// The default translate is en.  
-		/// </summary>
-		/// <param name="culture"></param>
-		/// <param name="resource"></param>
-		/// <param name="key"></param>
-		/// <returns></returns>
 		public string GetLocalizedText(CultureInfo culture, string resource, string key)
 		{
-			string resourceObject = new ResourceManager(typeof(UCommerce.Transactions.Payments.IPaymentMethodService)).GetString(key, culture);
+			string resourceObject = new System.Resources.ResourceManager("UCommerce.Transactions.Payments.GiftCard.UI.App_LocalResources." + resource, Assembly.Load("UCommerce.Transactions.Payments.GiftCard.UI")).GetString(key, culture);
 
 			if (resourceObject == null)
 				return string.Format("[{0}]", key);
