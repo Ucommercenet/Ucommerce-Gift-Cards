@@ -132,25 +132,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.da-DK.resx" />
-    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.de-DE.resx" />
-    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.nl-NL.resx" />
-    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.resx">
+    <EmbeddedResource Include="App_LocalResources\EditGiftCardPrices.ascx.da-DK.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditGiftCardPrices.ascx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditGiftCardPrices.ascx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditGiftCardPrices.resx">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\EditGiftCardPrices.ascx.sv-SE.resx" />
-    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.da-DK.resx" />
-    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.de-DE.resx" />
-    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.nl-NL.resx" />
-    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.resx" />
-    <Content Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.sv-SE.resx" />
-    <Content Include="App_LocalResources\GenerateGiftCards.aspx.da-DK.resx" />
-    <Content Include="App_LocalResources\GenerateGiftCards.aspx.de-DE.resx" />
-    <Content Include="App_LocalResources\GenerateGiftCards.aspx.nl-NL.resx" />
-    <Content Include="App_LocalResources\GenerateGiftCards.aspx.resx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\EditGiftCardPrices.ascx.sv-SE.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.da-DK.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.resx" />
+    <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.sv-SE.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.da-DK.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.resx">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\GenerateGiftCards.aspx.sv-SE.resx" />
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DownloadGiftCardCodes.ashx" />
@@ -162,11 +162,11 @@
     <Content Include="Configuration\Initialize.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\ValidationSummaryDisplay.ascx.da-DK.resx" />
-    <Content Include="App_LocalResources\ValidationSummaryDisplay.ascx.de-DE.resx" />
-    <Content Include="App_LocalResources\ValidationSummaryDisplay.ascx.nl-NL.resx" />
-    <Content Include="App_LocalResources\ValidationSummaryDisplay.ascx.resx" />
-    <Content Include="App_LocalResources\ValidationSummaryDisplay.ascx.sv-SE.resx" />
+    <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.da-DK.resx" />
+    <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.resx" />
+    <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\EditPaymentMethodGiftCardsTab.config">
@@ -178,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\Mapping.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\ResourceManager.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
