@@ -1,5 +1,6 @@
 ﻿using System.Web.UI.WebControls;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure.Globalization;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
@@ -9,13 +10,15 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
     public class EditProductGiftCardTabTask : IPipelineTask<SectionGroup>
     {
         private readonly IRepository<Product> _productRepository;
+	    private readonly IResourceManager _resourceManager;
 
-        public EditProductGiftCardTabTask(IRepository<Product> productRepository)
+	    public EditProductGiftCardTabTask(IRepository<Product> productRepository, IResourceManager resourceManager)
         {
-            _productRepository = productRepository;
+	        _productRepository = productRepository;
+	        _resourceManager = resourceManager;
         }
 
-        public PipelineExecutionResult Execute(SectionGroup sectionGroup)
+	    public PipelineExecutionResult Execute(SectionGroup sectionGroup)
         {
             if (sectionGroup.GetViewName() != "editproduct_aspx") return PipelineExecutionResult.Success;
 
@@ -35,7 +38,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
         {
             var section = new Section
             {
-                Name = "Gift Card Price",
+				Name = _resourceManager.GetLocalizedText("EditGiftCardPrices", "GiftCardTabName"),
                 ID = sectionGroup.CreateUniqueControlId()
             };
 
