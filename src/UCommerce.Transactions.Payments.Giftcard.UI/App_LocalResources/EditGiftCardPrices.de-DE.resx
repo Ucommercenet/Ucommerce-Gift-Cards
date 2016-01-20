@@ -120,6 +120,9 @@
   <data name="CreateGiftCard" xml:space="preserve">
     <value>erstellen Preis</value>
   </data>
+  <data name="GiftCardTabName" xml:space="preserve">
+    <value>Geschenkkarten</value>
+  </data>
   <data name="regexValidatorDecimal" xml:space="preserve">
     <value>sind erforderlich, um einen Wert von Dezimalformat haben</value>
   </data>

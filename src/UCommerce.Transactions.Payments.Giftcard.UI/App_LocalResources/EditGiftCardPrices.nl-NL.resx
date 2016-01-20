@@ -118,12 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CreateGiftCard" xml:space="preserve">
-    <value>skapa pris</value>
+    <value>creëren prijs</value>
+  </data>
+  <data name="GiftCardTabName" xml:space="preserve">
+    <value>Cadeaubonnen</value>
   </data>
   <data name="regexValidatorDecimal" xml:space="preserve">
-    <value>måste ha ett värde av decimal format</value>
+    <value>moeten de waarde decimaal formaat hebben</value>
   </data>
   <data name="requiredFieldValidator" xml:space="preserve">
-    <value>måste ha ett värde</value>
+    <value>moeten een waarde</value>
   </data>
 </root>
