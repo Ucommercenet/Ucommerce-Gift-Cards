@@ -35,7 +35,6 @@
 
 		var row = $(".newVariantRow").first();
 
-		row.css('display', 'table-row');
 		row.find('.aspNetDisabled').removeAttr('disabled');
 		row.find('.aspNetDisabled').addClass('priceInput');
 		row.find('.aspNetDisabled').addClass('amountInput');
