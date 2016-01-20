@@ -1,4 +1,5 @@
-﻿using UCommerce.EntitiesV2;
+﻿using System.Web.UI.WebControls;
+using UCommerce.EntitiesV2;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
@@ -40,8 +41,23 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
             var control = sectionGroup.View.LoadControl("/Apps/UCommerce.GiftCards/EditGiftCardPrices.ascx");
 
+			section.Menu.AddMenuButton(CreateGiftCardButton());
+
             section.AddControl(control);
             return section;
         }
+
+	    private ImageButton CreateGiftCardButton()
+	    {
+			var createGiftCardButton = new ImageButton
+			{
+				ImageUrl = Presentation.Resources.Images.Menu.Create,
+				CausesValidation = false
+			};
+
+			createGiftCardButton.Attributes.Add("onclick", "addNewVariantClick(); return false;");
+
+			return createGiftCardButton;
+	    }
     }
 }
