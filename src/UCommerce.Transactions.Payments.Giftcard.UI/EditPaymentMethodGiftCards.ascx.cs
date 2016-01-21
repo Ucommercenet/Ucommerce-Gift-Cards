@@ -68,9 +68,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 									TotalNumberOfGiftCards = groupedByCurrency.Count(),
 									GiftCardsClosed = groupedByCurrency.Count(x => x.Amount == x.AmountUsed),
 									OpenGiftCards = groupedByCurrency.Count(x => x.AmountUsed < x.Amount && x.Enabled && DateTime.Now < x.ExpiresOn),
-									SpentBalance = new Money(groupedByCurrency.Sum(x => x.AmountUsed), groupedByCurrency.Key),
-									OutstandingBalance = new Money(groupedByCurrency.Sum(x => x.Amount) - groupedByCurrency.Sum(x => x.AmountUsed), groupedByCurrency.Key),
-									TotalBalance = new Money(groupedByCurrency.Sum(x => x.Amount),groupedByCurrency.Key)
+									SpentBalance = new Money(groupedByCurrency.Sum(x => x.AmountUsed), groupedByCurrency.Key).Value.ToString("N"),
+									OutstandingBalance = new Money(groupedByCurrency.Sum(x => x.Amount) - groupedByCurrency.Sum(x => x.AmountUsed), groupedByCurrency.Key).Value.ToString("N"),
+									TotalBalance = new Money(groupedByCurrency.Sum(x => x.Amount), groupedByCurrency.Key).Value.ToString("N")
 								};
 
 			CurrencySummaryTable.DataSource = currencySums;
