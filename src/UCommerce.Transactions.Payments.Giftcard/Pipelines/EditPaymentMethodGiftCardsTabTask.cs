@@ -48,7 +48,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var section = new Section
 			{
-				Name = _resourceManager.GetLocalizedText("EditPaymentMethodGiftCards", "GiftCards.Text"),
+				Name = _resourceManager.GetLocalizedText("EditPaymentMethodGiftCards.ascx", "GiftCards.Text"),
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 

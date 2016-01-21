@@ -14,7 +14,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 
 		public string GetLocalizedText(CultureInfo culture, string resource, string key)
 		{
-			string resourceObject = new System.Resources.ResourceManager("UCommerce.Transactions.Payments.GiftCard.UI.App_LocalResources." + resource + ".ascx", Assembly.Load("UCommerce.Transactions.Payments.GiftCard.UI")).GetString(key, culture);
+			string resourceObject = new System.Resources.ResourceManager("UCommerce.Transactions.Payments.GiftCard.UI.App_LocalResources." + resource, Assembly.Load("UCommerce.Transactions.Payments.GiftCard.UI")).GetString(key, culture);
 
 			if (resourceObject == null)
 				return string.Format("[{0}]", key);

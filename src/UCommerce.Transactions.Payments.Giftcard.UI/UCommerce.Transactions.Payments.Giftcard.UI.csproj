@@ -144,13 +144,13 @@
     <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.nl-NL.resx" />
     <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.resx" />
     <EmbeddedResource Include="App_LocalResources\EditPaymentMethodGiftCards.ascx.sv-SE.resx" />
-    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.ascx.da-DK.resx" />
-    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.ascx.de-DE.resx" />
-    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.ascx.nl-NL.resx" />
-    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.ascx.resx">
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.da-DK.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.ascx.sv-SE.resx" />
+    <EmbeddedResource Include="App_LocalResources\GenerateGiftCards.aspx.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DownloadGiftCardCodes.ashx" />
