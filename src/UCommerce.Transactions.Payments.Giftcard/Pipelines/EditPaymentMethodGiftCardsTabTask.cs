@@ -1,5 +1,6 @@
 ﻿using System.Web.UI.WebControls;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure.Globalization;
 using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
@@ -14,13 +15,15 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		private readonly IJavaScriptFactory _javaScriptFactory;
 		private readonly IPathService _pathService;
 		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
+		private readonly IResourceManager _resourceManager;
 
-		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory, IPathService pathService, IRepository<PaymentMethod> paymentMethodRepository)
+		public EditPaymentMethodGiftCardsTabTask(ISecurityService securityService, IJavaScriptFactory javaScriptFactory, IPathService pathService, IRepository<PaymentMethod> paymentMethodRepository, IResourceManager resourceManager)
 		{
 			_securityService = securityService;
 			_javaScriptFactory = javaScriptFactory;
 			_pathService = pathService;
 			_paymentMethodRepository = paymentMethodRepository;
+			_resourceManager = resourceManager;
 		}
 
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
@@ -45,7 +48,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var section = new Section
 			{
-				Name = "Gift Cards",
+				Name = _resourceManager.GetLocalizedText("EditPaymentMethodGiftCards", "GiftCards.Text"),
 				ID = sectionGroup.CreateUniqueControlId()
 			};
 
@@ -84,8 +87,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 			pathString = pathString.Substring(1, pathString.Length - 1);
 
-			//exportButton.Attributes.Add("onclick", "if (confirm('" + "WOOP" + "')) { window.location.replace(" + string.Format("/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={0}", QueryString.Common.Id) + "); } return false;");
-			exportButton.Attributes.Add("onclick", "if (confirm('" + "woop" + "')) { window.location.replace('" + pathString + "'); } return false;");
+			exportButton.Attributes.Add("onclick", "window.location.replace('" + pathString + "'); return false;");
 			return exportButton;
 		}
 	}
