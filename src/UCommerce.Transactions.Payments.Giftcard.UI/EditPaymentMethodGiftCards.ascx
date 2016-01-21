@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditPaymentMethodGiftCards.ascx.cs" Inherits="UCommerce.Transactions.Payments.GiftCard.UI.EditPaymentMethodGiftCards" %>
-<%@ Register TagPrefix="commerce" TagName="ValidationSummary" Src="../../Controls/ValidationSummaryDisplay.ascx" %>
+<%@ Register TagPrefix="commerce" TagName="ValidationSummary" Src="ValidationSummaryDisplay.ascx" %>
 <script type="text/javascript">
 	
 	function outFunction() {

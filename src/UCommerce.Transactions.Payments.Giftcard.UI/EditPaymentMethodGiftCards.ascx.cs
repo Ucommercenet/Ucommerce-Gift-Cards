@@ -10,7 +10,6 @@ using UCommerce.Presentation.Web;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Presentation.Web.Pages;
 using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
 using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
