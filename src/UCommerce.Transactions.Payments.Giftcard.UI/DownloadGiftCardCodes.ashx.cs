@@ -35,21 +35,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 
 			string fileName = string.Format("GiftCards-for-{0}", paymentMethod.Name);
 
-			var stringOfGiftCards = new StringBuilder();
-
-			if (giftCards.Count > 0)
-			{
-				GetGiftCardString(giftCards, stringOfGiftCards);
-			}
-			else
-			{
-				stringOfGiftCards.Append(string.Format("No gift cards found for payment method: {0}", paymentMethod.Name));
-			}
+			var giftCardsExport = ExportGiftCards(giftCards, paymentMethod.Name);
 
 			byte[] buffer;
 			using(var memoryStream = new System.IO.MemoryStream())
 			{
-				buffer = Encoding.Default.GetBytes(stringOfGiftCards.ToString());
+				buffer = Encoding.Default.GetBytes(giftCardsExport);
 				memoryStream.Write(buffer,0,buffer.Length);
 				context.Response.Clear();
 				context.Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName + ".txt");
@@ -60,8 +51,15 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			context.Response.End();
 		}
 
-		private void GetGiftCardString(List<Entities.GiftCard> giftCards, StringBuilder stringOfGiftCards)
+		private string ExportGiftCards(IList<Entities.GiftCard> giftCards, string paymentMethodName)
 		{
+			if (!giftCards.Any())
+			{
+				return string.Format("No gift cards found for payment method: {0}", paymentMethodName);
+			}
+
+			var stringOfGiftCards = new StringBuilder();
+
 			var openGiftCards = giftCards.Where(x => x.AmountUsed < x.Amount && x.ExpiresOn > DateTime.Now && x.Enabled);
 			var amountUsed = openGiftCards.Sum(x => x.AmountUsed);
 			var amountUnUsed = openGiftCards.Sum(x => x.Amount);
@@ -69,11 +67,11 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			var totalGiftCards = string.Format("Total number of gift cards: {0}\r\n", giftCards.Count().ToString());
 			var totalAmount = string.Format("Total amount of gift cards: {0}\r\n", giftCards.Sum(x => x.Amount).ToString());
 			var giftcardsInUse = string.Format("Gift cards in use: {0}\r\n",
-				giftCards.Where(x => x.AmountUsed > 0 && x.AmountUsed < x.Amount && x.Enabled).Count().ToString());
+				giftCards.Count(x => x.AmountUsed > 0 && x.AmountUsed < x.Amount && x.Enabled));
 			var expiredGiftCards = string.Format("Gift cards expired: {0}\r\n",
-				giftCards.Where(x => x.ExpiresOn < DateTime.Now && x.AmountUsed < x.Amount).Count().ToString());
+				giftCards.Count(x => x.ExpiresOn < DateTime.Now && x.AmountUsed < x.Amount).ToString());
 			var giftCardsClosed = string.Format("Gift cards closed: {0}\r\n",
-				giftCards.Where(x => x.Amount == x.AmountUsed).Count().ToString());
+				giftCards.Count(x => x.Amount == x.AmountUsed).ToString());
 			var giftCardsAmountUsed = string.Format("Amount used: {0}\r\n", amountUsed);
 			var giftCardsAmountUnUsed = string.Format("Amount unused: {0}\r\n\r\n", (amountUnUsed - amountUsed).ToString());
 
@@ -86,13 +84,15 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			stringOfGiftCards.Append(giftCardsAmountUsed);
 			stringOfGiftCards.Append(giftCardsAmountUnUsed);
 
-			stringOfGiftCards.Append("GiftCardCode Amount Used Expires Currency \r\n");
+			stringOfGiftCards.Append("GiftCardCode Amount Used Expires Currency\r\n");
 			foreach (var giftCard in giftCards)
 			{
-				stringOfGiftCards.Append(string.Format("{0} , {1} , {2} , {3} , {4} \r\n",
+				stringOfGiftCards.AppendFormat("{0}, {1}, {2}, {3}, {4}\r\n",
 					giftCard.Code, giftCard.Amount, giftCard.AmountUsed, giftCard.ExpiresOn,
-					giftCard.Currency.Name));
+					giftCard.Currency.Name);
 			}
+
+			return stringOfGiftCards.ToString();
 		}
 
 		public bool IsReusable
