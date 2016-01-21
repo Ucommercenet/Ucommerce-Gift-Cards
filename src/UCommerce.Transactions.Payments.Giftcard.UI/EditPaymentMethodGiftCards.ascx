@@ -29,7 +29,7 @@
 
 	<asp:ListView runat="server" ID="CurrencySummaryTable" EnableViewState="false">
 		<LayoutTemplate>
-			<table width="100%;">
+			<table class="giftCardSymmaryTable">
 				<thead>
 					<tr>
 						<th class="centerText"><asp:Localize ID="Localize1" runat="server" meta:resourceKey="Currency" /></th>
