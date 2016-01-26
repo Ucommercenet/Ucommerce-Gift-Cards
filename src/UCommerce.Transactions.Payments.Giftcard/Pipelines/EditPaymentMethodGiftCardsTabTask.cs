@@ -68,8 +68,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var generateGiftCardButton = new ImageButton
 			{
-				ImageUrl = Presentation.Resources.Images.Menu.Create
+				ImageUrl = Presentation.Resources.Images.Menu.Create,
+				CausesValidation = false
 			};
+
 			generateGiftCardButton.Attributes.Add("onclick", _javaScriptFactory.OpenModalFunction(string.Format("/Apps/UCommerce.GiftCards/GenerateGiftCards.aspx?Id={0}", QueryString.Common.Id), "Create Gift Card", 700, 700));
 
 			return generateGiftCardButton;
