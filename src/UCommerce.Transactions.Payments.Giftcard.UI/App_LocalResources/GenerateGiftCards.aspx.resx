@@ -142,6 +142,6 @@
     <value>Gift Cards not available with current license</value>
   </data>
   <data name="SaveButton.Text" xml:space="preserve">
-    <value>SaveButton</value>
+    <value>Save</value>
   </data>
 </root>

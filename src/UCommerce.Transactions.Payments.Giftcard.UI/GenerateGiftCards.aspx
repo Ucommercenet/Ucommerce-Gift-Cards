@@ -2,20 +2,20 @@
 <%@ Register tagPrefix="commerce" tagName="ValidationSummary" src="ValidationSummaryDisplay.ascx" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentArea" runat="server">
-	<commerce:ValidationSummary ID="ValidationSummary1" runat="server" />
-	<div style="margin:10px;">
-		<h3>
+	<div class="propertyPane dialog-header">
+	    <h3>
 			<span>
 				<asp:Localize runat="server" meta:resourcekey="CreateGiftcards"></asp:Localize>
 			</span>
 		</h3>
-		<div>
+        <div>
 			<p class="guiDialogTiny">
 				<asp:Localize ID="Localize2" runat="server" meta:resourcekey="CreateGiftCardsManchet"></asp:Localize>
 			</p>
 		</div>
 	</div>
-	<div class="propertyPane">
+	<div class="propertyPane contentPane">
+        <commerce:ValidationSummary ID="ValidationSummary1" runat="server" />	    
 		<div class="propertyItem">
 		    <div class="propertyItemHeader">
 		        <asp:Label><asp:Localize ID="Localize3" runat="server" meta:resourcekey="NumberOfGiftCards" /></asp:Label>
@@ -63,11 +63,13 @@
             </div>
 		</div>
 	</div>
-    <div style="margin:10px">
-		<p>
-			<asp:Button id="SaveButton" runat="server" meta:resourcekey="SaveButton" Text="Save" onclick="SaveButton_Click" />
-			<em>or </em><a href="#" style="color: blue" onclick="UCommerceClientMgr.closeModalWindow()"><asp:Localize id="Localize1" runat="server" meta:resourcekey="CancelButton" Text="Cancel" />
-			</a>
-		</p>
+    <div class="propertyPane dialog-actions">
+		<div class="footerOkCancel">
+		    <p>
+			    <asp:Button id="SaveButton" runat="server" meta:resourcekey="SaveButton" Text="Save" onclick="SaveButton_Click" />
+			    <em>or</em>
+                <a href="#" style="color: blue" onclick="UCommerceClientMgr.closeModalWindow()"><asp:Localize id="Localize1" runat="server" meta:resourcekey="CancelButton" Text="Cancel" /></a>
+		    </p>
+		</div>
 	</div>
 </asp:Content>

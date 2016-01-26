@@ -141,4 +141,7 @@
   <data name="license.Text" xml:space="preserve">
     <value>Geschenkkarten ist nicht mit aktuellen Lizenz verfügbar</value>
   </data>
+  <data name="SaveButton.Text" xml:space="preserve">
+    <value>Sparen</value>
+  </data>
 </root>

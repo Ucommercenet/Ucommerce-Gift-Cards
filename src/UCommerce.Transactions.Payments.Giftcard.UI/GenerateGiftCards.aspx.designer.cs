@@ -13,15 +13,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI {
     public partial class GenerateGiftCards {
         
         /// <summary>
-        /// ValidationSummary1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::UCommerce.Transactions.Payments.Giftcard.UI.ValidationSummaryDisplay ValidationSummary1;
-        
-        /// <summary>
         /// Localize2 control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize Localize2;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UCommerce.Transactions.Payments.Giftcard.UI.ValidationSummaryDisplay ValidationSummary1;
         
         /// <summary>
         /// Localize3 control.
