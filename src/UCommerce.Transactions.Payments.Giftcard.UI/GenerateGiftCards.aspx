@@ -67,7 +67,7 @@
 		<div class="footerOkCancel">
 		    <p>
 			    <asp:Button id="SaveButton" runat="server" meta:resourcekey="SaveButton" Text="Save" onclick="SaveButton_Click" />
-			    <em>or</em>
+			    <em><asp:Localize id="Localize8" runat="server" meta:resourcekey="Or" Text="Cancel" /></em>
                 <a href="#" style="color: blue" onclick="UCommerceClientMgr.closeModalWindow()"><asp:Localize id="Localize1" runat="server" meta:resourcekey="CancelButton" Text="Cancel" /></a>
 		    </p>
 		</div>
