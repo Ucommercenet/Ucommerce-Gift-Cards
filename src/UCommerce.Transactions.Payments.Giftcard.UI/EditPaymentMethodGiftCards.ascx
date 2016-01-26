@@ -2,14 +2,6 @@
 <%@ Register TagPrefix="commerce" TagName="ValidationSummary" Src="ValidationSummaryDisplay.ascx" %>
 <script type="text/javascript">
 	
-	function outFunction() {
-		$('.hovered').removeClass('hovered');
-	}
-
-	function inFunction() {
-		var parent = $(this).parent();
-		parent.find('.noteContainer').addClass('hovered');
-	}
 	$(function () {
 		$("#productTable").dataTable(
 			{
@@ -18,8 +10,6 @@
 				"aaSorting": []
 			}
 		);
-
-		$('.notePlaceHolder').hover(inFunction, outFunction);
 	});
 </script>
 <div class="propertyPane">
@@ -29,7 +19,7 @@
 
 	<asp:ListView runat="server" ID="CurrencySummaryTable" EnableViewState="false">
 		<LayoutTemplate>
-			<table class="giftCardSymmaryTable">
+			<table class="giftCardSymmaryTable dataTable dataList">
 				<thead>
 					<tr>
 						<th class="centerText"><asp:Localize ID="Localize1" runat="server" meta:resourceKey="Currency" /></th>
@@ -49,14 +39,14 @@
 		</LayoutTemplate>
 		<ItemTemplate>
 			<tr>
-				<td class="centerText"><%#Eval("Currency.Name")%></td>
-				<td class="centerText"><%#Eval("TotalNumberOfGiftCards")%></td>
-				<td class="centerText"><%#Eval("GiftCardsInUse")%></td>
-				<td class="centerText"><%#Eval("GiftCardsClosed")%></td>
-				<td class="centerText"><%#Eval("ExpiredGiftCards")%></td>
-				<td class="amountInput"><%#Eval("OutstandingBalance")%></td>
-				<td class="amountInput"><%#Eval("SpentBalance")%></td>
-				<td class="amountInput"><%#Eval("TotalBalance")%></td>
+				<td class="centerAligned"><%#Eval("Currency.Name")%></td>
+				<td class="centerAligned"><%#Eval("TotalNumberOfGiftCards")%></td>
+				<td class="centerAligned"><%#Eval("GiftCardsInUse")%></td>
+				<td class="centerAligned"><%#Eval("GiftCardsClosed")%></td>
+				<td class="centerAligned"><%#Eval("ExpiredGiftCards")%></td>
+				<td class="rightAligned"><%#Eval("OutstandingBalance")%></td>
+				<td class="rightAligned"><%#Eval("SpentBalance")%></td>
+				<td class="rightAligned"><%#Eval("TotalBalance")%></td>
 			</tr>
 		</ItemTemplate>
 		<EmptyDataTemplate>
@@ -76,19 +66,19 @@
 	<div>
 		<asp:ListView runat="server" ID="GiftCardListView" EnableViewState="false" OnPagePropertiesChanging="GiftCardListView_PagePropertiesChanging" >
 			<LayoutTemplate>
-				<table id="productTable"  style="border-collapse: collapse;" >
+				<table id="productTable" class="dataTable dataList" >
 					<thead>
 						<tr>
 							<th><asp:Localize ID="Localize10" runat="server" meta:resourceKey="Code" /></th>
 							<th class="rightAligned"><asp:Localize ID="Localize11" runat="server" meta:resourceKey="Amount" /></th>
 							<th class="rightAligned"><asp:Localize ID="Localize12" runat="server" meta:resourceKey="Amountused" /></th>
-							<th><asp:Localize ID="Localize13" runat="server" meta:resourceKey="Currency" /></th>
+							<th class="centerText"><asp:Localize ID="Localize13" runat="server" meta:resourceKey="Currency" /></th>
 							<th><asp:Localize ID="Localize14" runat="server" meta:resourceKey="ExpiresOn" /></th>
 							<th><asp:Localize ID="Localize15" runat="server" meta:resourceKey="CreatedOn" /></th>
 							<th><asp:Localize ID="Localize16" runat="server" meta:resourceKey="CreatedBy" /></th>
 							<th><asp:Localize ID="Localize17" runat="server" meta:resourceKey="OrderNumber" /></th>
 							<th><asp:Localize ID="Localize18" runat="server" meta:resourceKey="Note" /></th>
-							<th><asp:Localize ID="Localize19" runat="server" meta:resourceKey="Enabled" /></th>	
+							<th class="centerText"><asp:Localize ID="Localize19" runat="server" meta:resourceKey="Enabled" /></th>	
 						</tr>
 					</thead>
 					<tbody>
@@ -108,10 +98,7 @@
 					<td><%# DataBinder.Eval(Container.DataItem, "CreatedBy")%></td>
 					<td><%# DataBinder.Eval(Container.DataItem, "OrderNumber")%></td>
 					<td>
-						<div class="notePlaceHolder">
-							<%# GetShortNote(DataBinder.Eval(Container.DataItem, "Note").ToString())%>
-						</div>
-						<div class="noteContainer"><%# DataBinder.Eval(Container.DataItem, "Note")%></div>
+						<span class="oneLineText"><%# DataBinder.Eval(Container.DataItem, "Note")%></span>
 					</td>
 					<td class="centerAligned">
 						<asp:CheckBox Checked='<%# DataBinder.Eval(Container.DataItem, "Enabled" )%>' ID="GiftCardEnabledCheckBox" runat="server"></asp:CheckBox>

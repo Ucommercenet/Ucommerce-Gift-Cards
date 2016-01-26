@@ -150,20 +150,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			}
 		}
 
-		/// <summary>
-		/// GridView uses this method to generagte the shorthanded note displayed in the grid. 
-		/// </summary>
-		protected string GetShortNote(string note)
-		{
-			if (string.IsNullOrEmpty(note))
-				return "";
-
-			if (note.Length <= 5)
-				return note + "...";
-
-			return note.Substring(0, 4)+"...";
-		}
-
 		protected void GiftCardListView_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
 		{
 			GiftCardPager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);	

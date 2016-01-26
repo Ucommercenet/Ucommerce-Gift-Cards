@@ -6,19 +6,6 @@
 	margin-top: 6px;
 }
 
-.giftCardSymmaryTable {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-.giftCardSymmaryTable tbody tr:nth-child(odd) {
-	background-color: #E2E4FF;
-}
-
-.giftCardSymmaryTable tbody tr:nth-child(even) {
-	    background-color: white;
-}
-
 .centerText {
 	text-align: center;
 }
