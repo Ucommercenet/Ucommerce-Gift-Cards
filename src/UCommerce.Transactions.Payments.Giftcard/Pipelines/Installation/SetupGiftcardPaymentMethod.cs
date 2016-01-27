@@ -28,6 +28,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 			{
 				Name = Constants.GiftCardPaymentMethodName,
 				PaymentMethodServiceName = Constants.GiftCardPaymentMethodName,
+				Enabled = true
 			};
 
 			_paymentMethodRepository.Save(paymentMethod);

@@ -141,4 +141,13 @@
   <data name="license.Text" xml:space="preserve">
     <value>Gavekort er ikke tilgængelig med nuværende licens</value>
   </data>
+  <data name="SaveButton.Text" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="CancelButton.Text" xml:space="preserve">
+    <value>Anuller </value>
+  </data>
+  <data name="Or.Text" xml:space="preserve">
+    <value>Eller</value>
+  </data>
 </root>

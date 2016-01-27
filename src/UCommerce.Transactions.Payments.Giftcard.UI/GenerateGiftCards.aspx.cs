@@ -36,7 +36,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			date.Controls.Add(ControlFactory.GetControl(datePicker, "DatePicker", ""));
 			if (!IsPostBack)
 			{
-				(date.FindControl("DatePicker") as DatePicker).DateTime = DateTime.Now.AddDays(365);
+				(date.FindControl("DatePicker") as DatePicker).DateTime = DateTime.Now.AddYears(1);
 				foreach (var currency in Currency.All())
 				{
 					CurrenciesDropDown.Items.Add(new ListItem(currency.Name, currency.CurrencyId.ToString()));
