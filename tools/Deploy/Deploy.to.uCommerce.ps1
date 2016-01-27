@@ -5,7 +5,7 @@ Param(
 
 function GetDeploymentDirectories {
   return @(
-	"C:\inetpub\U7dev\Website"
+	"C:\inetpub\U6\Website"
   )
 }
 
