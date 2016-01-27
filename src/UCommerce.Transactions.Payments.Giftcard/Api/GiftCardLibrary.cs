@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure;
 
@@ -8,11 +9,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 	{
 		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
 		private readonly TransactionLibraryInternal _transactionLibraryInternal;
+		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public GiftCardLibraryInternal(IRepository<PaymentMethod> paymentMethodRepository, TransactionLibraryInternal transactionLibraryInternal)
+		public GiftCardLibraryInternal(IRepository<PaymentMethod> paymentMethodRepository, TransactionLibraryInternal transactionLibraryInternal, IRepository<GiftCard.Entities.GiftCard> giftCardRepository)
 		{
 			_paymentMethodRepository = paymentMethodRepository;
 			_transactionLibraryInternal = transactionLibraryInternal;
+			_giftCardRepository = giftCardRepository;
 		}
 
 		/// <summary>
@@ -22,6 +25,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 		/// <returns>A payment if the request added a usage of a giftcard.</returns>
 		public Payment UseGiftCard(string giftCardCode)
 		{
+			if (string.IsNullOrEmpty(giftCardCode)) 
+				return null;
+
+			if (!_giftCardRepository.Select(x => x.Code == giftCardCode).Any())
+				return null;
+			
 			var paymentMethod = _paymentMethodRepository.SingleOrDefault(x => x.Name == Constants.GiftCardPaymentMethodName);
 			
 			if (paymentMethod == null)
@@ -37,7 +46,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 
 			if (!_transactionLibraryInternal.HasBasket()) return null; //throw exception??
 
-			var paymentRequest = new PaymentRequest(_transactionLibraryInternal.GetBasket(false).PurchaseOrder, null);
+			var paymentRequest = new PaymentRequest(_transactionLibraryInternal.GetBasket(false).PurchaseOrder, new Payment()
+			{
+				PaymentMethod = paymentMethod,
+				Amount = 0,
+				
+			});
+
 			paymentRequest.AdditionalProperties.Add(Constants.GiftCardCodePaymentPropertyName, giftCardCode);
 
 			return (paymentMethodService as IPaymentFactory).CreatePayment(paymentRequest);
