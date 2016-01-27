@@ -5,6 +5,7 @@ using UCommerce.Infrastructure.Runtime;
 using UCommerce.Pipelines;
 using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
+using UCommerce.Presentation.Web.Controls;
 using UCommerce.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
@@ -39,7 +40,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 			}
 
 			var section = BuildSection(sectionGroup);
-			sectionGroup.AddSection(section);
+			sectionGroup.Sections.Insert(1, section);
+			sectionGroup.Controls.Add(section);
 
 			return PipelineExecutionResult.Success;
 		}
@@ -53,6 +55,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 			};
 
 			var control = sectionGroup.View.LoadControl("/Apps/UCommerce.GiftCards/EditPaymentMethodGiftCards.ascx");
+
+			section.Menu.AddMenuButton(new SaveButtonPlaceholder());
 
 			//if (_securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole)))
 			//{
