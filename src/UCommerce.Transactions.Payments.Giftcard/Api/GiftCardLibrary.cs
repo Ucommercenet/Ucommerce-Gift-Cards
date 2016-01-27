@@ -37,8 +37,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 
 			if (!_transactionLibraryInternal.HasBasket()) return null; //throw exception??
 
-			var paymentRequest = new PaymentRequest(_transactionLibraryInternal.GetBasket(false).PurchaseOrder,null);
-			paymentRequest.AdditionalProperties.Add(Constants.GiftCardCodePaymentPropertyName,giftCardCode);
+			var paymentRequest = new PaymentRequest(_transactionLibraryInternal.GetBasket(false).PurchaseOrder, null);
+			paymentRequest.AdditionalProperties.Add(Constants.GiftCardCodePaymentPropertyName, giftCardCode);
 
 			return (paymentMethodService as IPaymentFactory).CreatePayment(paymentRequest);
 		}
@@ -78,7 +78,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 			return GiftCardLibraryInternal.UseGiftCard(giftCardCode);
 		}
 
-		public static OrderLine BuyGiftCard(int quantity, string sku, string variantSku, Decimal? amount, bool addToExistingLine = true, int? catalogId = null)
+		public static OrderLine BuyGiftCard(int quantity, string sku, string variantSku, Decimal? amount = null, bool addToExistingLine = true, int? catalogId = null)
 		{
 			return GiftCardLibraryInternal.BuyGiftCard(quantity, sku, variantSku, amount, addToExistingLine, catalogId);
 		}
