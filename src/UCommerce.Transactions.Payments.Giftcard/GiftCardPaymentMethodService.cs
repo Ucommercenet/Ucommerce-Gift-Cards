@@ -83,7 +83,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
                 return true;                
             }
 
-			var giftCard = GetGiftCard(payment["GiftCardCode"]);
+			var giftCard = GetGiftCard(payment[Constants.GiftCardCodePaymentPropertyName]);
 
             string giftCardStatus;
             if (!GiftCardIsValid(giftCard, out giftCardStatus))
@@ -111,7 +111,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
             if (payment.PaymentStatus != _paymentStatusRepository.Get((int)acquiredPaymentStatusCode))
                 throw new InvalidOperationException(string.Format("Cannot refund payment on payment with paymentStatus: {0}.", payment.PaymentStatus.Name));
 
-			var giftCard = _giftCardRepsitory.SingleOrDefault(x => x.Code == payment["GiftCardCode"]);
+			var giftCard = _giftCardRepsitory.SingleOrDefault(x => x.Code == payment[Constants.GiftCardCodePaymentPropertyName]);
             giftCard.AmountUsed -= payment.Amount;
             _giftCardRepsitory.Save(giftCard);
 			
@@ -152,10 +152,10 @@ namespace UCommerce.Transactions.Payments.GiftCard
         private Entities.GiftCard GetGiftCard(PaymentRequest paymentRequest)
         {
             string giftCardCode;
-            paymentRequest.AdditionalProperties.TryGetValue("giftCardCode", out giftCardCode);
+			paymentRequest.AdditionalProperties.TryGetValue(Constants.GiftCardCodePaymentPropertyName, out giftCardCode);
 
 			if (giftCardCode == null)
-				giftCardCode = paymentRequest.Payment["GiftCardCode"];
+				giftCardCode = paymentRequest.Payment[Constants.GiftCardCodePaymentPropertyName];
             
             return _giftCardRepsitory.SingleOrDefault(
                 x => x.Code == giftCardCode);   
@@ -204,7 +204,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         /// <returns>A new created Payment.</returns>
         public override Payment CreatePayment(PaymentRequest request)
         {
-            var paymentWithSameCode = request.PurchaseOrder.Payments.FirstOrDefault(x => x.TransactionId == request.AdditionalProperties["giftCardCode"]);
+			var paymentWithSameCode = request.PurchaseOrder.Payments.FirstOrDefault(x => x.TransactionId == request.AdditionalProperties[Constants.GiftCardCodePaymentPropertyName]);
 
             if (paymentWithSameCode != null)
                 return null;
@@ -229,7 +229,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
                 payment.TransactionId = Guid.NewGuid().ToString();
                 payment["paymentGuid"] = Guid.NewGuid().ToString();
                 payment["IsGiftCard"] = "True";
-            	payment["GiftCardCode"] = request.AdditionalProperties["giftCardCode"];
+				payment[Constants.GiftCardCodePaymentPropertyName] = request.AdditionalProperties[Constants.GiftCardCodePaymentPropertyName];
 				_paymentRepository.Save(payment);
 
 				return payment;
