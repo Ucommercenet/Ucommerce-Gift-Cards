@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
+using UCommerce.Pipelines;
 using UCommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard
@@ -130,11 +131,34 @@ namespace UCommerce.Transactions.Payments.GiftCard
         /// <returns></returns>
         public override Payment RequestPayment(PaymentRequest paymentRequest)
         {
-            ProcessPaymentRequest(paymentRequest);
-            return paymentRequest.Payment;
+			var purchaseOrder = paymentRequest.PurchaseOrder;
+
+			decimal paymentsMadeTotal = purchaseOrder.Payments
+				.Where(x =>
+					   x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Authorized
+					   || x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Acquired)
+				.Sum(x => x.Amount);
+
+			//We can only execute post processing pipeline if authorized payments are greater than the order total which indicates that 
+			//payments covers either a single or multiple gift cards. 
+			//External payment gateways will do redirect and cover the flow from here.  
+			if (paymentsMadeTotal < purchaseOrder.OrderTotal.GetValueOrDefault())
+				return paymentRequest.Payment;
+
+	        return ProcessPaymentRequest(paymentRequest);
         }
 
-        /// <summary>
+	    public override Payment ProcessPaymentRequest(PaymentRequest request)
+	    {
+		    return base.ProcessPaymentRequest(request);
+	    }
+
+	    public override PipelineExecutionResult ExecutePostProcessingPipeline(Payment payment)
+	    {
+		    return base.ExecutePostProcessingPipeline(payment);
+	    }
+
+	    /// <summary>
         /// Finds and returns a <see cref="Entities.GiftCard"/> from a <see cref="Payment"/>.
         /// </summary>
         /// <param name="giftCardCode">The identifier of a giftcard.</param>
