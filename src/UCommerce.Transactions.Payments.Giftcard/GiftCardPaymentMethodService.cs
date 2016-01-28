@@ -3,6 +3,7 @@ using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Pipelines;
+using UCommerce.Runtime;
 
 namespace UCommerce.Transactions.Payments.GiftCard
 {
@@ -17,17 +18,20 @@ namespace UCommerce.Transactions.Payments.GiftCard
         private readonly IRepository<PaymentStatus> _paymentStatusRepository;
         private readonly IResourceManager _resourceManager;
 	    private readonly IRepository<Payment> _paymentRepository;
+        private readonly IOrderContext _orderContext;
 
         public GiftCardPaymentMethodService(
             IRepository<Entities.GiftCard> giftCardRepsitory, 
             IRepository<PaymentStatus> paymentStatusRepository, 
             IResourceManager resourceManager,
-            IRepository<Payment> paymentRepository)
+            IRepository<Payment> paymentRepository,
+            IOrderContext orderContext)
         {
             _giftCardRepsitory = giftCardRepsitory;
             _paymentStatusRepository = paymentStatusRepository;
             _resourceManager = resourceManager;
 	        _paymentRepository = paymentRepository;
+            _orderContext = orderContext;
         }
 
         /// <summary>
@@ -242,10 +246,18 @@ namespace UCommerce.Transactions.Payments.GiftCard
 			string status;
             if (GiftCardIsValid(giftCard, out status))
             {
-                var amount = giftCard.Amount - giftCard.AmountUsed;
+                var notUsedAmount = giftCard.Amount - giftCard.AmountUsed;
+                var amount = request.PurchaseOrder.OrderTotal.GetValueOrDefault(0);
+                var basket = _orderContext.GetBasket(false).PurchaseOrder;
+
+                var amountAcquire = basket.Payments.Where(x => x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Authorized).Sum(x => x.Amount);
+                if (amountAcquire > 0)
+                    amount -= amountAcquire;
+
+                if (notUsedAmount < 0) return null;
 
                 Payment payment = base.CreatePayment(request);
-                payment.Amount = Math.Min(amount, request.PurchaseOrder.OrderTotal.GetValueOrDefault(0));
+                payment.Amount = Math.Min(notUsedAmount, amount);
                 payment.ReferenceId = GetReferenceId(request);
                 payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Authorized);
                 payment.TransactionId = request.AdditionalProperties[Constants.GiftCardCodePaymentPropertyName];

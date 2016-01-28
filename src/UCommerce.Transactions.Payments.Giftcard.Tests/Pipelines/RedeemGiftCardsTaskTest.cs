@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
+using UCommerce.Runtime;
 using UCommerce.Transactions.Payments.GiftCard.Entities;
 using UCommerce.Transactions.Payments.GiftCard.Pipelines;
 
@@ -124,8 +125,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
         {
             var paymentRepository = MockRepository.GenerateMock<IRepository<Payment>>();
             var resourceManager = MockRepository.GenerateMock<IResourceManager>();
+            var orderContext = MockRepository.GenerateMock<IOrderContext>();
 
-            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, resourceManager, paymentRepository);
+            var service = new GiftCardPaymentMethodService(giftCardRepo, paymentStatusRepo, resourceManager, paymentRepository, orderContext);
 
             return service;
         }
