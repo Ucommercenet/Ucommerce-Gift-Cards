@@ -57,22 +57,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 
 			return (paymentMethodService as IPaymentFactory).CreatePayment(paymentRequest);
 		}
-
-		public OrderLine BuyGiftCard(int quantity, string sku, string variantSku, Decimal? customPrice, bool addToExistingLine = true, int? catalogId = null, bool executeBasketPipeline = true)
-		{
-            var catalogName = catalogId.HasValue ? catalogId.ToString() : string.Empty;
-
-			var orderLine = _transactionLibraryInternal.AddToBasket(catalogName, quantity, sku, variantSku, addToExistingLine, false); //wait with execute basket pipeline untill we're ready to do so.
-			if (customPrice != null)
-			{
-				orderLine.Price = customPrice.Value;
-			}
-
-			if (executeBasketPipeline)
-				_transactionLibraryInternal.ExecuteBasketPipeline();
-
-			return orderLine;
-		}
 	}
 
 
@@ -91,11 +75,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 		public static Payment UseGiftCard(string giftCardCode)
 		{
 			return GiftCardLibraryInternal.UseGiftCard(giftCardCode);
-		}
-
-		public static OrderLine BuyGiftCard(int quantity, string sku, string variantSku, Decimal? amount = null, bool addToExistingLine = true, int? catalogId = null)
-		{
-			return GiftCardLibraryInternal.BuyGiftCard(quantity, sku, variantSku, amount, addToExistingLine, catalogId);
 		}
 	}
 }
