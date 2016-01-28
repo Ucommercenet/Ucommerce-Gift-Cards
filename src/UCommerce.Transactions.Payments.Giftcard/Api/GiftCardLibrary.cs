@@ -59,7 +59,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 		}
 	}
 
-
 	public static class GiftCardLibrary
 	{
 		private static GiftCardLibraryInternal GiftCardLibraryInternal
