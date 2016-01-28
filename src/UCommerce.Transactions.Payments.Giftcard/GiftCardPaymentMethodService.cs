@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Pipelines;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard
 {
@@ -66,7 +64,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
             payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Cancelled);
             _paymentRepository.Save(payment);
 
-            status = _resourceManager.GetLocalizedText("PaymentMessages", "CancelSuccess");
+            status = _resourceManager.GetLocalizedText("PaymentMessages.ascx", "CancelSuccess");
             return true;
         }
 
@@ -80,7 +78,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         {
             if (payment.PaymentStatus != null && payment.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Acquired)
             {
-                status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
+                status = _resourceManager.GetLocalizedText("PaymentMessages.ascx", "AcquireSuccess");
                 return true;                
             }
 
@@ -96,7 +94,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
 			payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Acquired);
 			_paymentRepository.Save(payment);
 
-            status = _resourceManager.GetLocalizedText("PaymentMessages", "AcquireSuccess");
+            status = _resourceManager.GetLocalizedText("PaymentMessages.ascx", "AcquireSuccess");
             return true;
         }
 
@@ -119,7 +117,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
 			payment.PaymentStatus = _paymentStatusRepository.Get((int) PaymentStatusCode.Refunded);
 			_paymentRepository.Save(payment);
 
-			status = _resourceManager.GetLocalizedText("PaymentMessages", "RefundSuccess");
+			status = _resourceManager.GetLocalizedText("PaymentMessages.ascx", "RefundSuccess");
 
             return true;
         }
@@ -250,7 +248,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
                 payment.Amount = Math.Min(amount, request.PurchaseOrder.OrderTotal.GetValueOrDefault(0));
                 payment.ReferenceId = GetReferenceId(request);
                 payment.PaymentStatus = _paymentStatusRepository.Get((int)PaymentStatusCode.Authorized);
-                payment.TransactionId = Guid.NewGuid().ToString();
+                payment.TransactionId = request.AdditionalProperties[Constants.GiftCardCodePaymentPropertyName];
                 payment["paymentGuid"] = Guid.NewGuid().ToString();
                 payment["IsGiftCard"] = "True";
 				payment[Constants.GiftCardCodePaymentPropertyName] = request.AdditionalProperties[Constants.GiftCardCodePaymentPropertyName];

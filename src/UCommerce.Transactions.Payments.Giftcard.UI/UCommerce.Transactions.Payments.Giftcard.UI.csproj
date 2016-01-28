@@ -162,6 +162,11 @@
     <Content Include="Configuration\Initialize.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.resx" />
+    <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.sv-SE.resx" />
+    <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.nl-NL.resx" />
+    <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.de-DE.resx" />
+    <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.da-DK.resx" />
     <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.da-DK.resx" />
     <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.de-DE.resx" />
     <EmbeddedResource Include="App_LocalResources\ValidationSummaryDisplay.ascx.nl-NL.resx" />
