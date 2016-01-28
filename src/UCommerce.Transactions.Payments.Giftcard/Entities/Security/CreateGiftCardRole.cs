@@ -7,11 +7,16 @@ namespace UCommerce.Transactions.Payments.GiftCard.Entities.Security
 	/// </summary>
 	public class CreateGiftCardRole : Role
 	{
-		public CreateGiftCardRole(string name)
-		{
-			Name = name;
-		}
-
-		public CreateGiftCardRole() { }
-	}
+        public override string Name
+        {
+            get
+            {
+                return "Create GiftCard";
+            }
+            set
+            {
+                base.Name = value;
+            }
+        }
+    }
 }

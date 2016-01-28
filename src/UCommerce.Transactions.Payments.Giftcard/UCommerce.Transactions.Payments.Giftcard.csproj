@@ -74,6 +74,7 @@
     <Compile Include="Entities\Maps\GiftCardMap.cs" />
     <Compile Include="Entities\Maps\MapAssemblyTag.cs" />
     <Compile Include="Entities\Security\CreateGiftCardRole.cs" />
+    <Compile Include="Entities\Security\EnsureGiftCardRoleAreUpToDateService.cs" />
     <Compile Include="GiftCardPaymentMethodService.cs" />
     <Compile Include="Globalization\ResourceManager.cs" />
     <Compile Include="Pipelines\EditPaymentMethodGiftCardsTabTask.cs" />

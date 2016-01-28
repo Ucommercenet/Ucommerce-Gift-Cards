@@ -3,7 +3,7 @@ using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Entities.Maps
 {
-    class CreateGiftCardRoleMap : SubclassMap<CreateGiftCardRole>
+    public class CreateGiftCardRoleMap : SubclassMap<CreateGiftCardRole>
     {
         public CreateGiftCardRoleMap()
         {
