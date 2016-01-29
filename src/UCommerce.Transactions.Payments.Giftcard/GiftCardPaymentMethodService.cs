@@ -250,9 +250,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
                 var amount = request.PurchaseOrder.OrderTotal.GetValueOrDefault(0);
                 var basket = _orderContext.GetBasket(false).PurchaseOrder;
 
-                var amountAcquire = basket.Payments.Where(x => x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Authorized).Sum(x => x.Amount);
-                if (amountAcquire > 0)
-                    amount -= amountAcquire;
+                amount = GetRemainingAmountToPay(basket, amount);
 
                 if (notUsedAmount < 0) return null;
 
@@ -270,6 +268,21 @@ namespace UCommerce.Transactions.Payments.GiftCard
             }
 
             return null;
+        }
+
+        private static decimal GetRemainingAmountToPay(PurchaseOrder basket, decimal amount)
+        {
+            decimal amountAlreadyCoveredByPayments = basket.Payments.Where(x =>
+                x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.New ||
+                x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.PendingAuthorization ||
+                x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Authorized ||
+                x.PaymentStatus.PaymentStatusId == (int)PaymentStatusCode.Acquired)
+                .Sum(x => x.Amount);
+
+            if (amountAlreadyCoveredByPayments > 0)
+                amount -= amountAlreadyCoveredByPayments;
+
+            return amount;
         }
     }
 }
