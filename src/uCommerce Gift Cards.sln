@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{E4FFE780-D10A-47A8-8471-B84D80FB5DBE}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard.Tests", "UCommerce.Transactions.Payments.Giftcard.Tests\UCommerce.Transactions.Payments.GiftCard.Tests.csproj", "{AC6AB3DC-A623-4D58-93D8-A3F682D6DCA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard.UI", "UCommerce.Transactions.Payments.Giftcard.UI\UCommerce.Transactions.Payments.GiftCard.UI.csproj", "{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCommerce.Transactions.Payments.GiftCard.Documentation", "UCommerce.Transactions.Payments.GiftCard.Documentation\UCommerce.Transactions.Payments.GiftCard.Documentation.csproj", "{7CB3D308-0A86-49BA-A112-0D7FC294F930}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C4E8337-AAB5-4BAD-AD24-5F0F802856A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB3D308-0A86-49BA-A112-0D7FC294F930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB3D308-0A86-49BA-A112-0D7FC294F930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB3D308-0A86-49BA-A112-0D7FC294F930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB3D308-0A86-49BA-A112-0D7FC294F930}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
