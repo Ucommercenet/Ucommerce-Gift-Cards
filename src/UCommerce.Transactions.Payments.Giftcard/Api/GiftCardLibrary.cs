@@ -71,7 +71,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 		/// </summary>
 		/// <param name="giftCardCode"></param>
 		/// <returns>A payment if the request added a usage of a giftcard.</returns>
-		public static Payment UseGiftCard(string giftCardCode)
+		public static  Payment UseGiftCard(string giftCardCode)
 		{
 			return GiftCardLibraryInternal.UseGiftCard(giftCardCode);
 		}

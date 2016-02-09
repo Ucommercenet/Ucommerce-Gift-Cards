@@ -51,11 +51,18 @@
     <None Include="docs\Refunding-gift-cards\.docslist" />
     <None Include="docs\Refunding-gift-cards\index.markdown" />
     <None Include="docs\Selling-gift-cards\.docslist" />
+    <None Include="docs\Selling-gift-cards\How-do-i-buy-a-gift-card.markdown" />
+    <None Include="docs\Selling-gift-cards\create-a-gift-card-product.markdown" />
     <None Include="docs\Selling-gift-cards\index.markdown" />
     <None Include="docs\Using-gift-cards\.docslist" />
+    <None Include="docs\Using-gift-cards\How-do-i-use-a-gift-card.markdown" />
     <None Include="docs\Using-gift-cards\index.markdown" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="docs\Selling-gift-cards\images\GiftCardDefinition.PNG" />
+    <Content Include="docs\Selling-gift-cards\images\GiftCardPrices.PNG" />
+    <Content Include="docs\Selling-gift-cards\images\GiftCardTab.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
