@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security;
 using UCommerce.EntitiesV2;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Pipelines;
@@ -92,6 +93,9 @@ namespace UCommerce.Transactions.Payments.GiftCard
             if (!GiftCardIsValid(giftCard, out giftCardStatus))
                 throw new InvalidOperationException(giftCardStatus);
 
+			if (!AvailableBalanceOnGiftCardCoversPaymentCreated(payment, giftCard))
+				throw new SecurityException(string.Format("Balance on gift card does not cover the payment created. Gift card balance: {0} payment amount: {1} ", giftCard.AvailableBalance(), payment.Amount));
+
             giftCard.AmountUsed += payment.Amount;
             _giftCardRepsitory.Save(giftCard);
 
@@ -102,7 +106,12 @@ namespace UCommerce.Transactions.Payments.GiftCard
             return true;
         }
 
-        /// <summary>
+	    private bool AvailableBalanceOnGiftCardCoversPaymentCreated(Payment payment, Entities.GiftCard giftCard)
+	    {
+		    return giftCard.AvailableBalance() >= payment.Amount;
+	    }
+
+	    /// <summary>
         /// Removes the amount of the payment from total used on the <see cref="Entities.GiftCard"/>.
         /// </summary>
         /// <param name="payment">Payment associated with a giftCard.</param>
@@ -209,7 +218,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
             	return false;
             }
 
-            if (giftCard.ExpiresOn < DateTime.Now)
+			if (giftCard.ExpiresOn < DateTime.Now)
             {
             	status = string.Format("The gift card expired on date: {0}.", giftCard.ExpiresOn);
             	return false;
