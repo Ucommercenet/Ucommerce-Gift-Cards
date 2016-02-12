@@ -193,7 +193,9 @@
     <Content Include="Configuration\Api.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Basket.config" />
+    <Content Include="Configuration\Basket.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
