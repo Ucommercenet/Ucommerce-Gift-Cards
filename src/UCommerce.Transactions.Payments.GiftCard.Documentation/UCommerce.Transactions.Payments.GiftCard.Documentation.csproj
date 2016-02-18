@@ -51,6 +51,7 @@
     <None Include="docs\Refunding-gift-cards\.docslist" />
     <None Include="docs\Refunding-gift-cards\index.markdown" />
     <None Include="docs\Selling-gift-cards\.docslist" />
+    <None Include="docs\Selling-gift-cards\Issuing-gift-cards.markdown" />
     <None Include="docs\Selling-gift-cards\How-do-i-buy-a-gift-card.markdown" />
     <None Include="docs\Selling-gift-cards\create-a-gift-card-product.markdown" />
     <None Include="docs\Selling-gift-cards\index.markdown" />

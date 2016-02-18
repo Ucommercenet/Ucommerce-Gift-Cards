@@ -50,6 +50,6 @@ Two gift cards are used on the order. Gift card nummber 1 has a balance on 800 a
 
 The payments will automatically be adjusted every time the basket pipeline runs to accomodate for the changes to the order total. 
 
-# How is the gift card redeemed
+## How is the gift card redeemed
 
 When a gift card is used on the order, it will initially be placed as an authorized payment on the order. This payment will stay there as a full or partial payment of the order. When the user checks out and all payments has been authorized with the payment methods used, the checkout pipeline will be executed. The first step in the checkout pipeline is redeeming the gift cards used by adjusting the balance available on the gift card. This will also ensure that the balance on the gift card is still valid making it impossible to fraud with the gift cards.
