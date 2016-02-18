@@ -47,6 +47,8 @@
     <None Include="docs\intro.markdown" />
     <None Include="docs\index.markdown" />
     <None Include="docs\Managing-gift-cards\.docslist" />
+    <None Include="docs\Managing-gift-cards\Manually-issueing-gift-cards.markdown" />
+    <None Include="docs\Managing-gift-cards\overview-of-gift-cards.markdown" />
     <None Include="docs\Managing-gift-cards\index.markdown" />
     <None Include="docs\Refunding-gift-cards\.docslist" />
     <None Include="docs\Refunding-gift-cards\index.markdown" />
@@ -60,9 +62,16 @@
     <None Include="docs\Using-gift-cards\index.markdown" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\Managing-gift-cards\images\gift-card-generation.PNG" />
+    <Content Include="docs\Managing-gift-cards\images\giftcardsummary.PNG" />
+    <Content Include="docs\Managing-gift-cards\images\giftcardtable.PNG" />
+    <Content Include="docs\Managing-gift-cards\images\manually-issue-gift-card.PNG" />
     <Content Include="docs\Selling-gift-cards\images\GiftCardDefinition.PNG" />
     <Content Include="docs\Selling-gift-cards\images\GiftCardPrices.PNG" />
     <Content Include="docs\Selling-gift-cards\images\GiftCardTab.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\Refunding-gift-cards\images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
