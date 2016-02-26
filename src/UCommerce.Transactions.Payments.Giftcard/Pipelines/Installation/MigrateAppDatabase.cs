@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Web;
 using System.Web.Hosting;
 using UCommerce.Infrastructure.Configuration;
 using UCommerce.Infrastructure.Logging;
@@ -16,7 +15,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 	/// Migrates the app database according to the deployed migrations
 	/// and the current schema version.
 	/// </summary>
-	public class MigrateAppDatabase : IPipelineTask<InitializeArgs>
+	public class MigrateAppDatabase : UCommerce.Pipelines.IPipelineTask<UCommerce.Pipelines.Initialization.InitializeArgs>
 	{
 		private readonly IPathService _pathService;
 		private readonly ILoggingService _loggingService;
@@ -29,21 +28,32 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 
 		public PipelineExecutionResult Execute(InitializeArgs subject)
 		{
+			//Find the virtual path to the uCommerce root folder	
 			string webpathToUCommerceRoot = _pathService.GetPath();
+
+			//Map to the physical path
 			string physicalPathToUCommerce = HostingEnvironment.MapPath(webpathToUCommerceRoot);
 
+			//Join the sub folder where our migration scripts are located
 			string pathToApp = Path.Combine(physicalPathToUCommerce, @"Apps\UCommerce.GiftCards\Database");
 
-			var migrations = new MigrationLoader().GetDatabaseMigrations(new DirectoryInfo(pathToApp));
+			//Use MigrationLoader to get the migrations
+			IList<UCommerce.Installer.Migration> migrations = new UCommerce.Installer.MigrationLoader().GetDatabaseMigrations(new DirectoryInfo(pathToApp));
 
-			new AppsDatabaseInstaller(new CommerceConfigurationConnectionStringLocator(), migrations, new InstallerLoggingServiceAdapter(_loggingService))
-				.InstallDatabase();
+			//Create a new instance of the database installer
+			var appsDatabaseInstaller = new UCommerce.Installer.AppsDatabaseInstaller(
+					new UCommerce.Infrastructure.Configuration.CommerceConfigurationConnectionStringLocator(),
+					migrations,
+					new UCommerce.Infrastructure.Logging.InstallerLoggingServiceAdapter(_loggingService));
+
+			//Run the actual migration scripts
+			appsDatabaseInstaller.InstallDatabase();
 
 			// trigger data migration for app
 			return PipelineExecutionResult.Success;
 		}
 	}
-
+	
 	public class InstallerLoggingService : IInstallerLoggingService
 	{
 		public void Log<T>(string customMessage)
