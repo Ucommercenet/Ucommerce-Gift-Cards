@@ -4,7 +4,10 @@ Param(
     [string]$TargetDirectory = "C:\tmp\UCommerce.GiftCard",
     
     [Parameter(Mandatory=$False)]
-    [string]$SourceDirectory
+    [string]$SourceDirectory,
+
+	[Parameter(Mandatory=$False)]
+	[string]$DocumentationSourceDirectory = "C:\projects\uCommerce Gift Card\src\UCommerce.Transactions.Payments.GiftCard.Documentation"
 )
 
 function GetScriptDirectory { 
@@ -94,14 +97,23 @@ function Run-It () {
         Move-Item $pathToTargetBinDir\*.dll $pathToTargetLibDir
         Remove-Item $pathToTargetBinDir -recurse
 
-        #Step 05 pack it up
+		# Step 05 generate and add documentation to the package
+		$DocumentationProperties = @{
+			"TargetDirectory" = $TargetDirectory;
+			"SourceDirectory" = $SourceDirectory + "..";
+			"DocumentationSourceDirectory" = $DocumentationSourceDirectory;
+		};
+
+		Invoke-PSake "$ScriptPath\Run.Documentation.Scripts.ps1" "Run-It" -parameters $DocumentationProperties
+
+        #Step 06 pack it up
         MoveNuspecFile;
         $nuget = $scriptPath + "\..\NuGet";
         $nuspecFilePath = $TargetDirectory + "\App.Manifest.nuspec";
 
  	    & "$nuget\nuget.exe" pack $nuspecFilePath -OutputDirectory $TargetDirectory;
 
-        #Step 06 remove/delete files. 
+		#Step 07 remove/delete files. 
         Remove-Item $TargetDirectory\* -exclude *.nupkg -recurse
     } catch {  
         Write-Error $_.Exception.Message -ErrorAction Stop  

@@ -5,7 +5,14 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{E4FFE780-D10A-47A8-8471-B84D80FB5DBE}"
 	ProjectSection(SolutionItems) = preProject
+		..\tools\Deploy\Add.Documentation.To.Package.ps1 = ..\tools\Deploy\Add.Documentation.To.Package.ps1
 		..\tools\Deploy\Deploy.to.uCommerce.ps1 = ..\tools\Deploy\Deploy.to.uCommerce.ps1
+		..\tools\Deploy\Documentation.Helpers.ps1 = ..\tools\Deploy\Documentation.Helpers.ps1
+		..\tools\Deploy\Extract.Files.For.App.ps1 = ..\tools\Deploy\Extract.Files.For.App.ps1
+		..\tools\Deploy\Generate.App.Documentation.ps1 = ..\tools\Deploy\Generate.App.Documentation.ps1
+		..\tools\Deploy\Generate.App.Package.ps1 = ..\tools\Deploy\Generate.App.Package.ps1
+		..\tools\Deploy\Rebuild.App.Solution.ps1 = ..\tools\Deploy\Rebuild.App.Solution.ps1
+		..\tools\Deploy\Run.Documentation.Scripts.ps1 = ..\tools\Deploy\Run.Documentation.Scripts.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4CF9F5BF-9DD4-4C03-AA40-1BDC7FF51FD5}"
