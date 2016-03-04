@@ -1,15 +1,15 @@
-﻿# Whats in the box
+﻿# What is in the Box
 
-This article will briefly sum up what makes up the gift card app giving you an overview of whats in stalled and how to deal with them. Techincal details and further elaboration can be read in the individual areas. 
+This article will briefly sum up what makes up the gift card app giving you an overview of what is installed and how to deal with the installed components. Technical details and further elaboration can be read in the individual areas. 
 
-## what is a gift card?
+## What is a Gift Card?
 
 Commonly mistaken a voucher code and a gift card is not the same and substituting a voucher with a gift card is not possible as the main difference between the two is:
 
-* A gift card is a pre paid payment method
-* A gift card has a balance that will be kept track off
+* A gift card is a pre-paid payment method.
+* A gift card has a balance that will be kept track off.
 
-* A voucher is not pre paid
+* A voucher is not pre-paid.
 * A voucher has a number of usages that can be handed in for a discount or a free product.
 
 ## Installed Components with the Gift Card App
@@ -26,7 +26,7 @@ Commonly mistaken a voucher code and a gift card is not the same and substitutin
 
 ## Pipelines modified
 
-To make everything line up when customers are buying and using gift cards we need to hook into the various pipelines that runs associated with browse and checkout. Pipelines modified are elaborated below
+To make everything line up when customers are buying and using gift cards we need to hook into various pipelines that runs associated with browsing and checkout. Modified pipelines are elaborated below.
 
 ### Basket Pipeline
 
@@ -35,20 +35,20 @@ In the basket pipeline we've added two steps.
 * A step that removes VAT from the orderline that contains the gift card. 
  * Buying a gift card will not add VAT as these are tax exempt.
 
-* A step that recalculates the amount that should be used on each of the gift cards added
+* A step that recalculates the amount that should be used on each of the gift cards added.
  * The customer will continuously update the basket - maybe even after he has taken a gift card into use. All gift card payments will be recalculated properly.
 
 ### Checkout
 
-* A step that redeems the gift cards used
+* A step that redeems the gift cards used.
  * When adding gift cards through the checkout flow they will be validated for funds but will not be charged untill the order has been placed. 
  * This step will also throw an exception if the funds authorized is no longer valid preventing fraud.
 
 ### ToCompleted
 
-* A step that generates gift cards
+* A step that generates gift cards.
  * When a customer has purchased a gift card it will be generated when the order is finalized. 
-* A step that sends the gift cards to the shipping address
+* A step that sends the gift cards to the shipping address.
  * An email will be triggered as part of the checkout pipeline once it has been generated. 
 
 ### ToCanceled

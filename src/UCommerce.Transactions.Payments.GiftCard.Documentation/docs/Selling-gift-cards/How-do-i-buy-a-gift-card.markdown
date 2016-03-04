@@ -1,8 +1,8 @@
 ﻿# How do I Buy a Gift Card
 
 When buying gift cards you have two options:
-* Buy a gift card using the fixed prices entered in the backend
-* Let the customer choose their own price not present in the price tier.
+* Buy a gift card using the fixed prices entered in the backend.
+* Let the customers choose their own price not present in the price tier.
 
 This article will describe both scenarios.
 
@@ -16,7 +16,7 @@ Say you want to present your gift card prices in a dropdown, the following code 
 
 Please note that you need to present the amount without Tax as gift cards are purchased without tax added. 
 Please also note that the price showed is calculated so any discounts applied will be taken into account in "YourPrice", but will not affect the price issued on the gift card.
-Alternatively you can also show the list price which is the price configured in the backend and the amount issued on the gift card regardless of discounts.
+Alternatively, you can also show the list price, which is the price, configured in the backend and the amount issued on the gift card regardless of discounts.
 
 {CODE-START:csharp /}
 		
