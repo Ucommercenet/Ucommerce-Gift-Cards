@@ -43,13 +43,8 @@ function GetVersion {
 
 function UpdateAssemblyInfos {
     $version = GetVersion;
+    $version = GetUpdatedVersionString $version;
     
-    if($version.Substring($version.LastIndexOf(".") + 1) -eq "0") 
-    {
-        $versionDateNumberPart = (Get-Date).Year.ToString().Substring(2) + "" + (Get-Date).DayOfYear.ToString("000");
-        $version = $version.Substring(0, $version.LastIndexOf("0")) + $versionDateNumberPart;
-    }
-
     $newVersion = 'AssemblyVersion("' + $version + '")';
     $newFileVersion = 'AssemblyFileVersion("' + $version + '")';
   
@@ -70,14 +65,19 @@ function UpdateNuspecVersion {
     $nuspecFile = $nuspecFilePath;
 
     [xml]$fileContents = Get-Content -Path $nuspecFile
-    $fileContents.package.metadata.version;
+    $fileContents.package.metadata.version = GetUpdatedVersionString $fileContents.package.metadata.version;
+    
+    $fileContents.Save($nuspecFile);
+}
 
-    if($fileContents.package.metadata.version.Substring($fileContents.package.metadata.version.LastIndexOf(".") + 1) -eq "0") 
+function GetUpdatedVersionString($version) {
+    if($version.Substring($version.LastIndexOf(".") + 1) -eq "*") 
     {
         $versionDateNumberPart = (Get-Date).Year.ToString().Substring(2) + "" + (Get-Date).DayOfYear.ToString("000");
-        $fileContents.package.metadata.version = $fileContents.package.metadata.version.Substring(0, $fileContents.package.metadata.version.LastIndexOf("0")) + $versionDateNumberPart;
-        $fileContents.Save($nuspecFile);
+        return $version.Substring(0, $version.LastIndexOf("*")) + $versionDateNumberPart;
     }
+
+    return $version;
 }
 
 function Run-It () {
