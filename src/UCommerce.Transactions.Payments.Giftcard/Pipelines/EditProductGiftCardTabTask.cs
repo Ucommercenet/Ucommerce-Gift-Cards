@@ -25,7 +25,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 			var product = _productRepository.Get(QueryString.Common.Id);
 
-			if (product.ProductDefinition.Name != Constants.GiftCardProductDefinition) return PipelineExecutionResult.Success;
+			if (product == null || product.ProductDefinition.Name != Constants.GiftCardProductDefinition) return PipelineExecutionResult.Success;
 
 			var section = BuildSection(sectionGroup);
 			sectionGroup.Sections.Insert(1, section);
