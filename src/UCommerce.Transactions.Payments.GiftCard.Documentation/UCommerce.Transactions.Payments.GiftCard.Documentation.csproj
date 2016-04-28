@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7CB3D308-0A86-49BA-A112-0D7FC294F930}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UCommerce.Transactions.Payments.GiftCard.Documentation</RootNamespace>
+    <AssemblyName>UCommerce.Transactions.Payments.GiftCard.Documentation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".docslist" />
+    <None Include="intro.markdown" />
+    <None Include="index.markdown" />
+    <None Include="Managing-gift-cards\.docslist" />
+    <None Include="Managing-gift-cards\Manually-issueing-gift-cards.markdown" />
+    <None Include="Managing-gift-cards\overview-of-gift-cards.markdown" />
+    <None Include="Managing-gift-cards\index.markdown" />
+    <None Include="Refunding-gift-cards\.docslist" />
+    <None Include="Refunding-gift-cards\index.markdown" />
+    <None Include="Selling-gift-cards\.docslist" />
+    <None Include="Selling-gift-cards\Issuing-gift-cards.markdown" />
+    <None Include="Selling-gift-cards\How-do-i-buy-a-gift-card.markdown" />
+    <None Include="Selling-gift-cards\create-a-gift-card-product.markdown" />
+    <None Include="Selling-gift-cards\index.markdown" />
+    <None Include="Using-gift-cards\.docslist" />
+    <None Include="Using-gift-cards\How-do-i-use-a-gift-card.markdown" />
+    <None Include="Using-gift-cards\index.markdown" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Managing-gift-cards\images\gift-card-generation.PNG" />
+    <Content Include="Managing-gift-cards\images\giftcardsummary.PNG" />
+    <Content Include="Managing-gift-cards\images\giftcardtable.PNG" />
+    <Content Include="Managing-gift-cards\images\manually-issue-gift-card.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardDefinition.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardPrices.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardTab.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Refunding-gift-cards\images\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Generate.App.Documentation.ps1" -OutputDirectory "$(ProjectDir)..\..\documentation"  -InputDirectory $(ProjectDir) -DocumentationCompiler "$(ProjectDir)..\..\tools\Documentation\Compiler\UCommerce.DocsCompilerRunner.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

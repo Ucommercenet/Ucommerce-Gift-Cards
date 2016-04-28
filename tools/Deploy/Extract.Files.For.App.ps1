@@ -84,7 +84,7 @@ function CopyMigrations ($appDirectory) {
     New-Item -ItemType Directory "$appDirectory\Database" -Force
 
     # Copy migrations in place
-    Copy-Item "$WorkDictionary..\..\Database\*.???.sql" "$appDirectory\Database" -Force
+    Copy-Item "$WorkDictionary\..\..\Database\*.???.sql" "$appDirectory\Database" -Force
 }
 
 

@@ -115,6 +115,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UCommerce.Transactions.Payments.GiftCard.Documentation\UCommerce.Transactions.Payments.GiftCard.Documentation.csproj">
+      <Project>{7cb3d308-0a86-49ba-a112-0d7fc294f930}</Project>
+      <Name>UCommerce.Transactions.Payments.GiftCard.Documentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.GiftCard.csproj">
       <Project>{fe1a22e3-21a3-4653-a9d8-7df019d01433}</Project>
       <Name>UCommerce.Transactions.Payments.GiftCard</Name>
