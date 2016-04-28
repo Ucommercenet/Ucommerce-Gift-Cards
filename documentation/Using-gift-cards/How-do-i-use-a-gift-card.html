@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<title>Gift Card App Documentation - How do I Use a Gift Card</title>
+		
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700" />
+		<link rel="publisher" href="https://plus.google.com/+UcommerceNet" />
+		<link rel="author" href="https://plus.google.com/115340331147418233009/" />
+
+		<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		
+		<link href="../css/main.css?cdv=1" type="text/css" rel="stylesheet"/>
+		<link href="../css/ucommerce.css" type="text/css" rel="stylesheet" />
+		<link href="../css/bootstrap.css" type="text/css" rel="stylesheet" />
+		<link href="../css/SyntaxHighlighter/shCore.css" type="text/css" rel="stylesheet" />
+		<link href="../css/SyntaxHighlighter/shThemeVS.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="container">
+			<section class="banner">
+				<div class="text">
+					<h1>uCommerce Sample App Documentation</h1>
+						<p class="strap">Includes documentation setup, sell, manage, refund and let your customers use gift cards</p>
+				</div>
+				<img src="images/documentation.jpg" alt="" class="banner-image">
+			</section>
+			<div style="clear:both;"></div>	
+			<div class="main">
+				<div class="contentcontainer">
+					<section class="two-cols cf">
+						<nav class="secondary">
+							<h2>Documentation</h2>
+							<div class="aside">
+									<div class="aside-box">
+										<div class="holder">
+											<div class="frame">
+												<ul class="accordion">
+													<li><a href="intro.html">What is a gift cards</a></li>
+<li><a href="Selling-gift-cards/index.html"><span class="toggle">&nbsp</span><strong>Selling gift cards</strong></a><ul style="display:none;">
+<li><a href="Selling-gift-cards/how-do-i-buy-a-gift-card.html">How do I Buy a Gift Card</a></li>
+<li><a href="Selling-gift-cards/create-a-gift-card-product.html">Create a Gift Card Product</a></li>
+<li><a href="Selling-gift-cards/issuing-gift-cards.html">Issuing Gift Cards</a></li>
+</ul></li>
+<li><a href="Using-gift-cards/index.html"><span class="toggle">&nbsp</span><strong>Using gift cards</strong></a><ul style="display:none;">
+<li><a href="Using-gift-cards/How-do-i-use-a-gift-card.html">How do I Use a Gift Card</a></li>
+</ul></li>
+<li><a href="Refunding-gift-cards/index.html"><strong>Refunding gift cards</strong></a><ul style="display:none;">
+</ul></li>
+<li><a href="Managing-gift-cards/index.html"><span class="toggle">&nbsp</span><strong>Managing Gift Cards</strong></a><ul style="display:none;">
+<li><a href="Managing-gift-cards/overview-of-gift-cards.html">Overview of gift cards</a></li>
+<li><a href="Managing-gift-cards/manually-issueing-gift-cards.html">Manually issue a gift card</a></li>
+</ul></li>
+
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+						</nav>
+						<section class="main-col">
+							<h1 id="how-do-i-use-a-gift-card">How do I Use a Gift Card</h1>
+<p>When the gift card is issued, your customer is ready to use it in the webshop. As described in <a href="intro.html">Whats in the box</a> gift cards has individual balances and will automatically be spent based on the order total of the order.	</p>
+<h2 id="gift-cards-are-used-as-a-payment-method">Gift Cards are used as a Payment Method</h2>
+<p>As described in <a href="intro.html">Whats in the box</a> a payment method &quot;Gift Card&quot; is created. This Payment method is used to add payments to the order once you start using gift cards. Using a gift card on the order will result in a payment created using that payment method.</p>
+<h2 id="gift-card-payments-are-automatically-adjusted">Gift card payments are automatically adjusted</h2>
+<p>As part of the strategy to make it easy to use gift cards, the payment associated with a gift card will automatically be adjusted in the basket pipeline. This ensures that the right balance are spent on the gift card based on the order total of the order. If multiple gift cards are used, the gift card with the smallest balance will be used first.</p>
+<h2 id="spending-your-gift-card">Spending Your Gift Card</h2>
+<p>In order to spend a gift card, just use the provided API to do so. When gift cards are issued, they will have a generated code that needs to be used.</p>
+<pre class="brush: csharp">
+    
+    		
+    	UCommerce.Transactions.Payments.GiftCard.Api.GiftCardLibrary.UseGiftCard(giftCardCode);
+    
+    </pre>
+<p>Once the gift card has been used, the API will automatically use the given code to look for a valid gift card and add it to the order. The Api will return the created payment, which will be null if the gift card for some reason isn't valid.</p>
+<h2 id="spending-multiple-gift-cards-on-a-single-order">Spending multiple Gift Cards on a Single Order</h2>
+<p>Got 1 or 2 or even 3 gift cards? No problem! With the app you can safely add multiple gift cards to the same order. You don't have to accommodate for this in a special way. Just add the gift card to the order with the code above, and everything else is taken care of. The default strategy is designed so we're trying to close as many gift cards as possible, by spending the gift cards with the least balance first.</p>
+<p>Consider the following scenarios:</p>
+<p><em>Scenario 1:</em></p>
+<p>One basket with a total of 1000 is added.</p>
+<p>One gift card with a value of 500 is used on the basket. This means that you will get a payment on the order with value 500. When the user checks out, we still need to collect a payment of 500 on the basket, so the user needs to be redirected to a payment gateway to use a credit card for the remaining 500. The remaining value on the gift card are now 0 and considered closed.</p>
+<p><em>Scenario 2:</em></p>
+<p>One basket with a total of 1000 is added.</p>
+<p>Two gift cards of value 500 each are used on the basket. This means that you will get two payments on the order with value 500 on each. When the user checks out, no further payments needs to be collected and the order can be placed. The remaining value on both gift cards are now 0 and considered closed.   </p>
+<p><em>Scenario 3:</em></p>
+<p>One basket with a total of 1000 is added.</p>
+<p>Two gift cards are used on the order. Gift card number 1 has a balance on 800 and the other gift card on 400. This means that when the user checks out the gift card with a balance of 400 is closed first, which spends 600 on the next gift card leaving the balance at 200 after the order has checked out.</p>
+<p>The payments will automatically be adjusted every time the basket pipeline runs to accommodate for the changes to the order total. </p>
+<h2 id="how-is-the-gift-card-redeemed">How is the Gift Card Redeemed</h2>
+<p>When a gift card is used on the order, it will initially be placed as an authorized payment on the order. This payment will stay there as a full or partial payment of the order. When the user checks out and all payments is authorized, the checkout pipeline will be executed. The first step in the checkout pipeline is redeeming the gift cards used by adjusting the balance available on the gift card. This will also ensure that the balance on the gift card is still valid making it impossible to fraud with the gift cards.</p>
+
+						</section>
+					</section>
+				</div>
+			</div>		
+		</div>
+		
+		<script type="text/javascript" src="../scripts/jquery-1.7.2.min.js?cdv=1"></script>
+		<script type="text/javascript" src="../scripts/UCommerce.js"></script>
+		<script type="text/javascript" src="../scripts/SyntaxHighlighter/shCore.js"></script>
+		<script type="text/javascript" src="../scripts/SyntaxHighlighter/shAutoloader.js"></script>
+		<script type="text/javascript">
+			SyntaxHighlighter.autoloader(
+				'js jscript javascript	../scripts/SyntaxHighlighter/shBrushJScript.js',
+				'csharp					../scripts/SyntaxHighlighter/shBrushCSharp.js',
+				'xml xslt html			../scripts/SyntaxHighlighter/shBrushXml.js',
+				'sql					../scripts/SyntaxHighlighter/shBrushSql',
+				'css					../scripts/SyntaxHighlighter/shBrushCss.js',
+				'json					../scripts/SyntaxHighlighter/shBrushJson.js'
+			);
+			
+			SyntaxHighlighter.all();
+			
+			$(function() {
+				$('table').addClass('variables-matrix table table-bordered table-striped');
+			});
+		</script>
+	</body>
+</html>

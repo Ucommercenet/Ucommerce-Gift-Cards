@@ -8,7 +8,7 @@ This article will describe both scenarios.
 
 Before we dive into the code you need to know that we're adding a variant to the basket, which will hold the price configured in the backend as described in [How to Create a Gift Card Product][1]. 
 
-[1]: /Selling-gift-cards/create-a-gift-card-product.markdown 
+[1]: Selling-gift-cards/create-a-gift-card-product.markdown 
 
 ## Presenting the gift cards
 

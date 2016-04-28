@@ -43,37 +43,40 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="docs\.docslist" />
-    <None Include="docs\intro.markdown" />
-    <None Include="docs\index.markdown" />
-    <None Include="docs\Managing-gift-cards\.docslist" />
-    <None Include="docs\Managing-gift-cards\Manually-issueing-gift-cards.markdown" />
-    <None Include="docs\Managing-gift-cards\overview-of-gift-cards.markdown" />
-    <None Include="docs\Managing-gift-cards\index.markdown" />
-    <None Include="docs\Refunding-gift-cards\.docslist" />
-    <None Include="docs\Refunding-gift-cards\index.markdown" />
-    <None Include="docs\Selling-gift-cards\.docslist" />
-    <None Include="docs\Selling-gift-cards\Issuing-gift-cards.markdown" />
-    <None Include="docs\Selling-gift-cards\How-do-i-buy-a-gift-card.markdown" />
-    <None Include="docs\Selling-gift-cards\create-a-gift-card-product.markdown" />
-    <None Include="docs\Selling-gift-cards\index.markdown" />
-    <None Include="docs\Using-gift-cards\.docslist" />
-    <None Include="docs\Using-gift-cards\How-do-i-use-a-gift-card.markdown" />
-    <None Include="docs\Using-gift-cards\index.markdown" />
+    <None Include=".docslist" />
+    <None Include="intro.markdown" />
+    <None Include="index.markdown" />
+    <None Include="Managing-gift-cards\.docslist" />
+    <None Include="Managing-gift-cards\Manually-issueing-gift-cards.markdown" />
+    <None Include="Managing-gift-cards\overview-of-gift-cards.markdown" />
+    <None Include="Managing-gift-cards\index.markdown" />
+    <None Include="Refunding-gift-cards\.docslist" />
+    <None Include="Refunding-gift-cards\index.markdown" />
+    <None Include="Selling-gift-cards\.docslist" />
+    <None Include="Selling-gift-cards\Issuing-gift-cards.markdown" />
+    <None Include="Selling-gift-cards\How-do-i-buy-a-gift-card.markdown" />
+    <None Include="Selling-gift-cards\create-a-gift-card-product.markdown" />
+    <None Include="Selling-gift-cards\index.markdown" />
+    <None Include="Using-gift-cards\.docslist" />
+    <None Include="Using-gift-cards\How-do-i-use-a-gift-card.markdown" />
+    <None Include="Using-gift-cards\index.markdown" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="docs\Managing-gift-cards\images\gift-card-generation.PNG" />
-    <Content Include="docs\Managing-gift-cards\images\giftcardsummary.PNG" />
-    <Content Include="docs\Managing-gift-cards\images\giftcardtable.PNG" />
-    <Content Include="docs\Managing-gift-cards\images\manually-issue-gift-card.PNG" />
-    <Content Include="docs\Selling-gift-cards\images\GiftCardDefinition.PNG" />
-    <Content Include="docs\Selling-gift-cards\images\GiftCardPrices.PNG" />
-    <Content Include="docs\Selling-gift-cards\images\GiftCardTab.PNG" />
+    <Content Include="Managing-gift-cards\images\gift-card-generation.PNG" />
+    <Content Include="Managing-gift-cards\images\giftcardsummary.PNG" />
+    <Content Include="Managing-gift-cards\images\giftcardtable.PNG" />
+    <Content Include="Managing-gift-cards\images\manually-issue-gift-card.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardDefinition.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardPrices.PNG" />
+    <Content Include="Selling-gift-cards\images\GiftCardTab.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="docs\Refunding-gift-cards\images\" />
+    <Folder Include="Refunding-gift-cards\images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)..\tools\Deploy\Generate.App.Documentation.ps1" -OutputDirectory "$(ProjectDir)..\..\documentation"  -InputDirectory $(ProjectDir) -DocumentationCompiler "$(ProjectDir)..\..\tools\Documentation\Compiler\UCommerce.DocsCompilerRunner.exe"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
