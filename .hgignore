@@ -32,3 +32,4 @@ _ReSharper*
 src/.vs/config/applicationhost.config
 package/SampleApp.0.0.0.1.nupkg
 package
+documentation
