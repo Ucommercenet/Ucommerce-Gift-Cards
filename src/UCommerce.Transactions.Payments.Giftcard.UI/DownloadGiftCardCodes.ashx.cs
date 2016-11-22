@@ -84,12 +84,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			stringOfGiftCards.Append(giftCardsAmountUsed);
 			stringOfGiftCards.Append(giftCardsAmountUnUsed);
 
-			stringOfGiftCards.Append("GiftCardCode Amount Used Expires Currency\r\n");
+			stringOfGiftCards.Append("GiftCardCode Amount Used Expires Currency Note\r\n");
 			foreach (var giftCard in giftCards)
 			{
-				stringOfGiftCards.AppendFormat("{0}, {1}, {2}, {3}, {4}\r\n",
+				stringOfGiftCards.AppendFormat("{0}, {1}, {2}, {3}, {4}, {5}\r\n",
 					giftCard.Code, giftCard.Amount, giftCard.AmountUsed, giftCard.ExpiresOn,
-					giftCard.Currency.Name);
+					giftCard.Currency.Name, giftCard.Note != null ? giftCard.Note.Replace("\r", "").Replace("\n", "") : "");
 			}
 
 			return stringOfGiftCards.ToString();
