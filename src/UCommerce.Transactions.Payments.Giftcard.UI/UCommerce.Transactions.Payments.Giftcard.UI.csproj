@@ -163,7 +163,9 @@
     <Content Include="Configuration\EditProductGiftCardTab.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configuration\Initialize.config" />
+    <Content Include="Configuration\Initialize.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_LocalResources\PaymentMessages.ascx.resx" />
