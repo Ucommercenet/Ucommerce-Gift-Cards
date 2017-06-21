@@ -4,7 +4,7 @@ properties {
 }
 
 function FileExtensionBlackList {
-  return "*.cd","*.cs","*.dll","*.xml","*obj*","*.pdb","*.csproj*","*.cache","*.orig";  
+  return "*.cd","*.cs","*.dll","*.xml", "*.pdb","*.csproj*","*.cache","*.orig";  
 }
 
 function DllExtensionBlackList {
@@ -49,7 +49,7 @@ function DllExtensionBlackList {
 }
 
 function GetFilesToCopy($path){
-	return Get-ChildItem $path -name -recurse -include *.* -exclude (FileExtensionBlackList);
+	return Get-ChildItem $path -name -recurse -include *.* -exclude (FileExtensionBlackList) | ?{ !$_.StartsWith("obj") }
 }
 
 function CopyFiles ($appDirectory) {
