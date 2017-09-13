@@ -7,7 +7,7 @@ When the gift card is issued, your customer is ready to use it in the webshop. A
 ## Gift Cards are used as a Payment Method
 
 As described in [Whats in the box][1] a payment method "Gift Card" is created. This Payment method is used to add payments to the order once you start using gift cards. Using a gift card on the order will result in a payment created using that payment method.
-
+However the "Gift Card" payment method should not be used like a regular payment method. The user should not see it as a valid option, nor select it manually while checking out, so you need to hide it from the user. Instead, use the API provided to add a giftcard. See the section "Spending Your Gift Card" for code samples.
 ## Gift card payments are automatically adjusted
 
 As part of the strategy to make it easy to use gift cards, the payment associated with a gift card will automatically be adjusted in the basket pipeline. This ensures that the right balance are spent on the gift card based on the order total of the order. If multiple gift cards are used, the gift card with the smallest balance will be used first.
