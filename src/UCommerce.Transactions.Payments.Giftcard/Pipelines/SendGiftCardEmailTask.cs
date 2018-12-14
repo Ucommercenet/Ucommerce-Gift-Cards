@@ -9,6 +9,7 @@ using UCommerce.Infrastructure.Logging;
 using UCommerce.Pipelines;
 using UCommerce.Pipelines.Common;
 using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Extension;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
@@ -17,19 +18,16 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		private readonly string _emailTypeName;
 		private readonly ILoggingService _loggingService;
 		private readonly IEmailService _emailService;
-		private readonly CommerceConfigurationProvider _commerceConfigurationProvider;
 		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public SendGiftCardEmailTask(string emailTypeName, 
+	    public SendGiftCardEmailTask(string emailTypeName, 
 			ILoggingService loggingService, 
 			IEmailService emailService,
-			CommerceConfigurationProvider commerceConfigurationProvider,
-			IRepository<Entities.GiftCard> giftCardRepository )
+			IRepository<Entities.GiftCard> giftCardRepository)
 		{
 			_emailTypeName = emailTypeName;
 			_loggingService = loggingService;
 			_emailService = emailService;
-			_commerceConfigurationProvider = commerceConfigurationProvider;
 			_giftCardRepository = giftCardRepository;
 		}
 
@@ -50,8 +48,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 				return PipelineExecutionResult.Warning;
 
 			// Override default culture with the one found on order to support different UI culture from order culture.
-			var customCulture = new CustomGlobalization(_commerceConfigurationProvider);
-			customCulture.SetCulture(new CultureInfo(subject.CultureCode ?? customCulture.DefaultCulture.ToString()));
 
 			var stringOfGiftCardCodes = string.Join(",", giftCards.Select(x => x.Code));
 			
@@ -61,8 +57,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 						{"orderGuid", subject.OrderGuid.ToString()},
 						{"giftCardCodes", stringOfGiftCardCodes}
 					};
-			
-			try
+
+
+		    var customCulture = new GiftCardGlobalization();
+		    customCulture.SetCulture(new CultureInfo(subject.CultureCode ?? customCulture.DefaultCulture.ToString()));
+
+            try
 			{
 				_emailService.Send(customCulture, subject.ProductCatalogGroup.EmailProfile, _emailTypeName,
 								  new MailAddress(recieverEmail),
