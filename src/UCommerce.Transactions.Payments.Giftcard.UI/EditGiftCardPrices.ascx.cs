@@ -198,13 +198,16 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 
 				if (price == 0) continue;
 
-				var priceGroupPrice = currentProductVariant.PriceGroupPrices.FirstOrDefault(x => x.PriceGroup == priceGroup)
-					?? new PriceGroupPrice { PriceGroup = priceGroup };
+				var productPrice = currentProductVariant.ProductPrices.FirstOrDefault(x => x.Price.PriceGroup == priceGroup)
+					?? new ProductPrice { Price = new Price() };
 
-				priceGroupPrice.Price = price;
+				productPrice.Price.Amount = price;
 
 				// PriceGroupPrices set elimnates duplicates if price exists already
-				currentProductVariant.AddPriceGroupPrice(priceGroupPrice);
+                if (!currentProductVariant.ProductPrices.Contains(productPrice))
+			    {
+			        currentProductVariant.ProductPrices.Add(productPrice);
+                }
 			}
 		}
 
@@ -227,7 +230,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			return newSku.ToString();
 		}
 
-		protected virtual Control GetInitializedControlForPriceGroupPrice(Product product, PriceGroup priceGroup, bool enabled)
+		protected virtual Control GetInitializedControlForProductPrice(Product product, PriceGroup priceGroup, bool enabled)
 		{
 			TextBox textBox = new TextBox();
 			textBox.Enabled = !enabled;
@@ -235,10 +238,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			textBox.ID = "NewPrice_" + priceGroup.Id;
 			textBox.Text = 0.ToString("0.00");
 
-			var price = product.PriceGroupPrices.FirstOrDefault(x => x.PriceGroup == priceGroup);
-			if (price != null)
+		    var productPrice = ObjectFactory.Instance.Resolve<IRepository<ProductPrice>>().Select(x => x.Product.Guid == product.Guid && x.MinimumQuantity == 1 && x.Price.PriceGroup.Guid == priceGroup.Guid).FirstOrDefault();
+			if (productPrice != null)
 			{
-				textBox.Text = price.Price.GetValueOrDefault().ToString("0.00");
+				textBox.Text = productPrice.Price.Amount.ToString("0.00");
 			}
 
 			return textBox;
@@ -264,7 +267,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 
 			foreach (var priceGroup in pricegroups)
 			{
-				Control control = GetInitializedControlForPriceGroupPrice(currentVariant, priceGroup, newVariant);
+				Control control = GetInitializedControlForProductPrice(currentVariant, priceGroup, newVariant);
 				e.Row.Cells[cellIndex].Controls.Add(control);
 				e.Row.Cells[cellIndex].Controls.Add(GetRequiredFieldValidator(control, priceGroup));
 				e.Row.Cells[cellIndex].Controls.Add(GetRegularExpressionValidator(control, priceGroup));
