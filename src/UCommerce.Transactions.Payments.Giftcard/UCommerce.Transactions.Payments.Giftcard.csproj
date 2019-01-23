@@ -81,6 +81,8 @@
     <Compile Include="Pipelines\EditProductGiftCardTabTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardDefinitionFieldTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardEmailTypeTask.cs" />
+    <Compile Include="Pipelines\Installation\SetupGiftCardPaymentDefinitionFieldTask.cs" />
+    <Compile Include="Pipelines\Installation\SetupGiftCardPaymentDefinitionTask.cs" />
     <Compile Include="Pipelines\Installation\SetupGiftCardPaymentMethod.cs" />
     <Compile Include="Pipelines\IssueGiftCardTask.cs" />
     <Compile Include="Pipelines\RecalculateGiftCardPaymentsAmountTask.cs" />

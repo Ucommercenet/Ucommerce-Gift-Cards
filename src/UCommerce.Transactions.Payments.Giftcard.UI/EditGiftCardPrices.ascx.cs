@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,13 +13,15 @@ using UCommerce.Presentation.Web.Pages;
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class EditGiftCardPrices : ViewEnabledControl<IEditProductView>, ISection
-	{
-		private readonly IRepository<PriceGroup> _priceGroupRepository;
+    {
+        private readonly IRepository<PriceGroup> _priceGroupRepository;
+        private readonly IRoundingService _roundingService;
 
 		public EditGiftCardPrices()
 		{
 			_priceGroupRepository = ObjectFactory.Instance.Resolve<IRepository<PriceGroup>>();
-		}
+            _roundingService = ObjectFactory.Instance.Resolve<IRoundingService>();
+        }
 
 		private IList<Product> _variants;
 		protected IList<Product> Variants
@@ -170,6 +173,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			variant.Name = "giftCard" + variantSku;
 			variant.VariantSku = variantSku;
 			variant.ProductDefinition = ProductDefinition.SingleOrDefault(x => x.Name == Constants.GiftCardProductDefinition);
+
+            variant.Guid = Guid.NewGuid();
 			parentProduct.Variants.Add(variant);
 
 			return variant;
@@ -194,16 +199,24 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			foreach (var priceGroup in pricegroups)
 			{
 				var field = row.FindControl("NewPrice_" + priceGroup.Id) as TextBox;
-				var price = Convert.ToDecimal(field.Text);
+                var price = _roundingService.Round(Convert.ToDecimal(field.Text));
 
 				if (price == 0) continue;
 
 				var productPrice = currentProductVariant.ProductPrices.FirstOrDefault(x => x.Price.PriceGroup == priceGroup)
-					?? new ProductPrice { Price = new Price() };
+					?? new ProductPrice {
+                        MinimumQuantity = 1,
+                        Price = new Price()
+                        {
+                            PriceGroup = priceGroup,
+                            Guid = Guid.NewGuid()
+                        },
+                        Product = currentProductVariant
+                    };
 
-				productPrice.Price.Amount = price;
+                productPrice.Price.Amount = price;
 
-				// PriceGroupPrices set elimnates duplicates if price exists already
+				// ProductPrices set eliminates duplicates if price exists already
                 if (!currentProductVariant.ProductPrices.Contains(productPrice))
 			    {
 			        currentProductVariant.ProductPrices.Add(productPrice);
@@ -238,11 +251,11 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			textBox.ID = "NewPrice_" + priceGroup.Id;
 			textBox.Text = 0.ToString("0.00");
 
-		    var productPrice = ObjectFactory.Instance.Resolve<IRepository<ProductPrice>>().Select(x => x.Product.Guid == product.Guid && x.MinimumQuantity == 1 && x.Price.PriceGroup.Guid == priceGroup.Guid).FirstOrDefault();
+            var productPrice = ObjectFactory.Instance.Resolve<IRepository<ProductPrice>>().Select(x => x.Product.Guid == product.Guid && x.MinimumQuantity == 1 && x.Price.PriceGroup.Guid == priceGroup.Guid).FirstOrDefault();
 			if (productPrice != null)
 			{
-				textBox.Text = productPrice.Price.Amount.ToString("0.00");
-			}
+                textBox.Text = _roundingService.Round(productPrice.Price.Amount).ToString();
+            }
 
 			return textBox;
 		}
