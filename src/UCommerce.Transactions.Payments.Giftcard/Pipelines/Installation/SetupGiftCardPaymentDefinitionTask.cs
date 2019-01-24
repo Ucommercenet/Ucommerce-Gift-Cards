@@ -14,22 +14,17 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
     {
         private readonly IRepository<Definition> _definitionRepository;
         private readonly IRepository<DefinitionType> _definitionTypeRepository;
-        private readonly ILoggingService _logging;
 
         public SetupGiftCardPaymentDefinitionTask(
             IRepository<Definition> definitionRepository,
-            IRepository<DefinitionType> definitionTypeRepository,
-            ILoggingService logging)
+            IRepository<DefinitionType> definitionTypeRepository)
         {
             _definitionRepository = definitionRepository;
             _definitionTypeRepository = definitionTypeRepository;
-            _logging = logging;
         }
 
         public PipelineExecutionResult Execute(InitializeArgs subject)
         {
-            _logging.Log<String>("LESSGO PaymentDefinitionTask step");
-
             if (_definitionRepository.Select().Any(x => x.Name == Constants.GiftCardPaymentMethodName))
                 return PipelineExecutionResult.Success;
 
@@ -41,13 +36,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
                 DefinitionType = _definitionTypeRepository.Select(x => x.Name == Constants.GiftCardPaymentDefinitionName).FirstOrDefault()
             };
 
-            _logging.Log<String>("LESSGO PaymentDefinitionTask created");
-            _logging.Log<String>(definition.ToString());
-
             _definitionRepository.Save(definition);
-
-            _logging.Log<String>("LESSGO PaymentDefinitionTask added");
-
             return PipelineExecutionResult.Success;
         }
     }

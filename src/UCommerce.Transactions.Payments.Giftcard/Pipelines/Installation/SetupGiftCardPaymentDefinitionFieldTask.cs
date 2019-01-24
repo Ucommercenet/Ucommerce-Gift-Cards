@@ -11,24 +11,18 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
     {
         private readonly IRepository<Definition> _definitionRepository;
         private readonly IRepository<DataType> _dataTypeRepository;
-        private readonly ILoggingService _logging;
 
         public SetupGiftCardPaymentDefinitionFieldTask(
             IRepository<Definition> definitionRepository,
-            IRepository<DataType> dataTypeRepository,
-            ILoggingService logging)
+            IRepository<DataType> dataTypeRepository)
         {
             _definitionRepository = definitionRepository;
             _dataTypeRepository = dataTypeRepository;
-            _logging = logging;
         }
 
         public PipelineExecutionResult Execute(InitializeArgs subject)
         {
-            _logging.Log<String>("LESSGO PaymentDefinitionFieldTask step");
-
             var giftCardPaymentDefinition = _definitionRepository.Select().FirstOrDefault(x => x.Name == Constants.GiftCardPaymentMethodName);
-            
 
             if (giftCardPaymentDefinition == null)
                 return PipelineExecutionResult.Success;
@@ -51,14 +45,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
                 DefaultValue = null
             };
 
-            _logging.Log<String>("LESSGO PaymentDefinitionFieldTask created");
-            _logging.Log<String>(giftCardPaymentDefinitionField.ToString());
-
             giftCardPaymentDefinition.AddDefinitionField(giftCardPaymentDefinitionField);
             giftCardPaymentDefinition.Save();
-
-            _logging.Log<String>("LESSGO PaymentDefinitionFieldTask added");
-
             return PipelineExecutionResult.Success;
         }
     }
