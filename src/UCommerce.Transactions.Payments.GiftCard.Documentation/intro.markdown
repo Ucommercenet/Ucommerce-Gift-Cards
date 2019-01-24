@@ -12,7 +12,7 @@ Commonly mistaken a voucher code and a gift card is not the same and substitutin
 * A voucher is not pre-paid.
 * A voucher has a number of usages that can be handed in for a discount or a free product.
 
-## Installed Components with the Gift Card App
+## Installed Components with the Gift Cards App
 
 * UI on a product editor to manage gift card prices
  * Will only appear when creating a product of product definition 'GiftCard'
