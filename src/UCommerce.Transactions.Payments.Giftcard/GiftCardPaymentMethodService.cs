@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Security;
 using UCommerce.EntitiesV2;
+using UCommerce.Extensions;
+using UCommerce.Infrastructure.Components.Windsor;
 using UCommerce.Infrastructure.Globalization;
 using UCommerce.Pipelines;
 using UCommerce.Runtime;
+using UCommerce.Web;
+using UCommerce.Web.Impl;
 
 namespace UCommerce.Transactions.Payments.GiftCard
 {
@@ -13,8 +18,12 @@ namespace UCommerce.Transactions.Payments.GiftCard
     /// This implementation provides out of the box functionallity to handle creation and payments 
     /// with <see cref="Entities.GiftCard">Giftcards</see>. 
     /// </summary>
-    public class GiftCardPaymentMethodService : ExternalPaymentMethodService
+    public class GiftCardPaymentMethodService : ExternalPaymentMethodService, IRequireRedirect
     {
+
+        [Mandatory]
+        public IAbsoluteUrlService AbsoluteUrlService { get; set; }
+
         private readonly IRepository<Entities.GiftCard> _giftCardRepsitory;
         private readonly IRepository<PaymentStatus> _paymentStatusRepository;
         private readonly IResourceManager _resourceManager;
@@ -36,17 +45,18 @@ namespace UCommerce.Transactions.Payments.GiftCard
         }
 
         /// <summary>
-        /// Ass this is an internal handeler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services are required.
+        /// As this is an internal handler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services is required.
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <returns></returns>
         public override string RenderPage(PaymentRequest paymentRequest)
         {
+            RequestPayment(paymentRequest);
             throw new NotSupportedException("GiftCardPaymentMethodService does not require a placeholder page.");
         }
 
         /// <summary>
-        /// Ass this is an internal handeler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services are required.
+        /// As this is an internal handler for <see cref="Entities.GiftCard">Giftcards</see> no communication with external services is required.
         /// </summary>
         /// <param name="payment"></param>
         /// <returns></returns>
@@ -56,7 +66,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         }
 
         /// <summary>
-        /// Cancel's a payment.
+        /// Cancels a payment.
         /// </summary>
         /// <param name="payment"></param>
         /// <param name="status"></param>
@@ -74,10 +84,10 @@ namespace UCommerce.Transactions.Payments.GiftCard
         }
 
         /// <summary>
-        /// Acquire payment on giftcard adding totalused on giftcard with the amount of the payment.
+        /// Acquire payment on GiftCard adding total used on a GiftCard with the amount of the payment.
         /// </summary>
-        /// <param name="payment">Payment associated with a giftCard.</param>
-        /// <param name="status">Status that tells weatather the acquire went well or not.</param>
+        /// <param name="payment">Payment associated with a GiftCard.</param>
+        /// <param name="status">Status that tells whether the acquire went well or not.</param>
         /// <returns></returns>
         protected override bool AcquirePaymentInternal(Payment payment, out string status)
         {
@@ -136,7 +146,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         }
 
         /// <summary>
-        /// Creates a payment if a correspondig <see cref="Entities.GiftCard"/> is valid.
+        /// Creates a payment if a corresponding <see cref="Entities.GiftCard"/> is valid.
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <returns></returns>
@@ -197,7 +207,7 @@ namespace UCommerce.Transactions.Payments.GiftCard
         }
 
         /// <summary>
-        /// Checks weather a <see cref="Entities.GiftCard"/> is valid as a Paymentmethod for a <see cref="PaymentRequest"/>
+        /// Checks whether a <see cref="Entities.GiftCard"/> is valid as a Payment method for a <see cref="PaymentRequest"/>
         /// </summary>
         /// <param name="giftCard">The <see cref="Entities.GiftCard"/>.</param>
         /// <param name="status">Status message for operation.</param>
@@ -292,6 +302,15 @@ namespace UCommerce.Transactions.Payments.GiftCard
                 amount -= amountAlreadyCoveredByPayments;
 
             return amount;
+        }
+
+        public string GetRedirectUrl(Payment payment)
+        {
+            var redirectUrl = payment.PaymentMethod.DynamicProperty<string>().AcceptUrl;
+            if (string.IsNullOrWhiteSpace(redirectUrl))
+                throw new ConfigurationErrorsException("No RedirectUrl (absolute or relative) has been configured for DefaultPaymentMethodService. Please configure one under settings/paymentmethods/defaultpaymentmethodservice in the Ucommerce backoffice. Thanks in advance.");
+
+            return AbsoluteUrlService.GetAbsoluteUrl(redirectUrl.ToString());
         }
     }
 }

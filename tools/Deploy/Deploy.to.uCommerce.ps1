@@ -5,7 +5,7 @@ Param(
 
 function GetDeploymentDirectories {
   return @(
-	"C:\inetpub\U7Dev\Website"
+	"C:\inetpub\u7dev\Website"
   )
 }
 
@@ -24,7 +24,7 @@ function Get-ScriptDirectory {
 function GetProjectFolder {
 	$scriptPath = Get-ScriptDirectory;
 	
-	return "$scriptPath\..\..\src\SampleApp.Web"
+	return "$scriptPath\..\..\src\UCommerce.Transactions.Payments.Giftcard.UI"
 }
 
 function LocateAppsFolder($deployment_directory){

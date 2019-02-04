@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentNHibernate.Utils;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
 using UCommerce.Security;

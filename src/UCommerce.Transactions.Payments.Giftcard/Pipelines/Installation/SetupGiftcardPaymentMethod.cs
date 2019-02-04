@@ -28,11 +28,11 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 			{
 				Name = Constants.GiftCardPaymentMethodName,
 				PaymentMethodServiceName = Constants.GiftCardPaymentMethodName,
-				Enabled = true
+				Enabled = true,
+                Pipeline = "Checkout"
 			};
 
 			_paymentMethodRepository.Save(paymentMethod);
-
 			return PipelineExecutionResult.Success;
 		}
 	}

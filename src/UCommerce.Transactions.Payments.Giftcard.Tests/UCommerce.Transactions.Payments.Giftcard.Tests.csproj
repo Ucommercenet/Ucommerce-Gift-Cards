@@ -53,6 +53,9 @@
     <Reference Include="UCommerce.Infrastructure">
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="UCommerce.Transactions.Payments">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Transactions.Payments.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pipelines\CreateGiftCardTaskTest.cs" />
@@ -69,10 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UCommerce.Transactions.Payments.Giftcard\UCommerce.Transactions.Payments.GiftCard.csproj">
-      <Project>{fe1a22e3-21a3-4653-a9d8-7df019d01433}</Project>
-      <Name>UCommerce.Transactions.Payments.GiftCard</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

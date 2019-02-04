@@ -13,7 +13,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
             ILoggingService loggingService, 
             IEmailService emailService, 
             CommerceConfigurationProvider commerceConfigurationProvider, 
-            IRepository<Entities.GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, commerceConfigurationProvider, giftCardRepository)
+            IRepository<Entities.GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, giftCardRepository)
 		{}
 
 		public string GetSenderEmail(PurchaseOrder order)
