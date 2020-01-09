@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UCommerce.EntitiesV2;
 using UCommerce.Marketing.Targets;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
 using UCommerce.Transactions.Payments.GiftCard.Pipelines;
 using UCommerce.Transactions.Payments.GiftCard.Services;
 
@@ -161,12 +161,12 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			var productDefinition = new ProductDefinition();
 			productDefinition.Name = productDefinitionName;
 
-			var priceGroupPrice = new PriceGroupPrice { Price = price, PriceGroup = priceGroup };
 
 			var product = new Product();
 			product.Sku = "WhateverSku";
-			product.AddPriceGroupPrice(priceGroupPrice);
 			product.ProductDefinition = productDefinition;
+
+			var priceGroupPrice = new ProductPrice() { MinimumQuantity = 1, Guid = Guid.NewGuid(), Product = product, Price = new Price() { Amount =  price, Guid = Guid.NewGuid(), PriceGroup = priceGroup }};
 
 			return product;
 		}
@@ -174,8 +174,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 		private PurchaseOrder CreateTestOrder(Product product, Currency currency, PriceGroup priceGroup, decimal tax)
 		{
 			var purchaseOrder = new PurchaseOrder { BillingCurrency = currency };
-			purchaseOrder.AddProduct(priceGroup, product, 4, product.GetPrice(priceGroup).Value, tax, false);
-			purchaseOrder.AddProduct(priceGroup, product, 4, product.GetPrice(priceGroup).Value, tax, false);
+			
+			purchaseOrder.AddProduct(priceGroup, product, 4, product.ProductPrices.First(x => x.MinimumQuantity == 1 && x.Price.PriceGroup == priceGroup).Price.Amount, tax, false);
+			purchaseOrder.AddProduct(priceGroup, product, 4, product.ProductPrices.First(x => x.MinimumQuantity == 1 && x.Price.PriceGroup == priceGroup).Price.Amount, tax, false);
 
 			return purchaseOrder;
 		}

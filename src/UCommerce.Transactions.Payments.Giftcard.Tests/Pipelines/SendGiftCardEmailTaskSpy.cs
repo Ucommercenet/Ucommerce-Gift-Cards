@@ -12,7 +12,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
             string emailTypeName, 
             ILoggingService loggingService, 
             IEmailService emailService, 
-            CommerceConfigurationProvider commerceConfigurationProvider, 
             IRepository<Entities.GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, giftCardRepository)
 		{}
 

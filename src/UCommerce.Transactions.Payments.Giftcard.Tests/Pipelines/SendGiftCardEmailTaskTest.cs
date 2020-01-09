@@ -13,7 +13,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			var order = new PurchaseOrder();
 			order.BillingAddress = new OrderAddress { EmailAddress = expectedEmail };
 
-			var task = new SendGiftCardEmailTaskSpy(null, null, null, null, null);
+			var task = new SendGiftCardEmailTaskSpy(null, null, null, null);
 
 			var email = task.GetSenderEmail(order);
 
@@ -30,7 +30,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			order.AddShipment(new Shipment { ShipmentAddress = new OrderAddress { EmailAddress = "whatever1@shipment.com" } });
 
 
-			var task = new SendGiftCardEmailTaskSpy(null, null, null, null, null);
+			var task = new SendGiftCardEmailTaskSpy(null, null, null, null);
 
 			var email = task.GetSenderEmail(order);
 
@@ -45,7 +45,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			order.BillingAddress = new OrderAddress { EmailAddress = expectedEmail };
 			order.AddShipment(new Shipment { ShipmentAddress = new OrderAddress() });
 			
-			var task = new SendGiftCardEmailTaskSpy(null, null, null, null, null);
+			var task = new SendGiftCardEmailTaskSpy(null, null, null, null);
 
 			var email = task.GetSenderEmail(order);
 
@@ -60,7 +60,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			order.BillingAddress = new OrderAddress { EmailAddress = expectedEmail };
 			order.AddShipment(new Shipment());
 			
-			var task = new SendGiftCardEmailTaskSpy(null, null, null, null, null);
+			var task = new SendGiftCardEmailTaskSpy(null, null, null, null);
 
 			var email = task.GetSenderEmail(order);
 
@@ -77,7 +77,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 			order.BillingAddress = new OrderAddress { EmailAddress = redundantemail };
 			order.AddShipment(new Shipment { ShipmentAddress = new OrderAddress { EmailAddress = expectedEmail } });
 			
-			var task = new SendGiftCardEmailTaskSpy(null, null, null, null, null);
+			var task = new SendGiftCardEmailTaskSpy(null, null, null, null);
 
 			var email = task.GetSenderEmail(order);
 

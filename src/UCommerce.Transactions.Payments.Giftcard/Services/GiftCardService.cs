@@ -16,12 +16,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 		private IVoucherCodeGenerator _voucherCodeGenerator;
 		private IRepository<Entities.GiftCard> _giftCardRepository;
 		private readonly IUserService _userService;
+		private readonly ICurrentUserNameService _currentUserNameService;
 
-		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<Entities.GiftCard> giftCardRepository, IUserService userService)
+		public GiftCardService(IVoucherCodeGenerator voucherCodeGenerator, IRepository<Entities.GiftCard> giftCardRepository, ICurrentUserNameService currentUserNameService)
 		{
 			_voucherCodeGenerator = voucherCodeGenerator;
 			_giftCardRepository = giftCardRepository;
-			_userService = userService;
+			_currentUserNameService = currentUserNameService;
 		}
 
 		/// <summary>
@@ -44,7 +45,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 				giftCard.Amount = issueGiftCardRequest.Amount.Value;
 				giftCard.CreatedOn = DateTime.UtcNow;
 				giftCard.ModifiedOn = DateTime.UtcNow;
-				giftCard.CreatedBy = _userService.GetCurrentUserName();
+				giftCard.CreatedBy = _currentUserNameService.CurrentUserName;
 				giftCard.ExpiresOn = issueGiftCardRequest.ExpiresOn;
 				giftCard.Currency = issueGiftCardRequest.Amount.Currency;
 				giftCard.Note = issueGiftCardRequest.Note;

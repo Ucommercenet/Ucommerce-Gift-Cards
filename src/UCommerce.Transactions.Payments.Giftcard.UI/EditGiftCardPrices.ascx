@@ -26,8 +26,6 @@
 		row.find('.priceInput').removeClass('priceInput');
 		row.css('display', 'none');
 
-		toggleAddButton();
-
 		return false;
 	}
 	

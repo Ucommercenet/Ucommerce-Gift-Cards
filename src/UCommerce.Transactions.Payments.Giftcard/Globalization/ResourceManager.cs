@@ -21,5 +21,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 
 			return resourceObject;
 		}
+
+		public string GetLocalizedIcon(string key)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
