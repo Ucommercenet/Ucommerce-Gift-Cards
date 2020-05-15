@@ -3,13 +3,11 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using Ucommerce.EntitiesV2;
-using Ucommerce.Infrastructure.Configuration;
-using Ucommerce.Infrastructure.Globalization;
 using Ucommerce.Infrastructure.Logging;
 using Ucommerce.Pipelines;
 using Ucommerce.Pipelines.Common;
-using Ucommerce.Transactions.Payments.GiftCard.Entities;
-using Ucommerce.Transactions.Payments.GiftCard.Extension;
+using Ucommerce.Transactions;
+using UCommerce.Transactions.Payments.GiftCard.Extension;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {

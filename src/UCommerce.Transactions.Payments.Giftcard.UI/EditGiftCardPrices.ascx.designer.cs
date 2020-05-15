@@ -28,6 +28,6 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::UCommerce.Presentation.Web.Controls.BulkEditGridView GiftCardPrices;
+        protected global::Ucommerce.Presentation.Web.Controls.BulkEditGridView GiftCardPrices;
     }
 }

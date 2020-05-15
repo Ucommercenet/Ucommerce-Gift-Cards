@@ -55,7 +55,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var createGiftCardButton = new ImageButton
 			{
-				ImageUrl = Presentation.Resources.Images.Menu.Create,
+				ImageUrl = Ucommerce.Presentation.Resources.Images.Menu.Create,
 				CausesValidation = false
 			};
 

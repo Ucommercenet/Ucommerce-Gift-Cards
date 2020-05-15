@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Ucommerce;
 using Ucommerce.EntitiesV2;
 using Ucommerce.Pipelines;
-using Ucommerce.Transactions.Payments.GiftCard.Entities;
-using Ucommerce.Transactions.Payments.GiftCard.Services;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
     /// <summary>
-    /// Issues a <see cref="GiftCard"/> 
+    /// Issues a <see cref="UCommerce.Transactions.Payments.GiftCard"/> 
     /// in case an orderLine contains a product of definition: GiftCard.
     /// </summary>
     public class IssueGiftCardTask : IPipelineTask<PurchaseOrder>

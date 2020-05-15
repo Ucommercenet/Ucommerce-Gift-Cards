@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
+using Ucommerce;
 using Ucommerce.EntitiesV2;
 using Ucommerce.Infrastructure;
 using Ucommerce.Licensing;
@@ -10,7 +11,7 @@ using Ucommerce.Presentation.Web;
 using Ucommerce.Presentation.Web.Controls;
 using Ucommerce.Presentation.Web.Pages;
 using Ucommerce.Security;
-using Ucommerce.Transactions.Payments.GiftCard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
@@ -76,7 +77,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			CurrencySummaryTable.DataSource = currencySums;
 		}
 
-		void View_Saved(object sender, Presentation.Views.Catalog.EntityCommandEventArgs<PaymentMethod> e)
+		void View_Saved(object sender, Ucommerce.Presentation.Views.Catalog.EntityCommandEventArgs<PaymentMethod> e)
 		{
 			UpdateGiftCards();
 			PopulateGiftCardSummary();
@@ -118,7 +119,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 			
 			var createGiftCardbutton = new ClientImageCommand
 				{
-					Icon = Presentation.Resources.Images.Menu.Create,
+					Icon = Ucommerce.Presentation.Resources.Images.Menu.Create,
 					Text = GetLocalResourceObject("CreateGiftCard").ToString(),
 					ClientCommand =
 						JavaScriptFactory.OpenModalFunction(

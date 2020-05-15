@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using Braintree;
 using Ucommerce.EntitiesV2;
 using Ucommerce.Pipelines;
 using Ucommerce.Presentation.UI;
 using Ucommerce.Presentation.Web;
+using QueryString = Ucommerce.Presentation.Web.QueryString;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
@@ -25,7 +27,8 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
                 return PipelineExecutionResult.Success;
             }
 
-            var tabsToRemove = sectionGroup.Sections.Where(x => x.OriginalName == UCommerce.Constants.UI.Sections.Stores.Product.Pricing || x.OriginalName == UCommerce.Constants.UI.Sections.Stores.Product.Variants).ToList();
+            var tabsToRemove = sectionGroup.Sections.Where(x => x.OriginalName == Ucommerce.Constants.UI.Sections.Stores.Product.Pricing || 
+                                                                x.OriginalName == Ucommerce.Constants.UI.Sections.Stores.Product.Variants).ToList();
 
             foreach (var tab in tabsToRemove)
             {

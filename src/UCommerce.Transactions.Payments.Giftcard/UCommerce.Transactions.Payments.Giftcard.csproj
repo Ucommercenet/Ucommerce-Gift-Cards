@@ -174,6 +174,9 @@
       <HintPath>..\packages\uCommerce.Core.9.0.0.20106\lib\net45\Ucommerce.Pipelines.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ucommerce.Presentation, Version=9.0.0.20106, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\uCommerce.Core.9.0.0.20106\lib\net45\Ucommerce.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="UCommerce.SystemHttp, Version=8.4.0.19345, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\uCommerce.Core.8.4.0.19345\lib\net45\UCommerce.SystemHttp.dll</HintPath>
       <Private>True</Private>

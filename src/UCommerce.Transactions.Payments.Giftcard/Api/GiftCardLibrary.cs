@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Linq;
+using Ucommerce.Api;
 using Ucommerce.EntitiesV2;
 using Ucommerce.Infrastructure;
+using Ucommerce.Transactions.Payments;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Api
 {
 	public class GiftCardLibraryInternal
 	{
 		private readonly IRepository<PaymentMethod> _paymentMethodRepository;
-		private readonly TransactionLibraryInternal _transactionLibraryInternal;
+		private readonly ITransactionLibrary _transactionLibrary;
 		private readonly IRepository<Entities.GiftCard> _giftCardRepository;
 
-		public GiftCardLibraryInternal(IRepository<PaymentMethod> paymentMethodRepository, TransactionLibraryInternal transactionLibraryInternal, IRepository<GiftCard.Entities.GiftCard> giftCardRepository)
+		public GiftCardLibraryInternal(IRepository<PaymentMethod> paymentMethodRepository, Ucommerce.Api.ITransactionLibrary transactionLibrary, IRepository<GiftCard.Entities.GiftCard> giftCardRepository)
 		{
 			_paymentMethodRepository = paymentMethodRepository;
-			_transactionLibraryInternal = transactionLibraryInternal;
+			_transactionLibrary = transactionLibrary;
 			_giftCardRepository = giftCardRepository;
 		}
 
@@ -44,9 +46,9 @@ namespace UCommerce.Transactions.Payments.GiftCard.Api
 				throw new InvalidOperationException(string.Format("Payment method with name '{0}' needs to use the service 'Gift Card'", Constants.GiftCardPaymentMethodName));	
 			}
 
-			if (!_transactionLibraryInternal.HasBasket()) return null; //throw exception??
+			if (!_transactionLibrary.HasBasket()) return null; //throw exception??
 
-			var paymentRequest = new PaymentRequest(_transactionLibraryInternal.GetBasket(false).PurchaseOrder, new Payment()
+			var paymentRequest = new PaymentRequest(_transactionLibrary.GetBasket(false), new Payment()
 			{
 				PaymentMethod = paymentMethod,
 				Amount = 0,

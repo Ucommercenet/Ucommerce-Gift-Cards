@@ -2,7 +2,7 @@
 using Ucommerce.EntitiesV2;
 using Ucommerce.Pipelines;
 using Ucommerce.Pipelines.Initialization;
-using Ucommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 {

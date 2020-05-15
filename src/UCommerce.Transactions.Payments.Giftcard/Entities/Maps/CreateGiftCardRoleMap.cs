@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using Ucommerce.Transactions.Payments.GiftCard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Entities.Maps
 {

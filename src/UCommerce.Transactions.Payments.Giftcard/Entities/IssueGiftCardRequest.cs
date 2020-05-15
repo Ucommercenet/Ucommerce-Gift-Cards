@@ -1,4 +1,5 @@
 ﻿using System;
+using Ucommerce;
 using Ucommerce.EntitiesV2;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Entities

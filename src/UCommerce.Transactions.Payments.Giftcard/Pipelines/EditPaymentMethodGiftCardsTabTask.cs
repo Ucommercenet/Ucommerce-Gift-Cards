@@ -7,6 +7,7 @@ using Ucommerce.Presentation.UI;
 using Ucommerce.Presentation.Web;
 using Ucommerce.Presentation.Web.Controls;
 using Ucommerce.Security;
+using QueryString = Ucommerce.Presentation.Web.QueryString;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
@@ -29,7 +30,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 		public PipelineExecutionResult Execute(SectionGroup sectionGroup)
 		{
-			if (sectionGroup.GetViewName() != UCommerce.Constants.UI.Pages.Settings.PaymentMethod)
+			if (sectionGroup.GetViewName() != Ucommerce.Constants.UI.Pages.Settings.PaymentMethod)
 				return PipelineExecutionResult.Success;
 
 			var paymentMethod = _paymentMethodRepository.Get(QueryString.Common.Id);
@@ -72,7 +73,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 		{
 			var generateGiftCardButton = new ImageButton
 			{
-				ImageUrl = Presentation.Resources.Images.Menu.Create,
+				ImageUrl = Ucommerce.Presentation.Resources.Images.Menu.Create,
 				CausesValidation = false
 			};
 

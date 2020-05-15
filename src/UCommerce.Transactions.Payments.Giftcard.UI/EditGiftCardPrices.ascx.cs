@@ -10,6 +10,8 @@ using Ucommerce.Infrastructure;
 using Ucommerce.Presentation.Views.Catalog;
 using Ucommerce.Presentation.Web.Controls;
 using Ucommerce.Presentation.Web.Pages;
+using Ucommerce.Transactions;
+
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class EditGiftCardPrices : ViewEnabledControl<IEditProductView>, ISection
@@ -325,7 +327,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 				{
 					new ClientImageCommand
 						{
-							Icon = Presentation.Resources.Images.Menu.Create,
+							Icon = Ucommerce.Presentation.Resources.Images.Menu.Create,
 							Text = GetLocalResourceObject("CreateGiftCard").ToString(),
 							ClientCommand = "addNewVariantClick(); return false;"
 						}

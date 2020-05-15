@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security;
 using System.Web.UI.WebControls;
+using Ucommerce;
 using Ucommerce.EntitiesV2;
 using Ucommerce.EntitiesV2.Definitions;
 using Ucommerce.Infrastructure;
@@ -12,9 +13,9 @@ using Ucommerce.Presentation.Web.Controls;
 using Ucommerce.Presentation.Web.Controls.Extensions;
 using Ucommerce.Presentation.Web.Pages;
 using Ucommerce.Security;
-using Ucommerce.Transactions.Payments.GiftCard.Entities;
-using Ucommerce.Transactions.Payments.GiftCard.Entities.Security;
-using Ucommerce.Transactions.Payments.GiftCard.Services;
+using UCommerce.Transactions.Payments.GiftCard.Entities;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
+using UCommerce.Transactions.Payments.GiftCard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
