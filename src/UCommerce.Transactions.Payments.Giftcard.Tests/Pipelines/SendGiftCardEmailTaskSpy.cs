@@ -1,8 +1,8 @@
-﻿using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure.Configuration;
-using UCommerce.Infrastructure.Logging;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
-using UCommerce.Transactions.Payments.GiftCard.Pipelines;
+﻿using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure.Configuration;
+using Ucommerce.Infrastructure.Logging;
+using Ucommerce.Transactions.Payments.GiftCard.Entities;
+using Ucommerce.Transactions.Payments.GiftCard.Pipelines;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {

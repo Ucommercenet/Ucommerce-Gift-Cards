@@ -4,9 +4,9 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Web;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure;
-using UCommerce.Security;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure;
+using Ucommerce.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {

@@ -5,11 +5,11 @@ using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure;
-using UCommerce.Presentation.Views.Catalog;
-using UCommerce.Presentation.Web.Controls;
-using UCommerce.Presentation.Web.Pages;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure;
+using Ucommerce.Presentation.Views.Catalog;
+using Ucommerce.Presentation.Web.Controls;
+using Ucommerce.Presentation.Web.Pages;
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {
 	public partial class EditGiftCardPrices : ViewEnabledControl<IEditProductView>, ISection

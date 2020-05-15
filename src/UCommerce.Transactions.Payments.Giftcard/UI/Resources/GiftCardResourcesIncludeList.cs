@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 using ClientDependency.Core;
-using UCommerce.Presentation.UI.Resources;
+using Ucommerce.Presentation.UI.Resources;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI.Resources
 {

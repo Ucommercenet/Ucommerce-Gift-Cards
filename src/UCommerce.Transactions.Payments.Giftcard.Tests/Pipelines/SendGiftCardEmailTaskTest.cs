@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using UCommerce.EntitiesV2;
+using Ucommerce.EntitiesV2;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {

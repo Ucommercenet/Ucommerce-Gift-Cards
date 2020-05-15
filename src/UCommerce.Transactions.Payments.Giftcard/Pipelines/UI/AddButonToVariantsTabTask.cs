@@ -1,7 +1,7 @@
 using System.Web.UI.WebControls;
-using UCommerce.Pipelines;
-using UCommerce.Presentation.UI;
-using UCommerce.Presentation.Web.Controls;
+using Ucommerce.Pipelines;
+using Ucommerce.Presentation.UI;
+using Ucommerce.Presentation.Web.Controls;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.UI
 {

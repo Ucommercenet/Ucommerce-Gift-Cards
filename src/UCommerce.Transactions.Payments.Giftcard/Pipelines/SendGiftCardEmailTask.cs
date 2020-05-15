@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure.Configuration;
-using UCommerce.Infrastructure.Globalization;
-using UCommerce.Infrastructure.Logging;
-using UCommerce.Pipelines;
-using UCommerce.Pipelines.Common;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
-using UCommerce.Transactions.Payments.GiftCard.Extension;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure.Configuration;
+using Ucommerce.Infrastructure.Globalization;
+using Ucommerce.Infrastructure.Logging;
+using Ucommerce.Pipelines;
+using Ucommerce.Pipelines.Common;
+using Ucommerce.Transactions.Payments.GiftCard.Entities;
+using Ucommerce.Transactions.Payments.GiftCard.Extension;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {

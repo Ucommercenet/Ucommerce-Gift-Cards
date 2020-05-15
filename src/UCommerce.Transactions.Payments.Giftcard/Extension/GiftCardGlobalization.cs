@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
-using UCommerce.Infrastructure.Globalization;
+using Ucommerce.Infrastructure.Globalization;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Extension
 {

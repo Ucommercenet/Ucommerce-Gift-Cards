@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Api
 {

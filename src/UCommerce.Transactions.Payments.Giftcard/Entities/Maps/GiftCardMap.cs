@@ -1,4 +1,4 @@
-﻿using UCommerce.EntitiesV2.Maps;
+﻿using Ucommerce.EntitiesV2.Maps;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Entities.Maps
 {

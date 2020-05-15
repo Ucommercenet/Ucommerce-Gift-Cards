@@ -1,4 +1,4 @@
-﻿using UCommerce.Transactions.Payments.GiftCard.Entities;
+﻿using Ucommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {

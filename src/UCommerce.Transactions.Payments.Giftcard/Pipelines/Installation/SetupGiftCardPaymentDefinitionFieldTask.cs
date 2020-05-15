@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure.Logging;
-using UCommerce.Pipelines;
-using UCommerce.Pipelines.Initialization;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure.Logging;
+using Ucommerce.Pipelines;
+using Ucommerce.Pipelines.Initialization;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.Installation
 {

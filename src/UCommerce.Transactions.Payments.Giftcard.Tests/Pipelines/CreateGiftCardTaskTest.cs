@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Rhino.Mocks;
-using UCommerce.EntitiesV2;
-using UCommerce.Marketing.Targets;
-using UCommerce.Transactions.Payments.GiftCard.Pipelines;
-using UCommerce.Transactions.Payments.GiftCard.Services;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Marketing.Targets;
+using Ucommerce.Transactions.Payments.GiftCard.Pipelines;
+using Ucommerce.Transactions.Payments.GiftCard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 {

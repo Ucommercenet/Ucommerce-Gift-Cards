@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using UCommerce.EntitiesV2;
-using UCommerce.Pipelines;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
-using UCommerce.Transactions.Payments.GiftCard.Services;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Pipelines;
+using Ucommerce.Transactions.Payments.GiftCard.Entities;
+using Ucommerce.Transactions.Payments.GiftCard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {

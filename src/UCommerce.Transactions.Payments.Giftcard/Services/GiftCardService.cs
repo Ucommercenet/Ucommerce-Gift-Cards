@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UCommerce.EntitiesV2;
-using UCommerce.Marketing.Targets;
-using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Marketing.Targets;
+using Ucommerce.Security;
+using Ucommerce.Transactions.Payments.GiftCard.Entities;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Services
 {

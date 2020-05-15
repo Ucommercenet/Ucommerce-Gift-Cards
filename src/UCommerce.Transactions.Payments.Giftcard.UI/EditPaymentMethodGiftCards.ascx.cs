@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure;
-using UCommerce.Licensing;
-using UCommerce.Presentation.Views.Settings.Orders;
-using UCommerce.Presentation.Web;
-using UCommerce.Presentation.Web.Controls;
-using UCommerce.Presentation.Web.Pages;
-using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure;
+using Ucommerce.Licensing;
+using Ucommerce.Presentation.Views.Settings.Orders;
+using Ucommerce.Presentation.Web;
+using Ucommerce.Presentation.Web.Controls;
+using Ucommerce.Presentation.Web.Pages;
+using Ucommerce.Security;
+using Ucommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Security;
 using System.Web.UI.WebControls;
-using UCommerce.EntitiesV2;
-using UCommerce.EntitiesV2.Definitions;
-using UCommerce.Infrastructure;
-using UCommerce.Licensing;
-using UCommerce.Presentation.UI;
-using UCommerce.Presentation.Web;
-using UCommerce.Presentation.Web.Controls;
-using UCommerce.Presentation.Web.Controls.Extensions;
-using UCommerce.Presentation.Web.Pages;
-using UCommerce.Security;
-using UCommerce.Transactions.Payments.GiftCard.Entities;
-using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
-using UCommerce.Transactions.Payments.GiftCard.Services;
+using Ucommerce.EntitiesV2;
+using Ucommerce.EntitiesV2.Definitions;
+using Ucommerce.Infrastructure;
+using Ucommerce.Licensing;
+using Ucommerce.Presentation.UI;
+using Ucommerce.Presentation.Web;
+using Ucommerce.Presentation.Web.Controls;
+using Ucommerce.Presentation.Web.Controls.Extensions;
+using Ucommerce.Presentation.Web.Pages;
+using Ucommerce.Security;
+using Ucommerce.Transactions.Payments.GiftCard.Entities;
+using Ucommerce.Transactions.Payments.GiftCard.Entities.Security;
+using Ucommerce.Transactions.Payments.GiftCard.Services;
 
 namespace UCommerce.Transactions.Payments.GiftCard.UI
 {

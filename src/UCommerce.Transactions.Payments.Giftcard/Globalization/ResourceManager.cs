@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using System.Threading;
-using UCommerce.Infrastructure.Globalization;
+using Ucommerce.Infrastructure.Globalization;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 {

@@ -1,10 +1,10 @@
 ﻿using System.Web.UI.WebControls;
-using UCommerce.EntitiesV2;
-using UCommerce.Infrastructure.Globalization;
-using UCommerce.Pipelines;
-using UCommerce.Presentation.UI;
-using UCommerce.Presentation.Web;
-using UCommerce.Presentation.Web.Controls;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Infrastructure.Globalization;
+using Ucommerce.Pipelines;
+using Ucommerce.Presentation.UI;
+using Ucommerce.Presentation.Web;
+using Ucommerce.Presentation.Web.Controls;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {

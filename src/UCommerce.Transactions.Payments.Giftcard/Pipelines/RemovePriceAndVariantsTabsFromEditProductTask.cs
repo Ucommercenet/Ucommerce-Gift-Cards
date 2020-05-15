@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using UCommerce.EntitiesV2;
-using UCommerce.Pipelines;
-using UCommerce.Presentation.UI;
-using UCommerce.Presentation.Web;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Pipelines;
+using Ucommerce.Presentation.UI;
+using Ucommerce.Presentation.Web;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {

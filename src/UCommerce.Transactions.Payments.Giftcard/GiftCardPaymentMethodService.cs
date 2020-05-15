@@ -2,14 +2,14 @@
 using System.Configuration;
 using System.Linq;
 using System.Security;
-using UCommerce.EntitiesV2;
-using UCommerce.Extensions;
-using UCommerce.Infrastructure.Components.Windsor;
-using UCommerce.Infrastructure.Globalization;
-using UCommerce.Pipelines;
-using UCommerce.Runtime;
-using UCommerce.Web;
-using UCommerce.Web.Impl;
+using Ucommerce.EntitiesV2;
+using Ucommerce.Extensions;
+using Ucommerce.Infrastructure.Components.Windsor;
+using Ucommerce.Infrastructure.Globalization;
+using Ucommerce.Pipelines;
+using Ucommerce.Runtime;
+using Ucommerce.Web;
+using Ucommerce.Web.Impl;
 
 namespace UCommerce.Transactions.Payments.GiftCard
 {
