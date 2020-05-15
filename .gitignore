@@ -33,3 +33,6 @@ src/.vs/config/applicationhost.config
 package/SampleApp.0.0.0.1.nupkg
 package
 documentation/*
+src/.idea/
+src/.vs/
+src/packages/
