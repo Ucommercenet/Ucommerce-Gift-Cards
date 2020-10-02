@@ -39,9 +39,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 			{
 				for (int i = 0; i < orderLine.Quantity; i++)
 				{
-					var amount = new Money(orderLine.Price + orderLine.VAT, subject.BillingCurrency);
+					var amount = new Money(orderLine.Price + orderLine.VAT, subject.BillingCurrency.ISOCode);
 					var request = new IssueGiftCardRequest(
 						balance: amount,
+						subject.BillingCurrency,
 						enabled: true,
 						expiresOn: DateTime.Now.Date.AddDays(_daysGiftIsAvailableAfterPurchase),
 						paymentMethod: GetDefaultGiftCardPaymentMethodServiceForProductCatalogGroup(subject.ProductCatalogGroup),

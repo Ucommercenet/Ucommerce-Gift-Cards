@@ -62,13 +62,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.UI
 
 			var expires = (DatePicker)date.FindControl("DatePicker");
 
-			var balance = new Money(amount, currency);
+			var balance = new Money(amount, currency.ISOCode);
 
 			var giftCardRequests = new List<IssueGiftCardRequest>();
 
 			for (int i = 0;i < numbersToGenerate; i++)
 			{
-				var giftCardRequest = new IssueGiftCardRequest(balance, enabled, expires.DateTime.Value, paymentMethod);
+				var giftCardRequest = new IssueGiftCardRequest(balance, currency, enabled, expires.DateTime.Value, paymentMethod);
 				giftCardRequest.Note = NoteTextBox.Text;
 
 				giftCardRequests.Add(giftCardRequest);

@@ -15,8 +15,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Entities
 		public Money Amount { get; set; }
 		public DateTime ExpiresOn { get; set; }
 		public string Note { get; set; }
+		
+		public Currency Currency { get; set; }
 
-		public IssueGiftCardRequest(Money balance, bool enabled, DateTime expiresOn, PaymentMethod paymentMethod)
+		public IssueGiftCardRequest(Money balance, Currency currency, bool enabled, DateTime expiresOn, PaymentMethod paymentMethod)
 		{
 			ExpiresOn = expiresOn;
 			Enabled = enabled;
@@ -24,7 +26,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Entities
 			Amount = balance;
 		}
 
-		public IssueGiftCardRequest(Money balance, bool enabled, DateTime expiresOn, PaymentMethod paymentMethod, string reference)
+		public IssueGiftCardRequest(Money balance, Currency currency, bool enabled, DateTime expiresOn, PaymentMethod paymentMethod, string reference)
 		{
 			ExpiresOn = expiresOn;
 			Enabled = enabled;
