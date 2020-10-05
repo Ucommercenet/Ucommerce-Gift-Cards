@@ -11,8 +11,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Tests.Pipelines
 		public SendGiftCardEmailTaskSpy(
             string emailTypeName, 
             ILoggingService loggingService, 
-            IEmailService emailService, 
-            CommerceConfigurationProvider commerceConfigurationProvider, 
+            IEmailService emailService,
             IRepository<Entities.GiftCard> giftCardRepository) : base(emailTypeName, loggingService, emailService, giftCardRepository)
 		{}
 

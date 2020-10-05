@@ -7,6 +7,11 @@ namespace UCommerce.Transactions.Payments.GiftCard.Globalization
 {
 	public class ResourceManager : IResourceManager
 	{
+		public string GetLocalizedIcon(string key)
+		{
+			return "";
+		}
+
 		public string GetLocalizedText(string resource, string key)
 		{
 			return GetLocalizedText(Thread.CurrentThread.CurrentUICulture, resource, key);

@@ -44,7 +44,7 @@ namespace UCommerce.Transactions.Payments.GiftCard.Services
 				giftCard.Amount = issueGiftCardRequest.Amount.Value;
 				giftCard.CreatedOn = DateTime.UtcNow;
 				giftCard.ModifiedOn = DateTime.UtcNow;
-				giftCard.CreatedBy = _userService.GetCurrentUserName();
+				giftCard.CreatedBy = _userService.GetCurrentUser().Name;
 				giftCard.ExpiresOn = issueGiftCardRequest.ExpiresOn;
 				giftCard.Currency = issueGiftCardRequest.Amount.Currency;
 				giftCard.Note = issueGiftCardRequest.Note;
