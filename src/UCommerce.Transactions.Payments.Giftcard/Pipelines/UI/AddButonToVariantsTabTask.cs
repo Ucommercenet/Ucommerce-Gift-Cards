@@ -9,10 +9,10 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines.UI
     {
         public PipelineExecutionResult Execute(SectionGroup subject)
         {
-            var imageButton = new LabeledImageButton();
-            {
-
-            };
+            if (subject.GetViewName() != UCommerce.Constants.UI.Pages.Stores.Product)
+                return PipelineExecutionResult.Success;
+            
+            var imageButton = new LabeledImageButton(); {};
 
             imageButton.CausesValidation = false;
             imageButton.OnClientClick = "addNewVariantClick(); return false;";

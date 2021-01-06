@@ -33,3 +33,7 @@ src/.vs/config/applicationhost.config
 package/SampleApp.0.0.0.1.nupkg
 package
 documentation/*
+src/packages/
+src/.idea/
+src/UCommerce.Transactions.Payments.Giftcard/.idea/
+src/.vs/

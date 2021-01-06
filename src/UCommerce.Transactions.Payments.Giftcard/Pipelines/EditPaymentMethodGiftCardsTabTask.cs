@@ -7,6 +7,7 @@ using UCommerce.Presentation.UI;
 using UCommerce.Presentation.Web;
 using UCommerce.Presentation.Web.Controls;
 using UCommerce.Security;
+using UCommerce.Transactions.Payments.GiftCard.Entities.Security;
 
 namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 {
@@ -58,22 +59,23 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 
 			section.Menu.AddMenuButton(new SaveButtonPlaceholder());
 
-			//if (_securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole)))
-			//{
-			section.Menu.AddMenuButton(CreateGenerateGiftCardImageButton());
-			section.Menu.AddMenuButton(CreateExportButton());
-			//}
+			if (_securityService.UserIsInRole(Role.FirstOrDefault(x => x is CreateGiftCardRole)))
+			{
+				section.Menu.AddMenuButton(CreateGenerateGiftCardImageButton());
+				section.Menu.AddMenuButton(CreateExportButton());
+			}
 
 			section.AddControl(control);
 			return section;
 		}
 
-		private ImageButton CreateGenerateGiftCardImageButton()
+		private LabeledImageButton CreateGenerateGiftCardImageButton()
 		{
-			var generateGiftCardButton = new ImageButton
+			var generateGiftCardButton = new LabeledImageButton
 			{
 				ImageUrl = Presentation.Resources.Images.Menu.Create,
-				CausesValidation = false
+				CausesValidation = false,
+				CommandName = "Issue Gift Card"
 			};
 
 			generateGiftCardButton.Attributes.Add("onclick", _javaScriptFactory.OpenModalFunction(string.Format("/Apps/UCommerce.GiftCards/GenerateGiftCards.aspx?Id={0}", QueryString.Common.Id), "Create Gift Card", 700, 700));
@@ -81,12 +83,13 @@ namespace UCommerce.Transactions.Payments.GiftCard.Pipelines
 			return generateGiftCardButton;
 		}
 
-		private ImageButton CreateExportButton()
+		private LabeledImageButton CreateExportButton()
 		{
-			var exportButton = new ImageButton
+			var exportButton = new LabeledImageButton
 			{
 				ImageUrl = string.Format("{0}/Apps/UCommerce.GiftCards/media/table_save.png", _pathService.GetPath()),
 				CausesValidation = false,
+				CommandName = "Export Gift Cards"
 			};
 
 			var pathString = string.Format("{0}/Apps/UCommerce.GiftCards/DownloadGiftCardCodes.ashx?Id={1}", _pathService.GetPath(), QueryString.Common.Id);
